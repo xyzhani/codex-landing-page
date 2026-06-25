@@ -308,9 +308,11 @@ export default function CustomerExperienceSection() {
                   </svg>
 
                   {/* avatar */}
-                  <div className="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-lg">
-                    CS
-                  </div>
+                  <img
+                    src="/codex-logo.jpg"
+                    alt="Codex Solutions International"
+                    className="w-10 h-10 rounded-full object-cover shrink-0 shadow-lg"
+                  />
 
                   {/* name + status */}
                   <div className="min-w-0 flex-1">

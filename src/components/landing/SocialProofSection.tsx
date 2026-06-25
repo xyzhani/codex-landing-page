@@ -154,9 +154,11 @@ function InstagramScreen() {
         }}
       >
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-white/20 border-2 border-white flex items-center justify-center">
-            <span className="text-[8px] font-bold text-white">CSI</span>
-          </div>
+          <img
+            src="/codex-logo.jpg"
+            alt="Codex Solutions"
+            className="w-7 h-7 rounded-full object-cover border-2 border-white"
+          />
           <div>
             <p className="text-[11px] font-semibold text-white leading-tight">Codex Solutions</p>
             <p className="text-[8px] text-white/60">Sponsored</p>
@@ -261,9 +263,11 @@ function FacebookScreen() {
       {/* FB header */}
       <div className="flex items-center justify-between px-3 py-2 shrink-0 bg-[#1877F2]">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-            <span className="text-[8px] font-bold text-white">CSI</span>
-          </div>
+          <img
+            src="/codex-logo.jpg"
+            alt="Codex Solutions International"
+            className="w-8 h-8 rounded-full object-cover"
+          />
           <div>
             <p className="text-[11px] font-semibold text-white leading-tight">Codex Solutions International</p>
             <p className="text-[8px] text-white/60 flex items-center gap-1">
@@ -356,9 +360,11 @@ function LinkedInScreen() {
       {/* LinkedIn header */}
       <div className="flex items-center justify-between px-3 py-2 shrink-0 bg-[#0A66C2]">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-            <span className="text-[8px] font-bold text-white">CSI</span>
-          </div>
+          <img
+            src="/codex-logo.jpg"
+            alt="Codex Solutions International"
+            className="w-8 h-8 rounded-full object-cover"
+          />
           <div>
             <p className="text-[11px] font-semibold text-white leading-tight">Codex Solutions International</p>
             <p className="text-[8px] text-white/60">1st degree connection</p>
