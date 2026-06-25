@@ -276,16 +276,12 @@ export default function CustomerExperienceSection() {
             <div className="phone-scale-wrapper">
               <IPhone15Pro>
                 {/* ---------- Status Bar ---------- */}
-                <div className="flex items-center justify-between px-8 pt-4 pb-1 text-[11px] font-semibold text-white shrink-0"
+                <div className="relative flex items-center justify-center px-8 pt-4 pb-1 text-[11px] font-semibold text-white shrink-0"
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
-                  <span>9:41</span>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[10px] w-[126px] h-[37px] rounded-full bg-black" />
-                  <div className="flex items-center gap-1">
-                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0" y="3" width="3" height="9" rx="0.5" fill="white"/><rect x="4.5" y="2" width="3" height="10" rx="0.5" fill="white"/><rect x="9" y="0" width="3" height="12" rx="0.5" fill="white"/><rect x="13" y="0" width="3" height="12" rx="0.5" fill="white" opacity="0.3"/></svg>
-                    <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><path d="M7.5 3.6c1.6 0 3 .6 4.1 1.7l.9-.9A8.3 8.3 0 007.5 2.1a8.3 8.3 0 00-5 1.7l.9.9A5.5 5.5 0 017.5 3.6z" fill="white"/><path d="M7.5 6.2c.9 0 1.8.4 2.5 1l.9-.9A4.2 4.2 0 007.5 4.6a4.2 4.2 0 00-3.4 1.7l.9.9c.7-.6 1.6-1 2.5-1z" fill="white"/><circle cx="7.5" cy="8.8" r="1.3" fill="white"/></svg>
-                    <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2" stroke="white" strokeWidth="1"/><rect x="1.5" y="2.5" width="15" height="7" rx="1" fill="white"/><path d="M22.5 4.5v3a2 2 0 000-3z" fill="white"/></svg>
-                  </div>
+                  <span className="absolute left-8">9:41</span>
+                  {/* Dynamic Island only — no signal/wifi/battery icons */}
+                  <div className="w-[126px] h-[37px] rounded-full bg-black" />
                 </div>
 
                 {/* ---------- WA Header ---------- */}

@@ -489,7 +489,7 @@ export default function ParticleField() {
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 55 }}
+        camera={{ position: [0.4, 0, 5.5], fov: 50 }}
         dpr={[1, 1.5]}
         gl={{
           antialias: true,
