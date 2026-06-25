@@ -51,100 +51,137 @@ const steps = [
   },
 ];
 
+const CURVE_PATH = [
+  'M100 0',
+  'C 100 50, 25 75, 25 100',
+  'C 25 125, 100 150, 100 200',
+  'C 100 250, 175 275, 175 300',
+  'C 175 325, 100 350, 100 400',
+  'C 100 450, 25 475, 25 500',
+  'C 25 525, 100 550, 100 600',
+  'C 100 650, 175 675, 175 700',
+  'C 175 725, 100 750, 100 800',
+  'C 100 850, 25 875, 25 900',
+  'C 25 925, 100 950, 100 1000',
+  'C 100 1050, 175 1075, 175 1100',
+  'C 175 1125, 100 1150, 100 1200',
+].join(' ');
+
 /* ─── Step Card ──────────────────────────────────────────────────── */
 
 function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const inView = useInView(ref, { once: true, margin: '-50px' });
   const isRight = index % 2 === 0;
 
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center">
-      {/* Left content (visible when step is RIGHT) */}
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, x: isRight ? -60 : 60 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        className={`${isRight ? 'lg:order-1 lg:text-right' : 'lg:order-2 lg:text-left'} ${!isRight ? 'lg:col-start-2' : ''}`}
-      >
-        {isRight ? null : (
-          <div className="hidden lg:block" />
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: isRight ? -50 : 50 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="relative grid grid-cols-1 lg:grid-cols-[1fr_80px_1fr] items-center"
+    >
+      {/* LEFT column */}
+      <div className={`${isRight ? 'lg:text-right lg:pr-6' : 'lg:opacity-0 lg:pointer-events-none'}`}>
+        {isRight && (
+          <>
+            <div className={`inline-flex items-center gap-3 mb-3 lg:flex-row-reverse`}>
+              <motion.div
+                className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                style={{
+                  backgroundColor: `${step.color}12`,
+                  boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
+                }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              >
+                <step.icon className="w-5 h-5" style={{ color: step.color }} />
+              </motion.div>
+              <span className="text-xs font-bold tracking-wider" style={{ color: step.color }}>
+                STEP {step.num}
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
+              {step.title}
+            </h3>
+            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed">
+              {step.description}
+            </p>
+          </>
         )}
-        <div className={`inline-flex items-center gap-3 mb-4 ${isRight ? 'lg:flex-row-reverse' : ''}`}>
+      </div>
+
+      {/* CENTER column — dot + rings */}
+      <div className="hidden lg:flex items-center justify-center relative">
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={inView ? { scale: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="relative w-5 h-5"
+        >
+          {/* Pulse rings */}
           <motion.div
-            className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+            className="absolute inset-[-8px] rounded-full"
+            style={{ border: `2px solid ${step.color}25` }}
+            animate={{ scale: [1, 2], opacity: [0.5, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
+          />
+          <motion.div
+            className="absolute inset-[-4px] rounded-full"
+            style={{ border: `1px solid ${step.color}40` }}
+            animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 0.5 }}
+          />
+          {/* Core dot */}
+          <div
+            className="w-5 h-5 rounded-full"
             style={{
-              backgroundColor: `${step.color}12`,
-              boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
+              backgroundColor: step.color,
+              boxShadow: `0 0 14px ${step.color}90, 0 0 28px ${step.color}50, 0 0 56px ${step.color}25`,
             }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-          >
-            <step.icon className="w-6 h-6" style={{ color: step.color }} />
-          </motion.div>
-          <span className="text-sm font-bold tracking-wider" style={{ color: step.color }}>
-            STEP {step.num}
-          </span>
-        </div>
-        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 leading-tight">
-          {step.title}
-        </h3>
-        <p className="text-white text-[14px] sm:text-[15px] leading-relaxed max-w-md mx-0 lg:max-w-none">
-          {step.description}
-        </p>
-      </motion.div>
+          />
+        </motion.div>
+      </div>
 
-      {/* Center dot + neon ring */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={inView ? { scale: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 hidden lg:block"
-      >
-        {/* Outer pulse */}
-        <motion.div
-          className="absolute inset-[-6px] rounded-full"
-          style={{ border: `2px solid ${step.color}30` }}
-          animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
-        />
-        <motion.div
-          className="absolute inset-[-3px] rounded-full"
-          style={{ border: `1px solid ${step.color}50` }}
-          animate={{ scale: [1, 1.3], opacity: [0.6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 0.5 }}
-        />
-        {/* Core dot */}
-        <div
-          className="w-4 h-4 rounded-full relative"
-          style={{
-            backgroundColor: step.color,
-            boxShadow: `0 0 12px ${step.color}80, 0 0 24px ${step.color}40, 0 0 48px ${step.color}20`,
-          }}
-        />
-      </motion.div>
-
-      {/* Right content (visible when step is LEFT) */}
-      <div className={`${isRight ? 'lg:order-2' : 'lg:order-1'} ${isRight ? 'lg:col-start-2' : ''}`} />
-    </div>
+      {/* RIGHT column */}
+      <div className={`${!isRight ? 'lg:text-left lg:pl-6' : 'lg:opacity-0 lg:pointer-events-none'}`}>
+        {!isRight && (
+          <>
+            <div className="inline-flex items-center gap-3 mb-3">
+              <motion.div
+                className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                style={{
+                  backgroundColor: `${step.color}12`,
+                  boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
+                }}
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              >
+                <step.icon className="w-5 h-5" style={{ color: step.color }} />
+              </motion.div>
+              <span className="text-xs font-bold tracking-wider" style={{ color: step.color }}>
+                STEP {step.num}
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
+              {step.title}
+            </h3>
+            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed">
+              {step.description}
+            </p>
+          </>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
 /* ─── Neon Curved SVG Path ──────────────────────────────────────── */
 
 function NeonPath() {
-  const pathRef = useRef<SVGPathElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  /* Progress of the traveling light along the path */
-  const pathLength = 1200;
-  const lightOffset = useTransform(scrollYProgress, [0.1, 0.85], [pathLength, 0]);
 
   return (
     <div ref={sectionRef} className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[200px] hidden lg:block z-10 pointer-events-none">
@@ -156,81 +193,35 @@ function NeonPath() {
       >
         {/* Curved zigzag path */}
         <path
-          ref={pathRef}
-          d="M100 0 
-             C 100 40, 30 60, 30 100
-             C 30 140, 100 160, 100 200
-             C 100 240, 170 260, 170 300
-             C 170 340, 100 360, 100 400
-             C 100 440, 30 460, 30 500
-             C 30 540, 100 560, 100 600
-             C 100 640, 170 660, 170 700
-             C 170 740, 100 760, 100 800
-             C 100 840, 30 860, 30 900
-             C 30 940, 100 960, 100 1000
-             C 100 1040, 170 1060, 170 1100
-             C 170 1140, 100 1160, 100 1200"
+          d={CURVE_PATH}
           stroke="url(#neonGrad)"
-          strokeWidth="2"
+          strokeWidth="1.5"
           strokeLinecap="round"
-          className="opacity-30"
+          className="opacity-25"
         />
 
-        {/* Animated traveling light (glowing dot) */}
+        {/* Traveling light 1 — larger glow */}
         <motion.circle
-          r="5"
+          r="8"
           fill="#14f0c8"
-          filter="url(#glow)"
+          filter="url(#glowBig)"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <motion.animateMotion
-            dur="6s"
-            repeatCount="indefinite"
-            path="M100 0 
-             C 100 40, 30 60, 30 100
-             C 30 140, 100 160, 100 200
-             C 100 240, 170 260, 170 300
-             C 170 340, 100 360, 100 400
-             C 100 440, 30 460, 30 500
-             C 30 540, 100 560, 100 600
-             C 100 640, 170 660, 170 700
-             C 170 740, 100 760, 100 800
-             C 100 840, 30 860, 30 900
-             C 30 940, 100 960, 100 1000
-             C 100 1040, 170 1060, 170 1100
-             C 170 1140, 100 1160, 100 1200"
-          />
+          <motion.animateMotion dur="6s" repeatCount="indefinite" path={CURVE_PATH} />
         </motion.circle>
 
-        {/* Second traveling light (offset timing) */}
+        {/* Traveling light 2 — offset */}
         <motion.circle
-          r="3"
+          r="5"
           fill="#a78bfa"
-          filter="url(#glow)"
+          filter="url(#glowBig)"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 0.7 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <motion.animateMotion
-            dur="6s"
-            repeatCount="indefinite"
-            begin="3s"
-            path="M100 0 
-             C 100 40, 30 60, 30 100
-             C 30 140, 100 160, 100 200
-             C 100 240, 170 260, 170 300
-             C 170 340, 100 360, 100 400
-             C 100 440, 30 460, 30 500
-             C 30 540, 100 560, 100 600
-             C 100 640, 170 660, 170 700
-             C 170 740, 100 760, 100 800
-             C 100 840, 30 860, 30 900
-             C 30 940, 100 960, 100 1000
-             C 100 1040, 170 1060, 170 1100
-             C 170 1140, 100 1160, 100 1200"
-          />
+          <motion.animateMotion dur="6s" repeatCount="indefinite" begin="3s" path={CURVE_PATH} />
         </motion.circle>
 
         <defs>
@@ -240,9 +231,10 @@ function NeonPath() {
             <stop offset="60%" stopColor="#a78bfa" stopOpacity="0.4" />
             <stop offset="100%" stopColor="#f472b6" stopOpacity="0.6" />
           </linearGradient>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          <filter id="glowBig" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
             <feMerge>
+              <feMergeNode in="blur" />
               <feMergeNode in="blur" />
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -280,15 +272,12 @@ export default function HowItWorksSection() {
       />
 
       {/* Ambient glow */}
-      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-teal-500/[0.02] blur-[120px]" />
-      <div className="absolute bottom-1/4 left-0 w-[400px] h-[400px] rounded-full bg-violet-500/[0.02] blur-[120px]" />
+      <div className="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full bg-teal-500/[0.02] blur-[120px]" />
+      <div className="absolute bottom-1/3 left-0 w-[400px] h-[400px] rounded-full bg-violet-500/[0.02] blur-[120px]" />
 
-      {/* Neon curved path (behind content) */}
-      <NeonPath />
-
-      <div className="relative z-20 max-w-6xl mx-auto px-6 sm:px-8">
+      <div className="relative z-20 max-w-5xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <motion.div style={{ opacity: headerOpacity }} className="text-center mb-20 sm:mb-24">
+        <motion.div style={{ opacity: headerOpacity }} className="text-center mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-gradient-to-r from-transparent to-teal-500/50" />
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-teal-400">
@@ -304,11 +293,15 @@ export default function HowItWorksSection() {
           </h2>
         </motion.div>
 
-        {/* Steps timeline */}
-        <div className="space-y-16 sm:space-y-20 lg:space-y-24">
-          {steps.map((step, i) => (
-            <StepCard key={step.num} step={step} index={i} />
-          ))}
+        {/* Steps + Neon Path container — line starts here, NOT from heading */}
+        <div className="relative">
+          <NeonPath />
+
+          <div className="relative z-20 space-y-14 sm:space-y-16 lg:space-y-[100px]">
+            {steps.map((step, i) => (
+              <StepCard key={step.num} step={step} index={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
