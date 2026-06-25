@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Ready to Build Your  \nReputation Engine?  \n\nEvery order → Google review → AI reply posted instantly  \nEvery review → Instagram Story + Facebook Post + LinkedIn Post  \nEvery post builds trust and brings new customers.  \n\nBook a Free 15-Minute Demo Call  \n\nNo commitment. We’ll show you exactly how it works for your business.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394301,
+  "id": "202606252131388a38a7faeafc4ec6",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252131388a38a7faeafc4ec6",
+  "usage": {
+    "completion_tokens": 72,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1149,
+    "prompt_tokens_details": {
+      "cached_tokens": 7
+    },
+    "total_tokens": 1221
+  }
+}

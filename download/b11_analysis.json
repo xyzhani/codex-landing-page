@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "THE 5★ PATH • PUBLIC PROOF ENGINE  \n\nEvery 5★ Becomes Public Proof — End to End  \n\n01  \nG  \nRedirect to Review  \nSent to your Google review link — or an internal form / private WhatsApp instead.  \n\n02  \n🤖  \nAI Auto-Response  \nOnce posted, AI replies on-brand — tailored to your business and the words of their review.  \n\n03  \n📷  \nInstagram Story  \nText reviews become a branded Story. Reviews with a photo are turned into a video Story automatically.  \n\n04  \n▶️  \nReel + LinkedIn  \nPhoto reviews post as an Instagram Reel — and to LinkedIn for B2B credibility.  \n\nGot a photo with the review? It’s auto-converted into a video Story, published as a Reel, and posted to LinkedIn — no editing on your side.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394291,
+  "id": "202606252131268e8aab1acb4b481e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252131268e8aab1acb4b481e",
+  "usage": {
+    "completion_tokens": 176,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1174
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# THE 1-4★ PATH • PRIVATE RECOVERY\n\n## Low Ratings Become Recovered Customers\n\nEach rating gets its own response. The feedback is then passed to AI, which replies, generates a coupon, and alerts your team.\n\n### Rating-Specific Response\n- 1★ to 4★ each trigger a different, fitting reply — then it's handed to AI, never posted publicly.\n\n### Tailored Reply + Internal Feedback\n- AI reads their review and writes a personalized reply based on exactly what they said and where it fell short.\n\n### Coupon / Discount Generated\n- AI generates a coupon / discount code and sends it back to the customer with the reply — for their next order.\n\n### Team Notified\n- Your team is notified instantly with the full context to follow up and fix the root cause.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394297,
+  "id": "202606252131315772fb85443c4ac4",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252131315772fb85443c4ac4",
+  "usage": {
+    "completion_tokens": 168,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1298,
+    "prompt_tokens_details": {
+      "cached_tokens": 67
+    },
+    "total_tokens": 1466
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "RETURN ON INVESTMENT\n\nThe Value Chain in Action\n\nOrder Completed → WhatsApp Review Request → 5★ Review on Google → Higher Local SEO Rank → Instagram Story Posted → New Customers Convert\n\n3x  \nAverage review growth  \nin first 90 days  \n\n80%  \nOpen rate on  \nWhatsApp vs 22% email  \n\n4.5x  \nMore trust from  \ncustomers with 50+ reviews  \n\n100%  \nAutomated — zero  \nmanual work required",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394278,
+  "id": "202606252131162596c6e3cf1148cf",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252131162596c6e3cf1148cf",
+  "usage": {
+    "completion_tokens": 96,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1040,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1136
+  }
+}
