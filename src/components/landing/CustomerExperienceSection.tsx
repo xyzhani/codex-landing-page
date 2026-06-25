@@ -86,10 +86,10 @@ export default function CustomerExperienceSection() {
   const msgIdRef = useRef(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  /* ---- scroll to bottom ---- */
+  /* ---- scroll to bottom (within chat container only) ---- */
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => {
-      chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
     });
   }, []);
 
@@ -135,10 +135,10 @@ export default function CustomerExperienceSection() {
     };
   }, [sectionVisible, addMessage]);
 
-  /* ---- scroll on new messages ---- */
+  /* ---- scroll on new messages (only when section is visible) ---- */
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, showTyping, scrollToBottom]);
+    if (sectionVisible) scrollToBottom();
+  }, [messages, showTyping, scrollToBottom, sectionVisible]);
 
   /* ---- focus input when it appears ---- */
   useEffect(() => {
@@ -239,7 +239,7 @@ export default function CustomerExperienceSection() {
   /* ================================================================ */
 
   return (
-    <section ref={sectionRef} className="relative py-24 sm:py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-32 overflow-hidden">
       {/* bg */}
       <div className="absolute inset-0 bg-[#030712]" />
       <div
@@ -253,7 +253,7 @@ export default function CustomerExperienceSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
         {/* Heading */}
         <ScrollReveal>
-          <div className="text-center mb-16 sm:mb-20">
+          <div className="text-center mb-10 sm:mb-16 lg:mb-20">
             <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold mb-5 tracking-[0.15em] uppercase">
               CUSTOMER EXPERIENCE
             </span>
@@ -688,7 +688,7 @@ export default function CustomerExperienceSection() {
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[260px] sm:w-[300px] md:w-[320px] h-[530px] sm:h-[600px] md:h-[650px] rounded-[55px] p-[5px] origin-center"
+      className="relative w-[230px] sm:w-[270px] md:w-[300px] lg:w-[320px] h-[470px] sm:h-[540px] md:h-[600px] lg:h-[650px] rounded-[55px] p-[5px] origin-center"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
