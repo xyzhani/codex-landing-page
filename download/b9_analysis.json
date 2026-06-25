@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# CUSTOMER EXPERIENCE\n\n## What Your Customers See on WhatsApp\n\n### Step 1: Initial Request\nHi Sarah 👋  \nThank you for choosing us!  \nWe'd love to hear how your experience was.  \nWould you be willing to leave a quick rating? ⚠️  \n\n*Customer Replies*  \nYes, definitely! ✅  \n\n### Step 2: Rating Request\nAmazing! ⭐  \nHow would you rate your experience?  \n⭐⭐⭐⭐⭐ 5 stars  \n⭐⭐⭐⭐ 4 stars  \n⭐⭐⭐ 3 stars  \n⭐⭐ 2 stars  \n⭐ 1 star  \n\n*Customer Rates 5★*  \n⭐⭐⭐⭐⭐ 5 stars!  \n\n### Step 3: Google Review Ask\nThank you so much for the 5★ rating! 🎉  \nWould you mind sharing your experience on Google?  \nIt only takes 30 seconds and helps us a lot ⚠️  \n[Leave Google Review]  \n\n---\n\n### If Rating < 5 Stars\n1. Private feedback form sent  \n2. Customer can express concerns  \n3. Owner notified immediately  \n4. Support ticket auto-created  \n5. Follow-up sent to recover customer  \n6. Negative review prevented",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394118,
+  "id": "202606252128334e470f22ee1041a9",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252128334e470f22ee1041a9",
+  "usage": {
+    "completion_tokens": 275,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1250,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1525
+  }
+}

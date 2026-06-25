@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# SOCIAL PROOF AUTOMATION (Totally Customized Templates)\n\n## One Review. Three Platforms. Zero Effort.\n\n### Instagram\n- STORY\n- ★★★★★\n- \"Amazing service! Highly recommended.\"\n- — Sarah M.\n- YourBrand.com\n\n### Facebook\n- POST (not a story)\n- ★★★★★\n- \"Amazing service! Highly recommended.\"\n- — Sarah M.\n- Stays on timeline permanently — not 24hr like Stories\n\n### LinkedIn\n- POST (not a story)\n- ★★★★★\n- \"Amazing service! Highly recommended.\"\n- — Sarah M.\n- Reaches 628 audience & builds professional credibility\n\n## All three formats generated from the same review automatically — fully branded, zero manual design work.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394112,
+  "id": "20260625212824dfc87f3519064a41",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260625212824dfc87f3519064a41",
+  "usage": {
+    "completion_tokens": 158,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1346,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1504
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "HOW IT WORKS\n\nStep-by-Step Automation Flow\n\n01 Trigger\nOrder or service completed. The system picks it up automatically — works with any CRM, booking system, or store platform.\n\n02 WhatsApp Review Request\nCustomer receives: \"Hi [Name], thank you for choosing us! Would you be willing to rate your experience?\" with Yes / Not Now buttons.\n\n03 Rating Capture\nCustomer taps their star rating (1–5) directly in WhatsApp — no links, no apps, frictionless.\n\n04 Smart Routing\n5★ → sent to Google Review link. 1–4★ → private feedback form, support ticket, owner alert. Negative reviews never go public.\n\n05 AI Replies to the Review\nOnce a Google review is posted, AI automatically writes a personalized, on-brand reply and publishes it — within minutes, not days.\n\n06 Social Media Auto-Post\n5★ review becomes a branded Instagram Story, a Facebook Post, and a LinkedIn Post — all generated and posted automatically.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394128,
+  "id": "2026062521283907767b1959914a4e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026062521283907767b1959914a4e",
+  "usage": {
+    "completion_tokens": 203,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1316,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1519
+  }
+}

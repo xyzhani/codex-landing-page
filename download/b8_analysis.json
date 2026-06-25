@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# WHO IS IT FOR\n\n## Works for Any Business That Serves Customers\n\n### Local SMBs\n- Dentists & Clinics\n- Auto Repair Shops\n- HVAC & Plumbing\n- Restaurants & Cafes\n- Salons & Barbershops\n- Gyms & Trainers\n- Real Estate Agents\n- Cleaning Services\n\n### eCommerce\n- Shopify Stores\n- WooCommerce Stores\n- DTC Fashion Brands\n- Beauty & Skincare\n- Electronics Stores\n- Health & Wellness\n- Food & Beverage Brands\n- Home Goods Stores",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394103,
+  "id": "202606252128154f8e57e3d9124a3c",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252128154f8e57e3d9124a3c",
+  "usage": {
+    "completion_tokens": 114,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1201,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1315
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "BUSINESS BENEFITS\n\nWhat Your Client Gets From Day One\n\nMore Google Reviews\nConsistent review growth without any manual effort or chasing customers.\n\nBetter Google Maps Ranking\nFresh reviews strengthen local SEO signals and map pack visibility.\n\nReputation Protection\nUnhappy customers are caught privately before posting negative reviews.\n\nAuto Social Proof Content\nEvery 5★ review becomes a branded Instagram Story automatically.\n\nSaves Hours Every Week\nNo manual follow-ups, no content creation, no chasing customers.\n\nHigher Conversion Rate\nNew customers trust businesses with many recent, positive reviews.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394138,
+  "id": "20260625212849b54955ff7d4f4f74",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260625212849b54955ff7d4f4f74",
+  "usage": {
+    "completion_tokens": 115,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1247,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1362
+  }
+}
