@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# AI-Powered Review Replies\n\n## AI Automatically Replies to Every Google Review\n\n### How It Works\n- ⭐ New Google review posted (5★ or less)\n- 🤖 AI reads the review content + star rating\n- 🧠 Generates a personalized, on-brand reply\n- ✅ Posted automatically — or sent for approval first\n- ⏰ Replies posted within minutes, not days\n\n### Fully Customizable Per Client\n- 🎨 **Custom Brand Voice**  \n  Set tone: professional, friendly, casual, luxury — the AI writes in your client's style every time.\n- 🌐 **Language & Market**  \n  Configure replies in any language to match your client's customer base.\n- 📊 **Smart Reply Rules**  \n  Different response templates for 5★, 4★, and 3★ or below — each handled appropriately.\n- 👤 **Owner Approval Mode**  \n  Every reply can be sent for review before posting — full control, no surprises.\n- 📋 **Business-Specific Info**  \n  AI references the business name, services, team, location — never sounds generic.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394553,
+  "id": "202606252135476ff4c795d8ed4644",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252135476ff4c795d8ed4644",
+  "usage": {
+    "completion_tokens": 238,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1349,
+    "prompt_tokens_details": {
+      "cached_tokens": 67
+    },
+    "total_tokens": 1587
+  }
+}

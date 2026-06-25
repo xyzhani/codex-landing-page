@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# Low Ratings Become Recovered Customers  \nAnything under 5★ stays private and routes to AI, which turns a complaint into a fix, a win-back offer, and a team alert.  \n\n## Routed to AI  \n1-4★ is kept off public platforms and handed to AI for handling.  \n\n## Tailored Reply + Internal Feedback  \nAI captures what went wrong — tied to the service and the team member’s expertise — and replies with empathy.  \n\n## Coupon / Discount Generated  \nA win-back code or discount (sized to your business) is issued for their next service or order.  \n\n## Team Notified  \nYour team is alerted instantly with the full context so they can follow up and fix the root cause.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782394570,
+  "id": "20260625213606d286a4866d344f76",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260625213606d286a4866d344f76",
+  "usage": {
+    "completion_tokens": 150,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1040,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1190
+  }
+}
