@@ -32,6 +32,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `history.scrollRestoration='manual';window.addEventListener('beforeunload',function(){history.scrollRestoration='auto'})`,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#030712] text-[#f1f5f9]`}
       >

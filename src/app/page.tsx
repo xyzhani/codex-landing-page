@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import HeroSection from '@/components/landing/HeroSection';
 import ProblemSection from '@/components/landing/ProblemSection';
@@ -15,6 +16,10 @@ import WhoIsItForSection from '@/components/landing/WhoIsItForSection';
 import CTASection from '@/components/landing/CTASection';
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#030712] text-slate-100 overflow-x-hidden">
       <HeroSection />
