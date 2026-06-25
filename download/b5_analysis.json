@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "THE FULL JOURNEY  \nFrom Completed Job to Posted Proof —  \nAutomatically  \n\n[Icon: Teal circle with white checkmark] Job / Order Completed → [Icon: Green circle with white @ symbol] Review Request (WhatsApp/SMS/Email) → [Icon: Orange circle with white clock] 2-Day Follow-Up If No Reply → [Icon: Blue circle with white star] Customer Rates  \n\n[Teal box with thumbs-up icon] 5★ → Public + Social Proof  \nGoogle review → AI reply posted → Instagram Story → Facebook / Instagram post or Reel.  \n\n[Orange box with thumbs-down icon] 1–4★ → Recover Privately  \nAI captures what went wrong → tailored reply → discount/coupon for next order → team notified.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782393760,
+  "id": "20260625212234995a63f08a494569",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260625212234995a63f08a494569",
+  "usage": {
+    "completion_tokens": 160,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1270,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1430
+  }
+}

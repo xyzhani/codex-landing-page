@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# THE PROBLEM  \n## Why Businesses Are Losing Customers Every Day  \n\n### Happy Customers Leave Silently  \nMost satisfied buyers never post a review — no one asks them at the right time.  \n\n### Competitors Pull Ahead  \nBusinesses with 200+ reviews get chosen first, even if your service is better.  \n\n### Invisible on Google Maps  \nLow review count = lower local SEO ranking = fewer calls and walk-ins.  \n\n### Negative Reviews Go Public  \nUnhappy customers post online with no warning — and no chance to recover them.  \n\n### No Social Media Content  \nSmall businesses struggle to post consistently without a content team.  \n\n### Reviews Sit Unseen  \nGreat Google reviews are hidden — never repurposed into marketing material.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782393767,
+  "id": "202606252122405bbf033e04214b7a",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252122405bbf033e04214b7a",
+  "usage": {
+    "completion_tokens": 150,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1328,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1478
+  }
+}

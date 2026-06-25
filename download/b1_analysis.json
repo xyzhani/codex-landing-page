@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "WhatsApp-first • SMS & Email  \nAI Business Reputation  \nManagement System  \nTurn Every Order Into a Google Review/Feedback — and Every Review Into Social Proof  \nDELIVERED ON THE CHANNEL YOUR CUSTOMER USES  \nWhatsApp • Primary  \nSMS  \nEmail  \nSMBs  \neCommerce  \nLocal Business  \n60–80%  \nof reviews are  \nlost without  \nautomation  \nThis system fixes that.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782393741,
+  "id": "20260625212219f3d946144cd44514",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260625212219f3d946144cd44514",
+  "usage": {
+    "completion_tokens": 83,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 998,
+    "prompt_tokens_details": {
+      "cached_tokens": 7
+    },
+    "total_tokens": 1081
+  }
+}

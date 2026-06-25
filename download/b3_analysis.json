@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# THE SOLUTION\n\n## A Fully Automated Reputation Engine\n\n- **Order Completes**  \n  (Shopping cart icon) →  \n- **WhatsApp Request Sent**  \n  (WhatsApp icon) →  \n- **Customer Rates**  \n  (Star icon) →  \n- **5★ → Google Review**  \n  (Google \"G\" icon) →  \n- **AI Replies to Review**  \n  (Robot icon) →  \n- **Posted on Social Media**  \n  (Share icon)  \n\n### If Rating < 5 Stars:  \n⚠️ Feedback captured privately → Support ticket created → Owner notified → Customer recovered before going public",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782393754,
+  "id": "20260625212226f292b6e3d905433b",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260625212226f292b6e3d905433b",
+  "usage": {
+    "completion_tokens": 133,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1196,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1329
+  }
+}

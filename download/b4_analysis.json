@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "CHANNEL-AGNOSTIC • SMART FOLLOW-UP  \n\nStart on WhatsApp — Reach Customers Anywhere  \n\nThe request goes out on the channel your customer actually responds to. Same logic, same routing — WhatsApp, SMS, or Email.  \n\n**WhatsApp**  \n- Default channel — 80% open rate, instant reply buttons.  \n\n**SMS**  \n- Fallback for customers without WhatsApp — universal reach.  \n\n**Email**  \n- Rich, branded request with one-tap rating links.  \n\n\nNo response? Automatic follow-up after 2 days.  \nOne gentle reminder is sent on the same channel. Still no reply — the contact is closed out automatically, so no customer is ever pestered.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782393746,
+  "id": "202606252122222c9489e7db7342d8",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606252122222c9489e7db7342d8",
+  "usage": {
+    "completion_tokens": 145,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1247,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1392
+  }
+}
