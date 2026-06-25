@@ -204,10 +204,10 @@ function InstagramScreen() {
               <span key={s} className="text-[13px] text-yellow-400">★</span>
             ))}
           </div>
-          <p className="text-[11px] text-white font-medium leading-snug mb-0.5">
-            &ldquo;Amazing service! Highly recommended.&rdquo;
+          <p className="text-[10px] text-white font-medium leading-snug mb-0.5">
+            &ldquo;Great experience working with Codex team. They quickly fixed a costly automation issue&hellip;&rdquo;
           </p>
-          <p className="text-[9px] text-white/50">— Sarah M. via Google Review</p>
+          <p className="text-[9px] text-white/50">— Bruno Pedro via Google Review</p>
 
           {/* Engagement row */}
           <div className="flex items-center justify-between mt-2">
@@ -302,10 +302,10 @@ function FacebookScreen() {
               <span key={s} className="text-[12px] text-yellow-400">★</span>
             ))}
           </div>
-          <p className="text-[11px] text-white/90 leading-snug mb-1">
-            &ldquo;Amazing service! Highly recommended.&rdquo;
+          <p className="text-[10px] text-white/90 leading-snug mb-0.5">
+            &ldquo;Great experience working with Codex team. They quickly fixed a costly automation issue&hellip;&rdquo;
           </p>
-          <p className="text-[9px] text-white/40 mb-2">— Sarah M. via Google Review</p>
+          <p className="text-[9px] text-white/40 mb-1.5">— Bruno Pedro via Google Review</p>
 
           {/* Engagement */}
           <div className="flex items-center justify-between pb-1 border-b border-white/10">
@@ -316,7 +316,7 @@ function FacebookScreen() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center justify-around pt-2">
+          <div className="flex items-center justify-around pt-1.5">
             <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17 4h-1H6.57C5.5 4 4.59 4.67 4.38 5.61l-1.34 6C2.77 12.85 3.82 14 5.23 14H9.6l-.74 3.04a1.84 1.84 0 00.35 1.56 1.84 1.84 0 001.42.66H12l5.17-5.34A2.25 2.25 0 0018 11.83V6a2 2 0 00-2-2z" />
@@ -394,13 +394,13 @@ function LinkedInScreen() {
               <span key={s} className="text-[12px] text-yellow-400">★</span>
             ))}
           </div>
-          <p className="text-[11px] text-white/90 leading-snug mb-0.5">
-            &ldquo;Amazing service! Highly recommended.&rdquo;
+          <p className="text-[10px] text-white/90 leading-snug mb-0.5">
+            &ldquo;Great experience working with Codex team. They quickly fixed a costly automation issue&hellip;&rdquo;
           </p>
-          <p className="text-[9px] text-white/40 mb-2">— Sarah M. via Google Review</p>
+          <p className="text-[9px] text-white/40 mb-1.5">— Bruno Pedro via Google Review</p>
 
           {/* LinkedIn engagement */}
-          <div className="flex items-center justify-between pb-1.5 border-b border-white/10">
+          <div className="flex items-center justify-between pb-1 border-b border-white/10">
             <div className="flex items-center -space-x-1">
               <div className="w-4 h-4 rounded-full bg-blue-500 border border-[#000] flex items-center justify-center">
                 <span className="text-[6px]">👍</span>
@@ -413,7 +413,7 @@ function LinkedInScreen() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center justify-around pt-2">
+          <div className="flex items-center justify-around pt-1.5">
             <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17 4h-1H6.57C5.5 4 4.59 4.67 4.38 5.61l-1.34 6C2.77 12.85 3.82 14 5.23 14H9.6l-.74 3.04a1.84 1.84 0 00.35 1.56 1.84 1.84 0 001.42.66H12l5.17-5.34A2.25 2.25 0 0018 11.83V6a2 2 0 00-2-2z" />
@@ -487,14 +487,15 @@ export default function SocialProofSection() {
         </ScrollReveal>
 
         {/* Three Phone Mockups */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-6 lg:gap-10">
+        <div className="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-6 lg:gap-10">
           {platforms.map((p, i) => (
             <ScrollReveal key={p.name} delay={i * 0.15}>
               <div className="flex flex-col items-center gap-5">
-                {/* Phone */}
+                {/* Phone — fixed wrapper to prevent layout shift */}
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  className="h-[530px] flex items-start"
                 >
                   {i === 0 && <InstagramScreen />}
                   {i === 1 && <FacebookScreen />}
