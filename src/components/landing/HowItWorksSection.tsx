@@ -240,7 +240,7 @@ export default function HowItWorksSection() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="relative py-28 sm:py-36 overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#050a10] to-[#030712]" />
 
@@ -260,7 +260,7 @@ export default function HowItWorksSection() {
 
       <div className="relative z-20 max-w-5xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <motion.div style={{ opacity: headerOpacity }} className="text-center mb-16 sm:mb-20">
+        <motion.div style={{ opacity: headerOpacity }} className="text-center mb-10 sm:mb-16 lg:mb-20">
           <div className="inline-flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-gradient-to-r from-transparent to-teal-500/50" />
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-teal-400">

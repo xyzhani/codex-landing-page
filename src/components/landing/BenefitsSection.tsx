@@ -199,7 +199,7 @@ export default function BenefitsSection() {
   const roiOpacity = useTransform(rsp, [0, 0.15], [0, 1]);
 
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden">
+    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060d12] to-[#030712]" />
       <div className="absolute inset-0 bg-grid opacity-50" />
@@ -272,9 +272,27 @@ export default function BenefitsSection() {
         </motion.div>
 
         {/* ─── Value Chain Flow ─── */}
-        <div className="flex flex-wrap items-center justify-center gap-y-3 mb-16">
+        <div className="hidden sm:flex flex-wrap items-center justify-center gap-y-3 mb-16">
           {chainSteps.map((step, i) => (
             <ChainStep key={step} text={step} index={i} isLast={i === chainSteps.length - 1} />
+          ))}
+        </div>
+        {/* Mobile: 2-column grid instead of horizontal flow */}
+        <div className="grid grid-cols-2 gap-2.5 sm:hidden mb-16">
+          {chainSteps.map((step, i) => (
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="flex items-center gap-2 px-3 py-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02]"
+            >
+              <div className="w-5 h-5 rounded-full bg-teal-400/10 flex items-center justify-center shrink-0">
+                <span className="text-[10px] font-bold text-teal-400">{i + 1}</span>
+              </div>
+              <span className="text-[11px] font-medium text-white/80 leading-tight">{step}</span>
+            </motion.div>
           ))}
         </div>
 

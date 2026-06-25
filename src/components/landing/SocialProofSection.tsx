@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import ScrollReveal from './ScrollReveal';
 import { Check } from 'lucide-react';
 
@@ -43,7 +43,7 @@ const platforms = [
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[220px] sm:w-[240px] md:w-[260px] h-[450px] sm:h-[490px] md:h-[530px] rounded-[38px] sm:rounded-[41px] md:rounded-[45px] p-[3px] sm:p-[4px] origin-center shrink-0"
+      className="relative w-[190px] sm:w-[220px] md:w-[240px] lg:w-[260px] h-[380px] sm:h-[430px] md:h-[490px] lg:h-[530px] rounded-[34px] sm:rounded-[38px] md:rounded-[41px] lg:rounded-[45px] p-[2.5px] sm:p-[3px] md:p-[4px] origin-center shrink-0"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
@@ -53,7 +53,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
     >
       {/* Shine / reflection */}
       <div
-        className="absolute inset-0 rounded-[38px] sm:rounded-[41px] md:rounded-[45px] pointer-events-none z-30"
+        className="absolute inset-0 rounded-[34px] sm:rounded-[38px] md:rounded-[41px] lg:rounded-[45px] pointer-events-none z-30"
         style={{
           background:
             'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.04) 100%)',
@@ -61,7 +61,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
       />
       {/* Inner bezel */}
       <div
-        className="relative w-full h-full rounded-[35px] sm:rounded-[37px] md:rounded-[41px] overflow-hidden z-10 flex flex-col"
+        className="relative w-full h-full rounded-[31px] sm:rounded-[34px] md:rounded-[37px] lg:rounded-[41px] overflow-hidden z-10 flex flex-col"
         style={{ background: '#000' }}
       >
         {children}
@@ -138,9 +138,15 @@ function StatusBar({ bg }: { bg?: string }) {
 /*  Instagram Phone Screen                                             */
 /* ------------------------------------------------------------------ */
 function InstagramScreen() {
-  const ref = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+  useEffect(() => {
+    if (isInView && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isInView]);
 
   return (
     <IPhone15Pro>
@@ -188,12 +194,12 @@ function InstagramScreen() {
       {/* Video area */}
       <div ref={sectionRef} className="flex-1 relative bg-black">
         <video
-          ref={ref}
+          ref={videoRef}
           src={VIDEO_URL}
-          autoPlay={isInView}
           loop
           muted
           playsInline
+          webkit-playsinline="true"
           className="w-full h-full object-cover"
           style={{ display: 'block' }}
         />
@@ -253,8 +259,15 @@ function InstagramScreen() {
 /*  Facebook Phone Screen                                              */
 /* ------------------------------------------------------------------ */
 function FacebookScreen() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+  useEffect(() => {
+    if (isInView && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isInView]);
 
   return (
     <IPhone15Pro>
@@ -288,11 +301,12 @@ function FacebookScreen() {
         {/* Video */}
         <div ref={sectionRef} className="relative w-full aspect-[9/10] bg-black">
           <video
+            ref={videoRef}
             src={VIDEO_URL}
-            autoPlay={isInView}
             loop
             muted
             playsInline
+            webkit-playsinline="true"
             className="w-full h-full object-cover"
             style={{ display: 'block' }}
           />
@@ -350,8 +364,15 @@ function FacebookScreen() {
 /*  LinkedIn Phone Screen                                              */
 /* ------------------------------------------------------------------ */
 function LinkedInScreen() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+  useEffect(() => {
+    if (isInView && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isInView]);
 
   return (
     <IPhone15Pro>
@@ -382,11 +403,12 @@ function LinkedInScreen() {
         {/* Video */}
         <div ref={sectionRef} className="relative w-full aspect-[9/10] bg-black">
           <video
+            ref={videoRef}
             src={VIDEO_URL}
-            autoPlay={isInView}
             loop
             muted
             playsInline
+            webkit-playsinline="true"
             className="w-full h-full object-cover"
             style={{ display: 'block' }}
           />
@@ -460,7 +482,7 @@ function LinkedInScreen() {
 /* ------------------------------------------------------------------ */
 export default function SocialProofSection() {
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden">
+    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060d12] to-[#030712]" />
       {/* Ambient glow */}
       <div
@@ -474,7 +496,7 @@ export default function SocialProofSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-16 sm:mb-20">
+          <div className="text-center mb-10 sm:mb-16 lg:mb-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[12px] font-semibold tracking-[0.15em] uppercase mb-5">
               Social Proof Automation
             </span>
@@ -501,7 +523,7 @@ export default function SocialProofSection() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                  className="h-[450px] sm:h-[490px] md:h-[530px] flex items-start max-w-full"
+                  className="h-[380px] sm:h-[430px] md:h-[490px] lg:h-[530px] flex items-start max-w-full"
                 >
                   {i === 0 && <InstagramScreen />}
                   {i === 1 && <FacebookScreen />}

@@ -179,22 +179,26 @@ function RecoveryBanner() {
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1.5">
-                <h4 className="text-[16px] font-bold text-white">Below 5 stars? No problem.</h4>
+                <h4 className="text-[15px] sm:text-[16px] font-bold text-white">Below 5 stars? No problem.</h4>
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               </div>
               <p className="text-white text-[13px] leading-relaxed">
-                Feedback captured privately
-                <span className="inline-flex items-center mx-2 text-white/70">
+                <span className="hidden sm:inline">Feedback captured privately</span>
+                <span className="sm:hidden">Feedback captured privately</span>
+                <span className="inline-flex items-center mx-1 sm:mx-2 text-white/70">
                   <ArrowRight className="w-3 h-3" />
                 </span>
-                Support ticket created
-                <span className="inline-flex items-center mx-2 text-white/70">
+                <span className="hidden sm:inline">Support ticket created</span>
+                <span className="sm:hidden">Support ticket created</span>
+                <span className="inline-flex items-center mx-1 sm:mx-2 text-white/70">
                   <ArrowRight className="w-3 h-3" />
                 </span>
-                Owner notified
-                <span className="inline-flex items-center mx-2 text-white/70">
+                <span className="hidden sm:inline">Owner notified</span>
+                <span className="sm:hidden">Owner notified</span>
+                <span className="inline-flex items-center mx-1 sm:mx-2 text-white/70">
                   <ArrowRight className="w-3 h-3" />
                 </span>
+                <br className="sm:hidden" />
                 <span className="text-amber-300 font-semibold">Customer recovered before going public</span>
               </p>
             </div>
@@ -217,7 +221,7 @@ export default function SolutionSection() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="relative py-28 sm:py-36 overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#050a10] to-[#030712]" />
 

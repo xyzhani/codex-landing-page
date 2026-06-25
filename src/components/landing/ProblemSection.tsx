@@ -219,7 +219,7 @@ export default function ProblemSection() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="relative py-28 sm:py-36 overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060a10] to-[#030712]" />
 
@@ -239,7 +239,7 @@ export default function ProblemSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header — parallax */}
-        <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mb-16 sm:mb-20">
+        <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mb-10 sm:mb-16 lg:mb-20">
           <div className="flex items-center gap-3 mb-5">
             <motion.div
               className="h-px w-10"

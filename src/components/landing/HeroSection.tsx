@@ -26,8 +26,8 @@ const fadeUp = {
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* 3D Background — positioned on the left half */}
-      <div className="absolute inset-0 z-0">
+      {/* 3D Background — positioned on the left half, hidden on mobile */}
+      <div className="absolute inset-0 z-0 hidden sm:block">
         <div className="absolute left-0 top-0 w-[55%] h-full">
           <Suspense fallback={null}>
             <ParticleField />
@@ -46,7 +46,7 @@ export default function HeroSection() {
 
       {/* Content — split layout: 3D left (via bg), text right */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center min-h-screen py-16 sm:py-20">
           {/* LEFT — empty on desktop (3D canvas fills this space) */}
           <div className="hidden lg:block" />
 
@@ -55,7 +55,7 @@ export default function HeroSection() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="lg:pl-8"
+            className="lg:pl-8 text-center sm:text-left"
           >
             {/* Top label */}
             <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 mb-6">

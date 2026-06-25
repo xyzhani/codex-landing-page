@@ -663,22 +663,8 @@ export default function CustomerExperienceSection() {
           }
         }
         .phone-scale-wrapper {
-          max-width: 320px;
           width: 100%;
-          height: 650px;
           margin: 0 auto;
-        }
-        @media (max-width: 400px) {
-          .phone-scale-wrapper {
-            transform: scale(0.82);
-            transform-origin: top center;
-          }
-        }
-        @media (min-width: 401px) and (max-width: 640px) {
-          .phone-scale-wrapper {
-            transform: scale(0.9);
-            transform-origin: top center;
-          }
         }
         .chat-scroll::-webkit-scrollbar {
           width: 3px;
@@ -702,7 +688,7 @@ export default function CustomerExperienceSection() {
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[320px] h-[650px] rounded-[55px] p-[5px] origin-center"
+      className="relative w-[260px] sm:w-[300px] md:w-[320px] h-[530px] sm:h-[600px] md:h-[650px] rounded-[55px] p-[5px] origin-center"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',

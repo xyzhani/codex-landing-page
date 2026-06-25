@@ -95,7 +95,7 @@ function GlowCard({
 
 function AnimatedDivider() {
   return (
-    <div className="relative flex items-center gap-4 my-20 sm:my-24">
+    <div className="relative flex items-center gap-4 my-12 sm:my-16 md:my-20 lg:my-24">
       <div className="flex-1 h-px bg-white/[0.04] overflow-hidden">
         <motion.div
           className="h-full w-32 bg-gradient-to-r from-transparent via-teal-400/40 to-transparent"
@@ -171,7 +171,7 @@ function SectionHeader({
 
 export default function StarPathSection() {
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden">
+    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-grid" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712]" />

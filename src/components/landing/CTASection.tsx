@@ -18,7 +18,7 @@ const checklist = [
 
 export default function CTASection() {
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden">
+    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
       <Suspense fallback={null}>
         <ParticleField />
       </Suspense>
