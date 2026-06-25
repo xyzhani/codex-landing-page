@@ -13,21 +13,19 @@ interface ScrollRevealProps {
 
 export default function ScrollReveal({ children, className = '', delay = 0, direction = 'up', once = true }: ScrollRevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: '-80px' });
+  const isInView = useInView(ref, { once, margin: '-60px' });
   const controls = useAnimation();
 
-  const directionMap = {
-    up: { y: 60, x: 0 },
-    down: { y: -60, x: 0 },
-    left: { x: 60, y: 0 },
-    right: { x: -60, y: 0 },
+  const dir = {
+    up: { y: 30, x: 0 },
+    down: { y: -30, x: 0 },
+    left: { x: 30, y: 0 },
+    right: { x: -30, y: 0 },
     none: { x: 0, y: 0 },
   };
 
   useEffect(() => {
-    if (isInView) {
-      controls.start('visible');
-    }
+    if (isInView) controls.start('visible');
   }, [isInView, controls]);
 
   return (
@@ -37,22 +35,12 @@ export default function ScrollReveal({ children, className = '', delay = 0, dire
       initial="hidden"
       animate={controls}
       variants={{
-        hidden: {
-          opacity: 0,
-          x: directionMap[direction].x,
-          y: directionMap[direction].y,
-          scale: 0.95,
-        },
+        hidden: { opacity: 0, x: dir[direction].x, y: dir[direction].y },
         visible: {
           opacity: 1,
           x: 0,
           y: 0,
-          scale: 1,
-          transition: {
-            duration: 0.7,
-            delay,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          },
+          transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
         },
       }}
     >
@@ -62,45 +50,13 @@ export default function ScrollReveal({ children, className = '', delay = 0, dire
 }
 
 export function AnimatedCounter({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
-  const controls = useAnimation();
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (isInView && !hasAnimated.current) {
-      hasAnimated.current = true;
-      controls.start('visible');
-    }
-  }, [isInView, controls]);
-
-  return (
-    <motion.span
-      ref={ref}
-      className="tabular-nums"
-      initial={{ opacity: 0 }}
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { duration: 0.3 },
-        },
-      }}
-    >
-      {isInView ? (
-        <CountUp target={target} suffix={suffix} prefix={prefix} />
-      ) : (
-        <span>{prefix}0{suffix}</span>
-      )}
-    </motion.span>
-  );
-}
-
-function CountUp({ target, suffix, prefix }: { target: number; suffix: string; prefix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
+    if (!isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
     const el = ref.current;
     if (!el) return;
     const duration = 2000;
@@ -108,12 +64,11 @@ function CountUp({ target, suffix, prefix }: { target: number; suffix: string; p
     const step = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(eased * target);
-      el.textContent = `${prefix}${current}${suffix}`;
+      el.textContent = `${prefix}${(eased * target).toFixed(target % 1 !== 0 ? 1 : 0)}${suffix}`;
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
-  }, [target, suffix, prefix]);
+  }, [isInView, target, suffix, prefix]);
 
   return <span ref={ref}>{prefix}0{suffix}</span>;
 }
