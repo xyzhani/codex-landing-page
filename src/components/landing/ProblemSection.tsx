@@ -179,7 +179,7 @@ function AnimatedBorderCard({
                   />
                 )}
               </span>
-              <span className="block text-[10px] text-slate-400 mt-1.5 leading-tight max-w-[100px] ml-auto">
+              <span className="block text-[10px] text-white/50 mt-1.5 leading-tight max-w-[100px] ml-auto">
                 {problem.statLabel}
               </span>
             </div>
@@ -189,7 +189,7 @@ function AnimatedBorderCard({
           <h3 className="relative text-[15px] font-bold text-white mb-2.5 leading-snug">
             {problem.title}
           </h3>
-          <p className="relative text-slate-300 text-[13px] leading-relaxed">
+          <p className="relative text-white/75 text-[13px] leading-relaxed">
             {problem.description}
           </p>
 
@@ -256,11 +256,11 @@ export default function ProblemSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
             Businesses are losing customers
             <br />
-            <span className="bg-gradient-to-r from-slate-400 to-slate-500 bg-clip-text text-transparent">
+            <span className="text-white/70">
               every single day
             </span>
           </h2>
-          <p className="text-slate-300 text-[15px] sm:text-base max-w-lg leading-relaxed">
+          <p className="text-white/80 text-[15px] sm:text-base max-w-lg leading-relaxed">
             Without automation, your best customers vanish silently and your worst ones
             become your loudest critics.
           </p>

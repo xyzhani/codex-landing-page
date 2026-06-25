@@ -59,7 +59,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
               duration: 2.5,
               delay: index * 0.12 + 1,
               repeat: Infinity,
-              repeatDelay: 5,
+              repeatDelay: 1,
               ease: 'linear',
             }}
           />
@@ -113,7 +113,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
             />
             <step.icon
               className="w-6 h-6 relative z-10 transition-all duration-500"
-              style={{ color: hovered ? step.color : '#94a3b8' }}
+              style={{ color: hovered ? step.color : '#cbd5e1' }}
             />
           </motion.div>
         </div>
@@ -122,7 +122,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
       {/* Label */}
       <motion.p
         className="text-[12px] font-semibold leading-tight max-w-[100px] transition-colors duration-500"
-        animate={{ color: hovered ? '#f1f5f9' : '#94a3b8' }}
+        animate={{ color: hovered ? '#ffffff' : '#cbd5e1' }}
       >
         {step.label}
       </motion.p>
@@ -182,17 +182,17 @@ function RecoveryBanner() {
                 <h4 className="text-[16px] font-bold text-white">Below 5 stars? No problem.</h4>
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               </div>
-              <p className="text-slate-300 text-[13px] leading-relaxed">
+              <p className="text-white/75 text-[13px] leading-relaxed">
                 Feedback captured privately
-                <span className="inline-flex items-center mx-2 text-slate-400">
+                <span className="inline-flex items-center mx-2 text-white/50">
                   <ArrowRight className="w-3 h-3" />
                 </span>
                 Support ticket created
-                <span className="inline-flex items-center mx-2 text-slate-400">
+                <span className="inline-flex items-center mx-2 text-white/50">
                   <ArrowRight className="w-3 h-3" />
                 </span>
                 Owner notified
-                <span className="inline-flex items-center mx-2 text-slate-400">
+                <span className="inline-flex items-center mx-2 text-white/50">
                   <ArrowRight className="w-3 h-3" />
                 </span>
                 <span className="text-amber-300 font-semibold">Customer recovered before going public</span>
@@ -252,7 +252,7 @@ export default function SolutionSection() {
               Reputation Engine
             </span>
           </h2>
-          <p className="text-slate-300 text-[15px] sm:text-base max-w-lg mx-auto leading-relaxed">
+          <p className="text-white/80 text-[15px] sm:text-base max-w-lg mx-auto leading-relaxed">
             From order completion to social proof — everything happens automatically.
           </p>
         </motion.div>
