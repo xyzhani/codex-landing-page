@@ -250,20 +250,20 @@ export default function CustomerExperienceSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
         {/* Heading */}
         <ScrollReveal>
           <div className="text-center mb-16 sm:mb-20">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-5 tracking-wide">
+            <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold mb-5 tracking-[0.15em] uppercase">
               CUSTOMER EXPERIENCE
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
               Real Conversations,{' '}
               <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
                 Real Results
               </span>
             </h2>
-            <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
               See exactly how customers interact with the review collection flow
               — live, interactive, and beautifully simple.
             </p>
@@ -663,8 +663,10 @@ export default function CustomerExperienceSection() {
           }
         }
         .phone-scale-wrapper {
-          width: 320px;
+          max-width: 320px;
+          width: 100%;
           height: 650px;
+          margin: 0 auto;
         }
         @media (max-width: 400px) {
           .phone-scale-wrapper {

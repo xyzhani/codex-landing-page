@@ -43,7 +43,7 @@ const platforms = [
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[260px] h-[530px] rounded-[45px] p-[4px] origin-center shrink-0"
+      className="relative w-[220px] sm:w-[240px] md:w-[260px] h-[450px] sm:h-[490px] md:h-[530px] rounded-[38px] sm:rounded-[41px] md:rounded-[45px] p-[3px] sm:p-[4px] origin-center shrink-0"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
@@ -53,7 +53,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
     >
       {/* Shine / reflection */}
       <div
-        className="absolute inset-0 rounded-[45px] pointer-events-none z-30"
+        className="absolute inset-0 rounded-[38px] sm:rounded-[41px] md:rounded-[45px] pointer-events-none z-30"
         style={{
           background:
             'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.04) 100%)',
@@ -61,7 +61,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
       />
       {/* Inner bezel */}
       <div
-        className="relative w-full h-full rounded-[41px] overflow-hidden z-10 flex flex-col"
+        className="relative w-full h-full rounded-[35px] sm:rounded-[37px] md:rounded-[41px] overflow-hidden z-10 flex flex-col"
         style={{ background: '#000' }}
       >
         {children}
@@ -493,7 +493,7 @@ export default function SocialProofSection() {
         </ScrollReveal>
 
         {/* Three Phone Mockups */}
-        <div className="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-6 lg:gap-10">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-6 xl:gap-10">
           {platforms.map((p, i) => (
             <ScrollReveal key={p.name} delay={i * 0.15}>
               <div className="flex flex-col items-center gap-5">
@@ -501,7 +501,7 @@ export default function SocialProofSection() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                  className="h-[530px] flex items-start"
+                  className="h-[450px] sm:h-[490px] md:h-[530px] flex items-start max-w-full"
                 >
                   {i === 0 && <InstagramScreen />}
                   {i === 1 && <FacebookScreen />}
@@ -509,7 +509,7 @@ export default function SocialProofSection() {
                 </motion.div>
 
                 {/* Platform label + description below phone */}
-                <div className="text-center max-w-[240px]">
+                <div className="text-center w-full max-w-[260px]">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <div
                       className="w-2 h-2 rounded-full"

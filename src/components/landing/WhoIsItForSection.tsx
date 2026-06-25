@@ -67,7 +67,7 @@ function CategoryCard({
         style={{ background: conic, animation: 'rotateBorder 5s linear infinite' }}
       >
         <div
-          className="relative h-full rounded-[15px] p-7 overflow-hidden"
+          className="relative h-full rounded-[15px] p-5 sm:p-6 lg:p-7 overflow-hidden"
           style={{ background: 'rgba(3,7,18,0.85)', backdropFilter: 'blur(20px)' }}
         >
           {/* Glow orb */}

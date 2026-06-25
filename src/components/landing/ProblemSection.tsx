@@ -189,7 +189,7 @@ function AnimatedBorderCard({
           <h3 className="relative text-[15px] font-bold text-white mb-2.5 leading-snug">
             {problem.title}
           </h3>
-          <p className="relative text-white text-[13px] leading-relaxed">
+          <p className="relative text-white text-[12px] sm:text-[13px] leading-relaxed">
             {problem.description}
           </p>
 
