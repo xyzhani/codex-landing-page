@@ -86,10 +86,10 @@
     86→  const msgIdRef = useRef(0);
     87→  const inputRef = useRef<HTMLInputElement>(null);
     88→
-    89→  /* ---- scroll to bottom ---- */
+    89→  /* ---- scroll to bottom (within chat container only) ---- */
     90→  const scrollToBottom = useCallback(() => {
     91→    requestAnimationFrame(() => {
-    92→      chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    92→      chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
     93→    });
     94→  }, []);
     95→
@@ -135,10 +135,10 @@
    135→    };
    136→  }, [sectionVisible, addMessage]);
    137→
-   138→  /* ---- scroll on new messages ---- */
+   138→  /* ---- scroll on new messages (only when section is visible) ---- */
    139→  useEffect(() => {
-   140→    scrollToBottom();
-   141→  }, [messages, showTyping, scrollToBottom]);
+   140→    if (sectionVisible) scrollToBottom();
+   141→  }, [messages, showTyping, scrollToBottom, sectionVisible]);
    142→
    143→  /* ---- focus input when it appears ---- */
    144→  useEffect(() => {
@@ -239,7 +239,7 @@
    239→  /* ================================================================ */
    240→
    241→  return (
-   242→    <section ref={sectionRef} className="relative py-24 sm:py-32 overflow-hidden">
+   242→    <section ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-32 overflow-hidden">
    243→      {/* bg */}
    244→      <div className="absolute inset-0 bg-[#030712]" />
    245→      <div
@@ -250,20 +250,20 @@
    250→        }}
    251→      />
    252→
-   253→      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+   253→      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
    254→        {/* Heading */}
    255→        <ScrollReveal>
-   256→          <div className="text-center mb-16 sm:mb-20">
-   257→            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-5 tracking-wide">
+   256→          <div className="text-center mb-10 sm:mb-16 lg:mb-20">
+   257→            <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold mb-5 tracking-[0.15em] uppercase">
    258→              CUSTOMER EXPERIENCE
    259→            </span>
-   260→            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
+   260→            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
    261→              Real Conversations,{' '}
    262→              <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
    263→                Real Results
    264→              </span>
    265→            </h2>
-   266→            <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+   266→            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
    267→              See exactly how customers interact with the review collection flow
    268→              — live, interactive, and beautifully simple.
    269→            </p>
@@ -663,107 +663,95 @@
    663→          }
    664→        }
    665→        .phone-scale-wrapper {
-   666→          width: 320px;
-   667→          height: 650px;
+   666→          width: 100%;
+   667→          margin: 0 auto;
    668→        }
-   669→        @media (max-width: 400px) {
-   670→          .phone-scale-wrapper {
-   671→            transform: scale(0.82);
-   672→            transform-origin: top center;
-   673→          }
+   669→        .chat-scroll::-webkit-scrollbar {
+   670→          width: 3px;
+   671→        }
+   672→        .chat-scroll::-webkit-scrollbar-track {
+   673→          background: transparent;
    674→        }
-   675→        @media (min-width: 401px) and (max-width: 640px) {
-   676→          .phone-scale-wrapper {
-   677→            transform: scale(0.9);
-   678→            transform-origin: top center;
-   679→          }
-   680→        }
-   681→        .chat-scroll::-webkit-scrollbar {
-   682→          width: 3px;
-   683→        }
-   684→        .chat-scroll::-webkit-scrollbar-track {
-   685→          background: transparent;
-   686→        }
-   687→        .chat-scroll::-webkit-scrollbar-thumb {
-   688→          background: rgba(0, 0, 0, 0.15);
-   689→          border-radius: 10px;
-   690→        }
-   691→      `}</style>
-   692→    </section>
-   693→  );
-   694→}
-   695→
-   696→/* ------------------------------------------------------------------ */
-   697→/*  iPhone 15 Pro Frame                                                */
-   698→/* ------------------------------------------------------------------ */
-   699→
-   700→function IPhone15Pro({ children }: { children: React.ReactNode }) {
-   701→  return (
-   702→    <div
-   703→      className="relative w-[320px] h-[650px] rounded-[55px] p-[5px] origin-center"
-   704→      style={{
-   705→        background:
-   706→          'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
-   707→        boxShadow:
-   708→          '0 50px 100px -20px rgba(0,0,0,0.7), 0 30px 60px -30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.3)',
-   709→      }}
-   710→    >
-   711→      {/* Shine / reflection effect */}
-   712→      <div
-   713→        className="absolute inset-0 rounded-[55px] pointer-events-none z-30"
-   714→        style={{
-   715→          background:
-   716→            'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.04) 100%)',
-   717→        }}
-   718→      />
-   719→
-   720→      {/* Inner bezel */}
-   721→      <div
-   722→        className="relative w-full h-full rounded-[50px] overflow-hidden z-10 flex flex-col"
-   723→        style={{ background: '#000' }}
-   724→      >
-   725→        {children}
-   726→      </div>
-   727→
-   728→      {/* ---- Side Buttons (CSS-only) ---- */}
-   729→
-   730→      {/* Left side — Volume Up */}
-   731→      <div
-   732→        className="absolute left-[-2.5px] top-[130px] w-[3px] h-[32px] rounded-l-sm z-20"
-   733→        style={{
-   734→          background:
-   735→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
-   736→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
-   737→        }}
-   738→      />
-   739→      {/* Left side — Volume Down */}
-   740→      <div
-   741→        className="absolute left-[-2.5px] top-[178px] w-[3px] h-[32px] rounded-l-sm z-20"
-   742→        style={{
-   743→          background:
-   744→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
-   745→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
-   746→        }}
-   747→      />
-   748→      {/* Left side — Action button */}
-   749→      <div
-   750→        className="absolute left-[-2.5px] top-[108px] w-[3px] h-[18px] rounded-l-sm z-20"
-   751→        style={{
-   752→          background:
-   753→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
-   754→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
-   755→        }}
-   756→      />
-   757→
-   758→      {/* Right side — Power button */}
-   759→      <div
-   760→        className="absolute right-[-2.5px] top-[155px] w-[3px] h-[50px] rounded-r-sm z-20"
-   761→        style={{
-   762→          background:
-   763→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
-   764→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
-   765→        }}
-   766→      />
-   767→    </div>
-   768→  );
-   769→}
+   675→        .chat-scroll::-webkit-scrollbar-thumb {
+   676→          background: rgba(0, 0, 0, 0.15);
+   677→          border-radius: 10px;
+   678→        }
+   679→      `}</style>
+   680→    </section>
+   681→  );
+   682→}
+   683→
+   684→/* ------------------------------------------------------------------ */
+   685→/*  iPhone 15 Pro Frame                                                */
+   686→/* ------------------------------------------------------------------ */
+   687→
+   688→function IPhone15Pro({ children }: { children: React.ReactNode }) {
+   689→  return (
+   690→    <div
+   691→      className="relative w-[230px] sm:w-[270px] md:w-[300px] lg:w-[320px] h-[470px] sm:h-[540px] md:h-[600px] lg:h-[650px] rounded-[55px] p-[5px] origin-center"
+   692→      style={{
+   693→        background:
+   694→          'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
+   695→        boxShadow:
+   696→          '0 50px 100px -20px rgba(0,0,0,0.7), 0 30px 60px -30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.3)',
+   697→      }}
+   698→    >
+   699→      {/* Shine / reflection effect */}
+   700→      <div
+   701→        className="absolute inset-0 rounded-[55px] pointer-events-none z-30"
+   702→        style={{
+   703→          background:
+   704→            'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.04) 100%)',
+   705→        }}
+   706→      />
+   707→
+   708→      {/* Inner bezel */}
+   709→      <div
+   710→        className="relative w-full h-full rounded-[50px] overflow-hidden z-10 flex flex-col"
+   711→        style={{ background: '#000' }}
+   712→      >
+   713→        {children}
+   714→      </div>
+   715→
+   716→      {/* ---- Side Buttons (CSS-only) ---- */}
+   717→
+   718→      {/* Left side — Volume Up */}
+   719→      <div
+   720→        className="absolute left-[-2.5px] top-[130px] w-[3px] h-[32px] rounded-l-sm z-20"
+   721→        style={{
+   722→          background:
+   723→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   724→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   725→        }}
+   726→      />
+   727→      {/* Left side — Volume Down */}
+   728→      <div
+   729→        className="absolute left-[-2.5px] top-[178px] w-[3px] h-[32px] rounded-l-sm z-20"
+   730→        style={{
+   731→          background:
+   732→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   733→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   734→        }}
+   735→      />
+   736→      {/* Left side — Action button */}
+   737→      <div
+   738→        className="absolute left-[-2.5px] top-[108px] w-[3px] h-[18px] rounded-l-sm z-20"
+   739→        style={{
+   740→          background:
+   741→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   742→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   743→        }}
+   744→      />
+   745→
+   746→      {/* Right side — Power button */}
+   747→      <div
+   748→        className="absolute right-[-2.5px] top-[155px] w-[3px] h-[50px] rounded-r-sm z-20"
+   749→        style={{
+   750→          background:
+   751→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   752→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   753→        }}
+   754→      />
+   755→    </div>
+   756→  );
+   757→}

@@ -280,7 +280,7 @@ export default function CustomerExperienceSection() {
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
                   <span>9:41</span>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[10px] w-[126px] h-[37px] rounded-full bg-black" />
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[8px] w-[110px] h-[32px] rounded-full bg-black" />
                   <div className="flex items-center gap-1.5">
                     <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><path d="M7.5 3.6c1.6 0 3 .6 4.1 1.7l.9-.9A8.3 8.3 0 007.5 2.1a8.3 8.3 0 00-5 1.7l.9.9A5.5 5.5 0 017.5 3.6z" fill="white"/><path d="M7.5 6.2c.9 0 1.8.4 2.5 1l.9-.9A4.2 4.2 0 007.5 4.6a4.2 4.2 0 00-3.4 1.7l.9.9c.7-.6 1.6-1 2.5-1z" fill="white"/><circle cx="7.5" cy="8.8" r="1.3" fill="white"/></svg>
                     <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2" stroke="white" strokeWidth="1"/><rect x="1.5" y="2.5" width="15" height="7" rx="1" fill="white"/><path d="M22.5 4.5v3a2 2 0 000-3z" fill="white"/></svg>
@@ -663,8 +663,9 @@ export default function CustomerExperienceSection() {
           }
         }
         .phone-scale-wrapper {
+          display: flex;
+          justify-content: center;
           width: 100%;
-          margin: 0 auto;
         }
         .chat-scroll::-webkit-scrollbar {
           width: 3px;
@@ -688,7 +689,7 @@ export default function CustomerExperienceSection() {
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[230px] sm:w-[270px] md:w-[300px] lg:w-[320px] h-[470px] sm:h-[540px] md:h-[600px] lg:h-[650px] rounded-[55px] p-[5px] origin-center"
+      className="relative w-[200px] sm:w-[240px] md:w-[270px] lg:w-[290px] h-[405px] sm:h-[485px] md:h-[545px] lg:h-[590px] rounded-[50px] p-[5px] origin-center"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
@@ -707,7 +708,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
 
       {/* Inner bezel */}
       <div
-        className="relative w-full h-full rounded-[50px] overflow-hidden z-10 flex flex-col"
+        className="relative w-full h-full rounded-[45px] overflow-hidden z-10 flex flex-col"
         style={{ background: '#000' }}
       >
         {children}
@@ -717,7 +718,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
 
       {/* Left side — Volume Up */}
       <div
-        className="absolute left-[-2.5px] top-[130px] w-[3px] h-[32px] rounded-l-sm z-20"
+        className="absolute left-[-2.5px] top-[110px] w-[3px] h-[28px] rounded-l-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
@@ -726,7 +727,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
       />
       {/* Left side — Volume Down */}
       <div
-        className="absolute left-[-2.5px] top-[178px] w-[3px] h-[32px] rounded-l-sm z-20"
+        className="absolute left-[-2.5px] top-[152px] w-[3px] h-[28px] rounded-l-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
@@ -735,7 +736,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
       />
       {/* Left side — Action button */}
       <div
-        className="absolute left-[-2.5px] top-[108px] w-[3px] h-[18px] rounded-l-sm z-20"
+        className="absolute left-[-2.5px] top-[90px] w-[3px] h-[16px] rounded-l-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
@@ -745,7 +746,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
 
       {/* Right side — Power button */}
       <div
-        className="absolute right-[-2.5px] top-[155px] w-[3px] h-[50px] rounded-r-sm z-20"
+        className="absolute right-[-2.5px] top-[130px] w-[3px] h-[44px] rounded-r-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
