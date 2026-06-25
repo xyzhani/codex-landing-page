@@ -80,44 +80,82 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
       initial={{ opacity: 0, x: isRight ? -40 : 40 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="flex items-center"
+      className="grid grid-cols-1 lg:grid-cols-[1fr_140px_1fr] items-center"
     >
-      {/* Active side — centered content */}
+      {/* LEFT column */}
       <div
-        className={`flex-1 flex flex-col items-center text-center px-4 sm:px-8 ${
-          isRight ? 'lg:pr-16' : 'lg:pl-16 lg:order-2'
+        className={`${
+          isRight
+            ? 'flex flex-col items-center text-center'
+            : 'hidden lg:flex lg:flex-col lg:items-center lg:text-center'
         }`}
       >
-        <div className="inline-flex items-center gap-3 mb-3">
-          <motion.div
-            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-            style={{
-              backgroundColor: `${step.color}12`,
-              boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
-            }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-          >
-            <step.icon className="w-5 h-5" style={{ color: step.color }} />
-          </motion.div>
-          <span className="text-xs font-bold tracking-wider" style={{ color: step.color }}>
-            STEP {step.num}
-          </span>
-        </div>
-        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
-          {step.title}
-        </h3>
-        <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-sm">
-          {step.description}
-        </p>
+        {isRight && (
+          <>
+            <div className="inline-flex items-center gap-3 mb-3">
+              <motion.div
+                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                style={{
+                  backgroundColor: `${step.color}12`,
+                  boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
+                }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              >
+                <step.icon className="w-5 h-5" style={{ color: step.color }} />
+              </motion.div>
+              <span className="text-xs font-bold tracking-wider" style={{ color: step.color }}>
+                STEP {step.num}
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
+              {step.title}
+            </h3>
+            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-sm">
+              {step.description}
+            </p>
+          </>
+        )}
       </div>
 
-      {/* Empty spacer for the other side */}
+      {/* CENTER — empty reserved space for the neon line */}
+      <div className="hidden lg:block" />
+
+      {/* RIGHT column */}
       <div
-        className={`hidden lg:block flex-1 ${
-          isRight ? 'lg:order-2' : ''
+        className={`${
+          !isRight
+            ? 'flex flex-col items-center text-center'
+            : 'hidden lg:flex lg:flex-col lg:items-center lg:text-center'
         }`}
-      />
+      >
+        {!isRight && (
+          <>
+            <div className="inline-flex items-center gap-3 mb-3">
+              <motion.div
+                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                style={{
+                  backgroundColor: `${step.color}12`,
+                  boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
+                }}
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              >
+                <step.icon className="w-5 h-5" style={{ color: step.color }} />
+              </motion.div>
+              <span className="text-xs font-bold tracking-wider" style={{ color: step.color }}>
+                STEP {step.num}
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
+              {step.title}
+            </h3>
+            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-sm">
+              {step.description}
+            </p>
+          </>
+        )}
+      </div>
     </motion.div>
   );
 }
@@ -129,7 +167,7 @@ function NeonPath() {
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
-    <div ref={sectionRef} className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[200px] hidden lg:block z-10 pointer-events-none">
+    <div ref={sectionRef} className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[120px] hidden lg:block z-10 pointer-events-none">
       <svg
         viewBox="0 0 200 1200"
         fill="none"
