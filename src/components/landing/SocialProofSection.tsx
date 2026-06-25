@@ -5,8 +5,7 @@ import { useRef } from 'react';
 import ScrollReveal from './ScrollReveal';
 import { Check } from 'lucide-react';
 
-const VIDEO_URL =
-  'https://res.cloudinary.com/dzbib0o80/video/upload/v1782422433/2026-06-25-29417_usash6.mp4';
+const VIDEO_URL = '/review-video.mp4';
 
 const platforms = [
   {
