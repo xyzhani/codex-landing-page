@@ -189,7 +189,7 @@ function AnimatedBorderCard({
           <h3 className="relative text-[15px] font-bold text-white mb-2.5 leading-snug">
             {problem.title}
           </h3>
-          <p className="relative text-white/75 text-[13px] leading-relaxed">
+          <p className="relative text-white text-[13px] leading-relaxed">
             {problem.description}
           </p>
 
@@ -216,7 +216,7 @@ export default function ProblemSection() {
     offset: ['start 0.9', 'end 0.6'],
   });
   const headerY = useTransform(scrollYProgress, [0, 1], [50, 0]);
-  const headerOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
     <section ref={sectionRef} className="relative py-28 sm:py-36 overflow-hidden">
@@ -256,11 +256,11 @@ export default function ProblemSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
             Businesses are losing customers
             <br />
-            <span className="text-white/70">
+            <span className="text-white">
               every single day
             </span>
           </h2>
-          <p className="text-white/80 text-[15px] sm:text-base max-w-lg leading-relaxed">
+          <p className="text-white text-[15px] sm:text-base max-w-lg leading-relaxed">
             Without automation, your best customers vanish silently and your worst ones
             become your loudest critics.
           </p>

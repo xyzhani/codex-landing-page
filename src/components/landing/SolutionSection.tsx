@@ -182,17 +182,17 @@ function RecoveryBanner() {
                 <h4 className="text-[16px] font-bold text-white">Below 5 stars? No problem.</h4>
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               </div>
-              <p className="text-white/75 text-[13px] leading-relaxed">
+              <p className="text-white text-[13px] leading-relaxed">
                 Feedback captured privately
-                <span className="inline-flex items-center mx-2 text-white/50">
+                <span className="inline-flex items-center mx-2 text-white/70">
                   <ArrowRight className="w-3 h-3" />
                 </span>
                 Support ticket created
-                <span className="inline-flex items-center mx-2 text-white/50">
+                <span className="inline-flex items-center mx-2 text-white/70">
                   <ArrowRight className="w-3 h-3" />
                 </span>
                 Owner notified
-                <span className="inline-flex items-center mx-2 text-white/50">
+                <span className="inline-flex items-center mx-2 text-white/70">
                   <ArrowRight className="w-3 h-3" />
                 </span>
                 <span className="text-amber-300 font-semibold">Customer recovered before going public</span>
@@ -214,7 +214,7 @@ export default function SolutionSection() {
     offset: ['start 0.9', 'end 0.5'],
   });
   const headerY = useTransform(scrollYProgress, [0, 1], [50, 0]);
-  const headerOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
     <section ref={sectionRef} className="relative py-28 sm:py-36 overflow-hidden">
@@ -252,7 +252,7 @@ export default function SolutionSection() {
               Reputation Engine
             </span>
           </h2>
-          <p className="text-white/80 text-[15px] sm:text-base max-w-lg mx-auto leading-relaxed">
+          <p className="text-white text-[15px] sm:text-base max-w-lg mx-auto leading-relaxed">
             From order completion to social proof — everything happens automatically.
           </p>
         </motion.div>
