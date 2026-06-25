@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Users, TrendingDown, MapPin, AlertTriangle, Megaphone, EyeOff } from 'lucide-react';
 
@@ -21,7 +21,7 @@ const problems = [
     description: 'Businesses with 200+ reviews get chosen first, even if your service is better.',
     accent: '#fb923c',
     stat: '4.8★',
-    statLabel: 'avg. of top-ranked businesses',
+    statLabel: 'avg. of top-ranked',
   },
   {
     icon: MapPin,
@@ -29,7 +29,7 @@ const problems = [
     description: 'Low review count = lower local SEO ranking = fewer calls and walk-ins.',
     accent: '#fbbf24',
     stat: '#4',
-    statLabel: 'position lost per missing star',
+    statLabel: 'spot lost per star',
   },
   {
     icon: AlertTriangle,
@@ -37,7 +37,7 @@ const problems = [
     description: 'Unhappy customers post online with no warning — and no chance to recover them.',
     accent: '#f472b6',
     stat: '94%',
-    statLabel: 'say a bad review influenced them',
+    statLabel: 'influenced by bad reviews',
   },
   {
     icon: Megaphone,
@@ -45,7 +45,7 @@ const problems = [
     description: 'Small businesses struggle to post consistently without a content team.',
     accent: '#c084fc',
     stat: '0–2',
-    statLabel: 'posts/week for most SMBs',
+    statLabel: 'posts/week for SMBs',
   },
   {
     icon: EyeOff,
@@ -53,8 +53,17 @@ const problems = [
     description: 'Great Google reviews are hidden — never repurposed into marketing material.',
     accent: '#38bdf8',
     stat: '91%',
-    statLabel: 'of 5★ reviews go unused',
+    statLabel: 'of 5★ reviews unused',
   },
+];
+
+const floatClasses = [
+  'animate-float-delay-1',
+  'animate-float-delay-2',
+  'animate-float-delay-3',
+  'animate-float-delay-4',
+  'animate-float-delay-5',
+  'animate-float-delay-6',
 ];
 
 /* ─── Animated Counter ──────────────────────────────────────────── */
@@ -84,59 +93,81 @@ function MiniCounter({ value, suffix = '' }: { value: number; suffix?: string })
   return <span ref={ref}>0{suffix}</span>;
 }
 
-/* ─── Problem Card ──────────────────────────────────────────────── */
+/* ─── Animated Border Card ──────────────────────────────────────── */
 
-function ProblemCard({ problem, index }: { problem: typeof problems[0]; index: number }) {
+function AnimatedBorderCard({
+  problem,
+  index,
+  children,
+}: {
+  problem: typeof problems[0];
+  index: number;
+  children: React.ReactNode;
+}) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const inView = useInView(ref, { once: true, margin: '-30px' });
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{
-        duration: 0.8,
-        delay: index * 0.1,
+        duration: 0.9,
+        delay: index * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group relative"
+      className={`animate-card-float ${floatClasses[index]}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      {/* Animated gradient border wrapper */}
-      <div className="relative rounded-2xl p-px overflow-hidden">
-        {/* Gradient border — animates on hover */}
-        <motion.div
-          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+      <div className="relative rounded-2xl p-[1px] overflow-hidden">
+        {/* Rotating light border */}
+        <div
+          className="border-glow-rotate absolute inset-[-200%] rounded-full"
           style={{
-            background: `conic-gradient(from 180deg, ${problem.accent}40, transparent 30%, transparent 70%, ${problem.accent}40)`,
+            background: `conic-gradient(from var(--border-angle), transparent 60%, ${problem.accent} 78%, ${problem.accent}88 82%, transparent 100%)`,
+            transition: 'opacity 0.5s',
+            opacity: hovered ? 1 : 0.3,
           }}
         />
-        {/* Static subtle border */}
-        <div className="absolute inset-0 rounded-2xl border border-white/[0.06]" />
 
         {/* Card inner */}
-        <div className="relative bg-[#0a0f1a]/90 backdrop-blur-xl rounded-2xl p-6 sm:p-7 overflow-hidden">
-          {/* Glow orb on hover */}
+        <div className="relative bg-[#0a0f1a] rounded-2xl p-6 sm:p-7 overflow-hidden backdrop-blur-sm">
+          {/* Inner glow on hover */}
           <div
-            className="absolute -top-16 -right-16 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 blur-[40px]"
-            style={{ backgroundColor: `${problem.accent}15` }}
+            className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-[50px] transition-opacity duration-700"
+            style={{
+              backgroundColor: problem.accent,
+              opacity: hovered ? 0.08 : 0,
+            }}
+          />
+          <div
+            className="absolute -bottom-16 -left-16 w-32 h-32 rounded-full blur-[40px] transition-opacity duration-700"
+            style={{
+              backgroundColor: problem.accent,
+              opacity: hovered ? 0.04 : 0,
+            }}
           />
 
           {/* Top: icon + stat */}
-          <div className="flex items-start justify-between mb-5">
-            <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+          <div className="relative flex items-start justify-between mb-5">
+            <motion.div
+              className="w-11 h-11 rounded-xl flex items-center justify-center"
               style={{
-                backgroundColor: `${problem.accent}12`,
-                boxShadow: `0 0 0 1px ${problem.accent}20`,
+                backgroundColor: `${problem.accent}15`,
+                boxShadow: `0 0 20px ${problem.accent}10`,
               }}
+              animate={hovered ? { scale: 1.15, rotate: 5 } : { scale: 1, rotate: 0 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
             >
               <problem.icon className="w-5 h-5" style={{ color: problem.accent }} />
-            </div>
+            </motion.div>
 
             <div className="text-right">
               <span
-                className="block text-xl sm:text-2xl font-extrabold tracking-tight leading-none"
+                className="block text-2xl sm:text-3xl font-extrabold tracking-tight leading-none"
                 style={{ color: problem.accent }}
               >
                 {problem.stat.startsWith('#') ? (
@@ -148,23 +179,27 @@ function ProblemCard({ problem, index }: { problem: typeof problems[0]; index: n
                   />
                 )}
               </span>
-              <span className="block text-[10px] text-slate-500 mt-1 leading-tight max-w-[100px] ml-auto">
+              <span className="block text-[10px] text-slate-400 mt-1.5 leading-tight max-w-[100px] ml-auto">
                 {problem.statLabel}
               </span>
             </div>
           </div>
 
           {/* Text */}
-          <h3 className="text-[15px] font-semibold text-white mb-2.5 leading-snug group-hover:text-white transition-colors">
+          <h3 className="relative text-[15px] font-bold text-white mb-2.5 leading-snug">
             {problem.title}
           </h3>
-          <p className="text-slate-500 text-[13px] leading-relaxed group-hover:text-slate-400 transition-colors duration-500">
+          <p className="relative text-slate-300 text-[13px] leading-relaxed">
             {problem.description}
           </p>
 
-          {/* Bottom accent line — animates width on hover */}
-          <div className="mt-5 h-px w-0 group-hover:w-full transition-all duration-700 ease-out"
-            style={{ backgroundColor: `${problem.accent}30` }}
+          {/* Bottom accent bar */}
+          <motion.div
+            className="relative mt-5 h-[2px] rounded-full"
+            style={{ backgroundColor: problem.accent }}
+            initial={{ width: '0%' }}
+            animate={hovered ? { width: '100%' } : { width: '20%' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           />
         </div>
       </div>
@@ -180,12 +215,12 @@ export default function ProblemSection() {
     target: sectionRef,
     offset: ['start 0.9', 'end 0.6'],
   });
-  const headerY = useTransform(scrollYProgress, [0, 1], [40, 0]);
+  const headerY = useTransform(scrollYProgress, [0, 1], [50, 0]);
   const headerOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section ref={sectionRef} className="relative py-28 sm:py-36 overflow-hidden">
-      {/* Background layers */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060a10] to-[#030712]" />
 
       {/* Subtle grid */}
@@ -199,33 +234,44 @@ export default function ProblemSection() {
       />
 
       {/* Ambient glow orbs */}
-      <div className="absolute top-1/4 -left-40 w-80 h-80 rounded-full bg-red-500/[0.03] blur-[100px]" />
-      <div className="absolute bottom-1/4 -right-40 w-80 h-80 rounded-full bg-amber-500/[0.03] blur-[100px]" />
+      <div className="absolute top-1/4 -left-40 w-96 h-96 rounded-full bg-red-500/[0.03] blur-[120px]" />
+      <div className="absolute bottom-1/4 -right-40 w-96 h-96 rounded-full bg-amber-500/[0.03] blur-[120px]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header — parallax */}
         <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mb-16 sm:mb-20">
           <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-10 bg-gradient-to-r from-red-500/50 to-transparent" />
-            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-red-400/60">
+            <motion.div
+              className="h-px w-10"
+              style={{ background: 'linear-gradient(to right, #f87171, transparent)' }}
+              initial={{ width: 0 }}
+              whileInView={{ width: 40 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            />
+            <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-red-400">
               The Problem
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
             Businesses are losing customers
             <br />
-            <span className="text-slate-500">every single day</span>
+            <span className="bg-gradient-to-r from-slate-400 to-slate-500 bg-clip-text text-transparent">
+              every single day
+            </span>
           </h2>
-          <p className="text-slate-400 text-[15px] sm:text-base max-w-lg leading-relaxed">
+          <p className="text-slate-300 text-[15px] sm:text-base max-w-lg leading-relaxed">
             Without automation, your best customers vanish silently and your worst ones
             become your loudest critics.
           </p>
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {problems.map((problem, i) => (
-            <ProblemCard key={problem.title} problem={problem} index={i} />
+            <AnimatedBorderCard key={problem.title} problem={problem} index={i}>
+              <div />
+            </AnimatedBorderCard>
           ))}
         </div>
       </div>

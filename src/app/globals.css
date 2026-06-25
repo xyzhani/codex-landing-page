@@ -161,6 +161,40 @@
   30% { transform: translateY(-4px); }
 }
 
+/* Rotating border light */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorder {
+  0% { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+.border-glow-rotate {
+  animation: rotateBorder 4s linear infinite;
+}
+
+/* Card float animation */
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-card-float {
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+/* Staggered floats */
+.animate-float-delay-1 { animation-delay: 0s; }
+.animate-float-delay-2 { animation-delay: 1s; }
+.animate-float-delay-3 { animation-delay: 2s; }
+.animate-float-delay-4 { animation-delay: 0.5s; }
+.animate-float-delay-5 { animation-delay: 1.5s; }
+.animate-float-delay-6 { animation-delay: 2.5s; }
+
 /* Selection color */
 ::selection {
   background: rgba(20, 184, 166, 0.3);
