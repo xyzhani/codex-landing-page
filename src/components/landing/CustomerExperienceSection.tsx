@@ -239,7 +239,7 @@ export default function CustomerExperienceSection() {
   /* ================================================================ */
 
   return (
-    <section ref={sectionRef} className="relative py-12 sm:py-20 md:py-28 lg:py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative py-10 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
       {/* bg */}
       <div className="absolute inset-0 bg-[#030712]" />
       <div
@@ -280,7 +280,7 @@ export default function CustomerExperienceSection() {
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
                   <span>9:41</span>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[8px] w-[90px] h-[28px] sm:w-[110px] sm:h-[32px] rounded-full bg-black" />
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[8px] w-[95px] h-[28px] sm:w-[100px] sm:h-[30px] rounded-full bg-black" />
                   <div className="flex items-center gap-1.5">
                     <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><path d="M7.5 3.6c1.6 0 3 .6 4.1 1.7l.9-.9A8.3 8.3 0 007.5 2.1a8.3 8.3 0 00-5 1.7l.9.9A5.5 5.5 0 017.5 3.6z" fill="white"/><path d="M7.5 6.2c.9 0 1.8.4 2.5 1l.9-.9A4.2 4.2 0 007.5 4.6a4.2 4.2 0 00-3.4 1.7l.9.9c.7-.6 1.6-1 2.5-1z" fill="white"/><circle cx="7.5" cy="8.8" r="1.3" fill="white"/></svg>
                     <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2" stroke="white" strokeWidth="1"/><rect x="1.5" y="2.5" width="15" height="7" rx="1" fill="white"/><path d="M22.5 4.5v3a2 2 0 000-3z" fill="white"/></svg>
@@ -689,7 +689,7 @@ export default function CustomerExperienceSection() {
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[180px] sm:w-[230px] md:w-[270px] lg:w-[290px] h-[365px] sm:h-[465px] md:h-[545px] lg:h-[590px] rounded-[45px] sm:rounded-[50px] p-[5px] origin-center"
+      className="relative w-[230px] sm:w-[240px] md:w-[240px] lg:w-[240px] h-[480px] sm:h-[500px] md:h-[500px] lg:h-[500px] rounded-[42px] sm:rounded-[43px] p-[5px] origin-center"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
@@ -699,7 +699,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
     >
       {/* Shine / reflection effect */}
       <div
-        className="absolute inset-0 rounded-[55px] pointer-events-none z-30"
+        className="absolute inset-0 rounded-[42px] pointer-events-none z-30"
         style={{
           background:
             'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.04) 100%)',
@@ -708,7 +708,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
 
       {/* Inner bezel */}
       <div
-        className="relative w-full h-full rounded-[40px] sm:rounded-[45px] overflow-hidden z-10 flex flex-col"
+        className="relative w-full h-full rounded-[38px] sm:rounded-[39px] overflow-hidden z-10 flex flex-col"
         style={{ background: '#000' }}
       >
         {children}
@@ -718,7 +718,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
 
       {/* Left side — Volume Up */}
       <div
-        className="absolute left-[-2.5px] top-[110px] w-[3px] h-[28px] rounded-l-sm z-20"
+        className="absolute left-[-2.5px] top-[100px] w-[3px] h-[24px] rounded-l-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
@@ -727,7 +727,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
       />
       {/* Left side — Volume Down */}
       <div
-        className="absolute left-[-2.5px] top-[152px] w-[3px] h-[28px] rounded-l-sm z-20"
+        className="absolute left-[-2.5px] top-[135px] w-[3px] h-[24px] rounded-l-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
@@ -736,7 +736,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
       />
       {/* Left side — Action button */}
       <div
-        className="absolute left-[-2.5px] top-[90px] w-[3px] h-[16px] rounded-l-sm z-20"
+        className="absolute left-[-2.5px] top-[82px] w-[3px] h-[14px] rounded-l-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
@@ -746,7 +746,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
 
       {/* Right side — Power button */}
       <div
-        className="absolute right-[-2.5px] top-[130px] w-[3px] h-[44px] rounded-r-sm z-20"
+        className="absolute right-[-2.5px] top-[115px] w-[3px] h-[38px] rounded-r-sm z-20"
         style={{
           background:
             'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
