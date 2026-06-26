@@ -276,7 +276,7 @@ export default function CustomerExperienceSection() {
             <div className="phone-scale-wrapper">
               <IPhone15Pro>
                 {/* ---------- Status Bar ---------- */}
-                <div className="relative flex items-center justify-between px-8 pt-4 pb-1 text-[11px] font-semibold text-white shrink-0"
+                <div className="relative flex items-center justify-between px-6 pt-3 pb-1 text-[10px] font-semibold text-white shrink-0"
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
                   <span>9:41</span>
@@ -289,7 +289,7 @@ export default function CustomerExperienceSection() {
 
                 {/* ---------- WA Header ---------- */}
                 <div
-                  className="flex items-center gap-3 px-3 py-[10px] shrink-0 border-b border-white/10"
+                  className="flex items-center gap-2.5 px-3 py-2 shrink-0 border-b border-white/10"
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
                   {/* back arrow */}
@@ -311,22 +311,22 @@ export default function CustomerExperienceSection() {
                   <img
                     src="/codex-logo.jpg"
                     alt="Codex Solutions International"
-                    className="w-10 h-10 rounded-full object-cover shrink-0 shadow-lg"
+                    className="w-9 h-9 rounded-full object-cover shrink-0 shadow-lg"
                   />
 
                   {/* name + status */}
                   <div className="min-w-0 flex-1">
-                    <p className="text-[15px] font-medium text-white truncate leading-tight">
+                    <p className="text-[13px] font-medium text-white truncate leading-tight">
                       Codex Solutions International
                     </p>
-                    <p className="text-[12px] text-emerald-200 flex items-center gap-1">
+                    <p className="text-[11px] text-emerald-200 flex items-center gap-1">
                       <span className="inline-block w-[7px] h-[7px] rounded-full bg-green-300 shadow-[0_0_4px_rgba(134,239,172,0.6)]" />
                       online
                     </p>
                   </div>
 
                   {/* header icons */}
-                  <div className="flex items-center gap-4 text-white/80 shrink-0">
+                  <div className="flex items-center gap-3 text-white/80 shrink-0">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
                   </div>
@@ -368,7 +368,7 @@ export default function CustomerExperienceSection() {
                           className={`flex ${isBot ? 'justify-start' : 'justify-end'}`}
                         >
                           <div
-                            className={`relative max-w-[85%] px-[9px] pt-[6px] pb-[8px] text-[14.2px] leading-[19px] whitespace-pre-line ${
+                            className={`relative max-w-[85%] px-[7px] pt-[5px] pb-[6px] text-[12.5px] leading-[17px] whitespace-pre-line ${
                               isBot
                                 ? 'bg-[#ECE5DD] text-[#111b21] rounded-tr-[8px] rounded-br-[8px] rounded-bl-[4px]'
                                 : 'bg-[#005C4B] text-white rounded-tl-[8px] rounded-bl-[8px] rounded-br-[4px]'
@@ -407,7 +407,7 @@ export default function CustomerExperienceSection() {
 
                             {/* timestamp */}
                             <div
-                              className={`absolute bottom-[5px] right-[7px] flex items-center gap-[3px] text-[11px] ${
+                              className={`absolute bottom-[4px] right-[6px] flex items-center gap-[2px] text-[9.5px] ${
                                 isBot
                                   ? 'text-[#667781]'
                                   : 'text-emerald-100/70'
@@ -464,13 +464,13 @@ export default function CustomerExperienceSection() {
                       >
                         <button
                           onClick={handleYesDefinitely}
-                          className="flex-1 py-2.5 rounded-full bg-[#00A884] hover:bg-[#00956F] active:scale-[0.97] text-white text-[13px] font-semibold transition-all duration-150 cursor-pointer shadow-sm"
+                          className="flex-1 py-2 rounded-full bg-[#00A884] hover:bg-[#00956F] active:scale-[0.97] text-white text-[11.5px] font-semibold transition-all duration-150 cursor-pointer shadow-sm"
                         >
                           Yes, definitely!
                         </button>
                         <button
                           onClick={handleNotNow}
-                          className="flex-1 py-2.5 rounded-full bg-white hover:bg-gray-50 active:scale-[0.97] text-[#00A884] text-[13px] font-semibold border border-[#00A884]/30 transition-all duration-150 cursor-pointer"
+                          className="flex-1 py-2 rounded-full bg-white hover:bg-gray-50 active:scale-[0.97] text-[#00A884] text-[11.5px] font-semibold border border-[#00A884]/30 transition-all duration-150 cursor-pointer"
                         >
                           Not now
                         </button>
@@ -485,7 +485,7 @@ export default function CustomerExperienceSection() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.3 }}
-                        className="p-3 space-y-2"
+                        className="p-2.5 space-y-1.5"
                       >
                         {[5, 4, 3, 2, 1].map((n) => (
                           <motion.button
@@ -493,7 +493,7 @@ export default function CustomerExperienceSection() {
                             whileHover={{ scale: 1.02, x: 4 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => handleStarSelect(n)}
-                            className={`w-full py-2.5 px-4 rounded-xl text-left text-[13.5px] font-medium transition-all duration-150 cursor-pointer border flex items-center gap-2 ${
+                            className={`w-full py-2 px-3.5 rounded-xl text-left text-[12px] font-medium transition-all duration-150 cursor-pointer border flex items-center gap-1.5 ${
                               n === 5
                                 ? 'bg-amber-50 border-amber-300 text-amber-800 hover:bg-amber-100'
                                 : n === 4
@@ -522,12 +522,12 @@ export default function CustomerExperienceSection() {
                         transition={{ duration: 0.3 }}
                         className="p-3"
                       >
-                        <p className="text-[11px] text-[#667781] mb-2 px-1">
+                        <p className="text-[10px] text-[#667781] mb-1.5 px-1">
                           Tell us how we can improve (optional):
                         </p>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           <div
-                            className={`flex-1 flex items-center rounded-full bg-white border-2 transition-all duration-200 ${
+                            className="flex-1 flex items-center rounded-full bg-white border-2 transition-all duration-200 ${
                               inputFocused
                                 ? 'border-[#00A884] shadow-[0_0_0_2px_rgba(0,168,132,0.15)]'
                                 : 'border-[#E9EDEF]'
@@ -544,20 +544,20 @@ export default function CustomerExperienceSection() {
                                 if (e.key === 'Enter') handleReviewSubmit();
                               }}
                               placeholder="Share your feedback…"
-                              className="flex-1 bg-transparent px-4 py-2.5 text-[14px] text-[#111b21] placeholder-[#8696a0] outline-none"
+                              className="flex-1 bg-transparent px-3 py-2 text-[12px] text-[#111b21] placeholder-[#8696a0] outline-none"
                             />
                             <button
                               onClick={handleReviewSubmit}
                               disabled={!reviewInput.trim()}
-                              className={`mr-1 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 ${
+                              className={`mr-1 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 ${
                                 reviewInput.trim()
                                   ? 'bg-[#00A884] hover:bg-[#00956F] text-white shadow-sm active:scale-95'
-                                  : 'bg-[#E9EDEF] text-[#8696a0] cursor-not-allowed'
+                                  : 'bg-[#00A884]/30 text-[#00A884] cursor-not-allowed'
                               }`}
                             >
                               <svg
-                                width="18"
-                                height="18"
+                                width="16"
+                                height="16"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -588,7 +588,7 @@ export default function CustomerExperienceSection() {
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.97 }}
                           onClick={handleGoogleReview}
-                          className="w-full py-3 rounded-full bg-[#00A884] hover:bg-[#00956F] active:scale-[0.97] text-white text-[14px] font-semibold transition-all duration-150 cursor-pointer shadow-md flex items-center justify-center gap-2"
+                          className="w-full py-2.5 rounded-full bg-[#00A884] hover:bg-[#00956F] active:scale-[0.97] text-white text-[12px] font-semibold transition-all duration-150 cursor-pointer shadow-md flex items-center justify-center gap-1.5"
                         >
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -612,8 +612,8 @@ export default function CustomerExperienceSection() {
                         exit={{ opacity: 0 }}
                         className="flex items-center gap-3 px-3 py-3"
                       >
-                        <div className="flex-1 flex items-center bg-white rounded-full px-4 py-2.5">
-                          <span className="text-[#8696a0] text-[14px]">
+                        <div className="flex-1 flex items-center bg-white rounded-full px-3 py-2">
+                          <span className="text-[#8696a0] text-[12px]">
                             {step === 'completed'
                               ? 'Chat completed'
                               : step.startsWith('transition')
@@ -621,10 +621,10 @@ export default function CustomerExperienceSection() {
                                 : 'Type a message'}
                           </span>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-[#E9EDEF] flex items-center justify-center text-[#8696a0]">
+                        <div className="w-8 h-8 rounded-full bg-[#E9EDEF] flex items-center justify-center text-[#8696a0]">
                           <svg
-                            width="20"
-                            height="20"
+                            width="16"
+                            height="16"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
