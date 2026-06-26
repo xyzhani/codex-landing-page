@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -484,21 +484,47 @@ function Scene() {
   );
 }
 
+// ─── Mobile-optimized Scene (fewer particles) ──────────────────
+function MobileScene() {
+  const nodePositions = useMemo(() => generateNetworkPositions(200, 3.2), []);
+
+  return (
+    <>
+      <SceneRotator>
+        <CentralGlow />
+        <NetworkNodes nodePositions={nodePositions} />
+        <NetworkLines nodePositions={nodePositions} />
+        <HighlightNodes />
+      </SceneRotator>
+      <AmbientDust />
+    </>
+  );
+}
+
 // ─── Main Export ─────────────────────────────────────────────────
 export default function ParticleField() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
-        camera={{ position: [0.4, 0, 5.5], fov: 50 }}
-        dpr={[1, 1.5]}
+        camera={{ position: isMobile ? [0, 0, 6] : [0.4, 0, 5.5], fov: isMobile ? 55 : 50 }}
+        dpr={isMobile ? [1, 1] : [1, 1.5]}
         gl={{
-          antialias: true,
+          antialias: !isMobile,
           alpha: true,
           powerPreference: 'high-performance',
         }}
         style={{ background: 'transparent' }}
       >
-        <Scene />
+        {isMobile ? <MobileScene /> : <Scene />}
       </Canvas>
     </div>
   );

@@ -26,9 +26,9 @@ const fadeUp = {
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* 3D Background — positioned on the left half, hidden on mobile */}
-      <div className="absolute inset-0 z-0 hidden sm:block">
-        <div className="absolute left-0 top-0 w-[55%] h-full">
+      {/* 3D Background — full screen background on all devices, positioned left on desktop */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0">
           <Suspense fallback={null}>
             <ParticleField />
           </Suspense>
@@ -60,12 +60,12 @@ export default function HeroSection() {
             {/* Top label */}
             <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 mb-6">
               <div className="h-px w-6 bg-gradient-to-r from-transparent to-teal-500/50" />
-              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-teal-400/70">
+              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-teal-400/70">
                 AI Reputation Management
               </span>
             </motion.div>
 
-            {/* Main headline — smaller, refined */}
+            {/* Main headline */}
             <motion.h1
               variants={fadeUp}
               custom={1}
@@ -85,7 +85,7 @@ export default function HeroSection() {
             <motion.p
               variants={fadeUp}
               custom={2}
-              className="text-[13px] sm:text-sm text-slate-400/70 max-w-md mb-6 leading-relaxed"
+              className="text-[13px] sm:text-sm text-slate-400/70 max-w-md mx-auto sm:mx-0 mb-6 leading-relaxed"
             >
               Automated review collection via WhatsApp. AI-powered replies. 
               Instant social proof generation. For SMBs and eCommerce.
@@ -105,19 +105,19 @@ export default function HeroSection() {
             </motion.div>
 
             {/* CTAs */}
-            <motion.div variants={fadeUp} custom={4} className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <motion.div variants={fadeUp} custom={4} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-md mx-auto sm:mx-0">
               <a
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white text-gray-950 font-semibold text-[13px] transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:scale-[1.02] w-full sm:w-auto"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-white text-gray-950 font-semibold text-[13px] sm:text-sm transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:scale-[1.02]"
               >
                 Book a Free 15-Min Demo
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>
               <a
                 href="#how-it-works"
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/[0.08] bg-transparent text-slate-300 font-medium text-[13px] transition-all duration-300 hover:border-white/[0.15] hover:text-white w-full sm:w-auto"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-white/[0.08] bg-transparent text-slate-300 font-medium text-[13px] sm:text-sm transition-all duration-300 hover:border-white/[0.15] hover:text-white"
               >
                 See How It Works
                 <Star className="w-3 h-3 text-teal-400/60" />
