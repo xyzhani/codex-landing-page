@@ -134,7 +134,7 @@ function AnimatedBorderCard({
         />
 
         {/* Card inner */}
-        <div className="relative bg-[#0a0f1a] rounded-2xl p-5 sm:p-6 md:p-7 overflow-hidden backdrop-blur-sm">
+        <div className="relative bg-[#0a0f1a] rounded-2xl p-3.5 sm:p-5 md:p-6 lg:p-7 overflow-hidden backdrop-blur-sm">
           {/* Inner glow on hover */}
           <div
             className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-[50px] transition-opacity duration-700"
@@ -152,9 +152,9 @@ function AnimatedBorderCard({
           />
 
           {/* Top: icon + stat */}
-          <div className="relative flex items-start justify-between mb-5">
+          <div className="relative flex items-start justify-between mb-3 sm:mb-5">
             <motion.div
-              className="w-11 h-11 rounded-xl flex items-center justify-center"
+              className="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center"
               style={{
                 backgroundColor: `${problem.accent}15`,
                 boxShadow: `0 0 20px ${problem.accent}10`,
@@ -162,12 +162,12 @@ function AnimatedBorderCard({
               animate={hovered ? { scale: 1.15, rotate: 5 } : { scale: 1, rotate: 0 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
             >
-              <problem.icon className="w-5 h-5" style={{ color: problem.accent }} />
+              <problem.icon className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: problem.accent }} />
             </motion.div>
 
             <div className="text-right">
               <span
-                className="block text-2xl sm:text-3xl font-extrabold tracking-tight leading-none"
+                className="block text-lg sm:text-2xl lg:text-3xl font-extrabold tracking-tight leading-none"
                 style={{ color: problem.accent }}
               >
                 {problem.stat.startsWith('#') ? (
@@ -179,23 +179,23 @@ function AnimatedBorderCard({
                   />
                 )}
               </span>
-              <span className="block text-[10px] text-white/50 mt-1.5 leading-tight max-w-[100px] ml-auto">
+              <span className="block text-[9px] sm:text-[10px] text-white/50 mt-1 sm:mt-1.5 leading-tight max-w-[80px] sm:max-w-[100px] ml-auto">
                 {problem.statLabel}
               </span>
             </div>
           </div>
 
           {/* Text */}
-          <h3 className="relative text-[15px] font-bold text-white mb-2.5 leading-snug">
+          <h3 className="relative text-[12px] sm:text-[15px] font-bold text-white mb-1.5 sm:mb-2.5 leading-snug">
             {problem.title}
           </h3>
-          <p className="relative text-white text-[12px] sm:text-[13px] leading-relaxed">
+          <p className="relative text-white text-[11px] sm:text-[12px] lg:text-[13px] leading-relaxed">
             {problem.description}
           </p>
 
           {/* Bottom accent bar */}
           <motion.div
-            className="relative mt-5 h-[2px] rounded-full"
+            className="relative mt-3 sm:mt-5 h-[2px] rounded-full"
             style={{ backgroundColor: problem.accent }}
             initial={{ width: '0%' }}
             animate={hovered ? { width: '100%' } : { width: '20%' }}
@@ -266,8 +266,8 @@ export default function ProblemSection() {
           </p>
         </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        {/* Cards grid — 2-col on phone, 3-col on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
           {problems.map((problem, i) => (
             <AnimatedBorderCard key={problem.title} problem={problem} index={i}>
               <div />
