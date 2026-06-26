@@ -26,8 +26,8 @@ const fadeUp = {
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* 3D Background — full screen background on all devices, positioned left on desktop */}
-      <div className="absolute inset-0 z-0">
+      {/* 3D Background — full screen on mobile, left-half only on desktop */}
+      <div className="absolute inset-0 z-0 lg:w-[55%] lg:left-0 lg:top-0 lg:bottom-0 lg:right-auto">
         <div className="absolute inset-0">
           <Suspense fallback={null}>
             <ParticleField />
