@@ -289,7 +289,7 @@ export default function CustomerExperienceSection() {
 
                 {/* ---------- WA Header ---------- */}
                 <div
-                  className="flex items-center gap-3 px-3.5 py-2.5 shrink-0 border-b border-white/10"
+                  className="flex items-center gap-2 px-3 py-1.5 shrink-0 border-b border-white/10"
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
                   {/* back arrow */}
@@ -311,12 +311,12 @@ export default function CustomerExperienceSection() {
                   <img
                     src="/codex-logo.jpg"
                     alt="Codex Solutions International"
-                    className="w-10 h-10 rounded-full object-cover shrink-0 shadow-lg"
+                    className="w-8 h-8 rounded-full object-cover shrink-0 shadow-lg"
                   />
 
                   {/* name + status */}
                   <div className="min-w-0 flex-1">
-                    <p className="text-[14px] font-medium text-white truncate leading-tight">
+                    <p className="text-[12px] font-medium text-white truncate leading-tight">
                       Codex Solutions International
                     </p>
                     <p className="text-[11px] text-emerald-200 flex items-center gap-1">
