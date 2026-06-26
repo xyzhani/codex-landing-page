@@ -113,17 +113,6 @@ function StatusBar({ bg }: { bg?: string }) {
       {/* Dynamic Island */}
       <div className="absolute left-1/2 -translate-x-1/2 top-[6px] w-[36px] h-[10px] sm:w-[55px] sm:h-[14px] lg:w-[68px] lg:h-[18px] rounded-full bg-black" />
       <div className="flex items-center gap-1">
-        <svg width="13" height="10" viewBox="0 0 15 12" fill="none">
-          <path
-            d="M7.5 3.6c1.6 0 3 .6 4.1 1.7l.9-.9A8.3 8.3 0 007.5 2.1a8.3 8.3 0 00-5 1.7l.9.9A5.5 5.5 0 017.5 3.6z"
-            fill="white"
-          />
-          <path
-            d="M7.5 6.2c.9 0 1.8.4 2.5 1l.9-.9A4.2 4.2 0 007.5 4.6a4.2 4.2 0 00-3.4 1.7l.9.9c.7-.6 1.6-1 2.5-1z"
-            fill="white"
-          />
-          <circle cx="7.5" cy="8.8" r="1.3" fill="white" />
-        </svg>
         <svg width="22" height="10" viewBox="0 0 25 12" fill="none">
           <rect x="0" y="1" width="21" height="10" rx="2" stroke="white" strokeWidth="1" />
           <rect x="1.5" y="2.5" width="15" height="7" rx="1" fill="white" />
@@ -191,8 +180,8 @@ function InstagramScreen() {
         </svg>
       </div>
 
-      {/* Video area */}
-      <div ref={sectionRef} className="flex-1 relative bg-black">
+      {/* Video area — full remaining space */}
+      <div ref={sectionRef} className="flex-1 relative bg-black overflow-hidden">
         <video
           ref={videoRef}
           src={VIDEO_URL}
@@ -203,53 +192,6 @@ function InstagramScreen() {
           className="w-full h-full object-cover"
           style={{ display: 'block' }}
         />
-
-        {/* Bottom overlay — engagement */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-3 pt-8">
-          {/* Stars overlay */}
-          <div className="flex gap-0.5 mb-1.5">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <span key={s} className="text-[13px] text-yellow-400">★</span>
-            ))}
-          </div>
-          <p className="text-[10px] text-white font-medium leading-snug mb-0.5">
-            &ldquo;Great experience working with Codex team. They quickly fixed a costly automation issue&hellip;&rdquo;
-          </p>
-          <p className="text-[9px] text-white/50">— Bruno Pedro via Google Review</p>
-
-          {/* Engagement row */}
-          <div className="flex items-center justify-between mt-2">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-                <span className="text-[9px] text-white/70">2.4k</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-                </svg>
-                <span className="text-[9px] text-white/70">186</span>
-              </div>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom input bar */}
-      <div className="shrink-0 flex items-center gap-2 px-3 py-2 border-t border-white/10 bg-[#0a0a0a]">
-        <input
-          readOnly
-          placeholder="Send message"
-          className="flex-1 bg-transparent text-[10px] text-white/30 outline-none"
-        />
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="text-white/40">
-          <path d="M12 5v14M5 12h14" />
-        </svg>
       </div>
     </IPhone15Pro>
   );
@@ -296,65 +238,18 @@ function FacebookScreen() {
         </svg>
       </div>
 
-      {/* Content area */}
-      <div className="flex-1 bg-[#18191A] overflow-hidden">
-        {/* Video */}
-        <div ref={sectionRef} className="relative w-full aspect-[4/5] sm:aspect-[9/10] bg-black">
-          <video
-            ref={videoRef}
-            src={VIDEO_URL}
-            loop
-            muted
-            playsInline
-            webkit-playsinline="true"
-            className="w-full h-full object-cover"
-            style={{ display: 'block' }}
-          />
-        </div>
-
-        {/* Post info below video */}
-        <div className="px-2 sm:px-3 py-1.5 sm:py-2">
-          {/* Stars */}
-          <div className="flex gap-0.5 mb-1.5">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <span key={s} className="text-[12px] text-yellow-400">★</span>
-            ))}
-          </div>
-          <p className="text-[10px] text-white/90 leading-snug mb-0.5">
-            &ldquo;Great experience working with Codex team. They quickly fixed a costly automation issue&hellip;&rdquo;
-          </p>
-          <p className="text-[9px] text-white/40 mb-1.5">— Bruno Pedro via Google Review</p>
-
-          {/* Engagement */}
-          <div className="flex items-center justify-between pb-1 border-b border-white/10">
-            <div className="flex items-center gap-1.5">
-              <span className="text-[9px] text-white/50">👍 342  ❤️ 89  😲 12</span>
-            </div>
-            <span className="text-[9px] text-white/40">18 comments</span>
-          </div>
-
-          {/* Action buttons */}
-          <div className="flex items-center justify-around pt-1.5">
-            <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17 4h-1H6.57C5.5 4 4.59 4.67 4.38 5.61l-1.34 6C2.77 12.85 3.82 14 5.23 14H9.6l-.74 3.04a1.84 1.84 0 00.35 1.56 1.84 1.84 0 001.42.66H12l5.17-5.34A2.25 2.25 0 0018 11.83V6a2 2 0 00-2-2z" />
-              </svg>
-              <span className="text-[9px] font-medium">Like</span>
-            </button>
-            <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-              </svg>
-              <span className="text-[9px] font-medium">Comment</span>
-            </button>
-            <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-              </svg>
-              <span className="text-[9px] font-medium">Share</span>
-            </button>
-          </div>
-        </div>
+      {/* Video area — full remaining space */}
+      <div ref={sectionRef} className="flex-1 relative bg-[#18191A] overflow-hidden">
+        <video
+          ref={videoRef}
+          src={VIDEO_URL}
+          loop
+          muted
+          playsInline
+          webkit-playsinline="true"
+          className="w-full h-full object-cover"
+          style={{ display: 'block' }}
+        />
       </div>
     </IPhone15Pro>
   );
@@ -398,80 +293,18 @@ function LinkedInScreen() {
         </svg>
       </div>
 
-      {/* Content area */}
-      <div className="flex-1 bg-[#000000] overflow-hidden">
-        {/* Video */}
-        <div ref={sectionRef} className="relative w-full aspect-[4/5] sm:aspect-[9/10] bg-black">
-          <video
-            ref={videoRef}
-            src={VIDEO_URL}
-            loop
-            muted
-            playsInline
-            webkit-playsinline="true"
-            className="w-full h-full object-cover"
-            style={{ display: 'block' }}
-          />
-        </div>
-
-        {/* Post info */}
-        <div className="px-2 sm:px-3 py-1.5 sm:py-2">
-          {/* Stars */}
-          <div className="flex gap-0.5 mb-1.5">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <span key={s} className="text-[12px] text-yellow-400">★</span>
-            ))}
-          </div>
-          <p className="text-[10px] text-white/90 leading-snug mb-0.5">
-            &ldquo;Great experience working with Codex team. They quickly fixed a costly automation issue&hellip;&rdquo;
-          </p>
-          <p className="text-[9px] text-white/40 mb-1.5">— Bruno Pedro via Google Review</p>
-
-          {/* LinkedIn engagement */}
-          <div className="flex items-center justify-between pb-1 border-b border-white/10">
-            <div className="flex items-center -space-x-1">
-              <div className="w-4 h-4 rounded-full bg-blue-500 border border-[#000] flex items-center justify-center">
-                <span className="text-[6px]">👍</span>
-              </div>
-              <div className="w-4 h-4 rounded-full bg-red-500 border border-[#000] flex items-center justify-center">
-                <span className="text-[6px]">❤️</span>
-              </div>
-            </div>
-            <span className="text-[9px] text-white/40">528 reactions</span>
-          </div>
-
-          {/* Action buttons */}
-          <div className="flex items-center justify-around pt-1.5">
-            <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17 4h-1H6.57C5.5 4 4.59 4.67 4.38 5.61l-1.34 6C2.77 12.85 3.82 14 5.23 14H9.6l-.74 3.04a1.84 1.84 0 00.35 1.56 1.84 1.84 0 001.42.66H12l5.17-5.34A2.25 2.25 0 0018 11.83V6a2 2 0 00-2-2z" />
-              </svg>
-              <span className="text-[9px] font-medium">Like</span>
-            </button>
-            <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-              </svg>
-              <span className="text-[9px] font-medium">Comment</span>
-            </button>
-            <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" />
-              </svg>
-              <span className="text-[9px] font-medium">Repost</span>
-            </button>
-            <button className="flex items-center gap-1 text-white/50 hover:text-white/80 transition">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="18" cy="5" r="3" />
-                <circle cx="6" cy="12" r="3" />
-                <circle cx="18" cy="19" r="3" />
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg>
-              <span className="text-[9px] font-medium">Send</span>
-            </button>
-          </div>
-        </div>
+      {/* Video area — full remaining space */}
+      <div ref={sectionRef} className="flex-1 relative bg-black overflow-hidden">
+        <video
+          ref={videoRef}
+          src={VIDEO_URL}
+          loop
+          muted
+          playsInline
+          webkit-playsinline="true"
+          className="w-full h-full object-cover"
+          style={{ display: 'block' }}
+        />
       </div>
     </IPhone15Pro>
   );
