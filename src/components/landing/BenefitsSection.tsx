@@ -64,7 +64,7 @@ function BenefitCard({ benefit, index }: { benefit: typeof benefits[0]; index: n
           }}
         >
           <div
-            className="relative h-full rounded-[15px] p-6 overflow-hidden"
+            className="relative h-full rounded-[15px] p-2.5 sm:p-6 overflow-hidden"
             style={{ background: 'rgba(3,7,18,0.85)', backdropFilter: 'blur(20px)' }}
           >
             {/* Hover glow */}
@@ -77,12 +77,12 @@ function BenefitCard({ benefit, index }: { benefit: typeof benefits[0]; index: n
               <motion.div
                 whileHover={{ rotate: 8, scale: 1.1 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                className="w-10 h-10 rounded-xl border border-white/[0.06] bg-white/[0.02] group-hover:border-teal-400/20 group-hover:bg-teal-400/[0.06] flex items-center justify-center mb-4 transition-all duration-500"
+                className="w-7 h-7 sm:w-10 sm:h-10 rounded-xl border border-white/[0.06] bg-white/[0.02] group-hover:border-teal-400/20 group-hover:bg-teal-400/[0.06] flex items-center justify-center mb-2 sm:mb-4 transition-all duration-500"
               >
-                <benefit.icon className="w-4 h-4 text-white/40 group-hover:text-teal-400 transition-colors duration-500" />
+                <benefit.icon className="w-3 h-3 sm:w-4 sm:h-4 text-white/40 group-hover:text-teal-400 transition-colors duration-500" />
               </motion.div>
-              <h3 className="text-[14px] font-semibold text-white mb-1.5">{benefit.title}</h3>
-              <p className="text-white/45 text-[13px] leading-relaxed">{benefit.desc}</p>
+              <h3 className="text-[10px] sm:text-[14px] font-semibold text-white mb-1 sm:mb-1.5">{benefit.title}</h3>
+              <p className="text-white/45 text-[9px] sm:text-[13px] leading-relaxed">{benefit.desc}</p>
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
         }}
       >
         <div
-          className="relative rounded-[15px] p-6 overflow-hidden"
+          className="relative rounded-[15px] p-2.5 sm:p-6 overflow-hidden"
           style={{ background: 'rgba(3,7,18,0.85)', backdropFilter: 'blur(20px)' }}
         >
           {/* Bottom glow */}
@@ -129,12 +129,12 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
 
           <div className="relative z-10">
             <motion.div
-              className="text-3xl sm:text-4xl font-extrabold mb-3 tracking-tight"
+              className="text-xl sm:text-3xl md:text-4xl font-extrabold mb-1.5 sm:mb-3 tracking-tight"
               style={{ color: stat.color, textShadow: `0 0 30px ${stat.color}30` }}
             >
               <AnimatedCounter target={stat.value} suffix={stat.suffix} />
             </motion.div>
-            <p className="text-white/45 text-[12px] leading-relaxed whitespace-pre-line">{stat.label}</p>
+            <p className="text-white/45 text-[8px] sm:text-[12px] leading-relaxed whitespace-pre-line">{stat.label}</p>
           </div>
         </div>
       </motion.div>
@@ -155,14 +155,14 @@ function ChainStep({ text, index, isLast }: { text: string; index: number; isLas
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
         whileHover={{ y: -3, scale: 1.05, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-        className="relative px-4 py-2 rounded-xl border border-white/[0.06] bg-white/[0.02] cursor-default"
+        className="relative px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-white/[0.06] bg-white/[0.02] cursor-default"
         style={{ backdropFilter: 'blur(8px)' }}
       >
         {/* Glow on hover */}
         <div className="absolute inset-0 rounded-xl opacity-0 hover:opacity-100 transition-opacity pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 100px 50px at 50% 50%, rgba(20,240,200,0.04), transparent)', boxShadow: '0 0 20px rgba(20,240,200,0.05)' }}
         />
-        <span className="relative z-10 text-[12px] font-medium text-white/80">{text}</span>
+        <span className="relative z-10 text-[8px] sm:text-[12px] font-medium text-white/80">{text}</span>
       </motion.div>
 
       {!isLast && (
@@ -171,7 +171,7 @@ function ChainStep({ text, index, isLast }: { text: string; index: number; isLas
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: index * 0.1 + 0.05 }}
-          className="relative w-6 h-px mx-1.5 overflow-hidden"
+          className="relative w-4 sm:w-6 h-px mx-1 sm:mx-1.5 overflow-hidden"
         >
           <div className="absolute inset-0 bg-white/[0.08]" />
           <motion.div
@@ -210,11 +210,11 @@ export default function BenefitsSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* ─── Benefits Header ─── */}
-        <motion.div ref={benefitsHeaderRef} style={{ opacity: benefitsOpacity }} className="mb-10 sm:mb-14">
-          <span className="inline-block px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-teal-400/60 text-[11px] font-semibold tracking-[0.15em] uppercase mb-5">
+        <motion.div ref={benefitsHeaderRef} style={{ opacity: benefitsOpacity }} className="mb-5 sm:mb-14">
+          <span className="inline-block px-2.5 sm:px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-teal-400/60 text-[9px] sm:text-[11px] font-semibold tracking-[0.15em] uppercase mb-3 sm:mb-5">
             Business Benefits
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white leading-tight">
+          <h2 className="text-[16px] sm:text-3xl md:text-[2.75rem] font-bold text-white leading-tight">
             What your clients get{' '}
             <span className="bg-gradient-to-r from-[#14f0c8] to-[#14b8a6] bg-clip-text text-transparent">
               from day one
@@ -223,14 +223,14 @@ export default function BenefitsSection() {
         </motion.div>
 
         {/* ─── Benefits Grid ─── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16 sm:mb-20 lg:mb-28">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-10 sm:mb-20 lg:mb-28">
           {benefits.map((b, i) => (
             <BenefitCard key={b.title} benefit={b} index={i} />
           ))}
         </div>
 
         {/* ─── Animated Divider ─── */}
-        <div className="relative flex items-center gap-4 mb-16 sm:mb-20 lg:mb-24">
+        <div className="relative flex items-center gap-4 mb-10 sm:mb-20 lg:mb-24">
           <div className="flex-1 h-px bg-white/[0.04] overflow-hidden">
             <motion.div
               className="h-full w-32 bg-gradient-to-r from-transparent via-teal-400/40 to-transparent"
@@ -259,11 +259,11 @@ export default function BenefitsSection() {
         </div>
 
         {/* ─── ROI Header ─── */}
-        <motion.div ref={roiHeaderRef} style={{ opacity: roiOpacity }} className="mb-10 sm:mb-14">
-          <span className="inline-block px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-emerald-400/60 text-[11px] font-semibold tracking-[0.15em] uppercase mb-5">
+        <motion.div ref={roiHeaderRef} style={{ opacity: roiOpacity }} className="mb-5 sm:mb-14">
+          <span className="inline-block px-2.5 sm:px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-emerald-400/60 text-[9px] sm:text-[11px] font-semibold tracking-[0.15em] uppercase mb-3 sm:mb-5">
             Return on Investment
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white leading-tight">
+          <h2 className="text-[16px] sm:text-3xl md:text-[2.75rem] font-bold text-white leading-tight">
             The value chain{' '}
             <span className="bg-gradient-to-r from-[#14f0c8] to-[#2dd4bf] bg-clip-text text-transparent">
               in action
@@ -272,32 +272,14 @@ export default function BenefitsSection() {
         </motion.div>
 
         {/* ─── Value Chain Flow ─── */}
-        <div className="hidden sm:flex flex-wrap items-center justify-center gap-y-3 mb-12 sm:mb-16">
+        <div className="flex flex-wrap items-center justify-center gap-y-2.5 sm:gap-y-3 mb-8 sm:mb-16">
           {chainSteps.map((step, i) => (
             <ChainStep key={step} text={step} index={i} isLast={i === chainSteps.length - 1} />
           ))}
         </div>
-        {/* Mobile: 2-column grid instead of horizontal flow */}
-        <div className="grid grid-cols-2 gap-2.5 sm:hidden mb-12 sm:mb-16">
-          {chainSteps.map((step, i) => (
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="flex items-center gap-2 px-3 py-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02]"
-            >
-              <div className="w-5 h-5 rounded-full bg-teal-400/10 flex items-center justify-center shrink-0">
-                <span className="text-[10px] font-bold text-teal-400">{i + 1}</span>
-              </div>
-              <span className="text-[11px] font-medium text-white/80 leading-tight">{step}</span>
-            </motion.div>
-          ))}
-        </div>
 
         {/* ─── Stats Grid ─── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2 sm:gap-4">
           {stats.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} index={i} />
           ))}
