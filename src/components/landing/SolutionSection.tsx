@@ -81,7 +81,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
         />
 
         {/* Rotating border wrapper */}
-        <div className="relative w-[68px] h-[68px] rounded-2xl p-[1px] overflow-hidden">
+        <div className="relative w-[56px] h-[56px] sm:w-[68px] sm:h-[68px] rounded-2xl p-[1px] overflow-hidden">
           {/* Rotating light */}
           <div
             className="border-glow-rotate absolute inset-[-200%] rounded-full"
@@ -142,7 +142,7 @@ function RecoveryBanner() {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mt-20 max-w-3xl mx-auto"
+      className="relative mt-12 sm:mt-16 lg:mt-20 max-w-3xl mx-auto"
     >
       <div className="relative rounded-2xl p-[1px] overflow-hidden">
         {/* Rotating border */}
@@ -221,7 +221,7 @@ export default function SolutionSection() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#050a10] to-[#030712]" />
 
@@ -241,7 +241,7 @@ export default function SolutionSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <motion.div style={{ y: headerY, opacity: headerOpacity }} className="text-center mb-20">
+        <motion.div style={{ y: headerY, opacity: headerOpacity }} className="text-center mb-12 sm:mb-16 lg:mb-20">
           <div className="inline-flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-gradient-to-r from-transparent to-teal-500/50" />
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-teal-400">
@@ -263,7 +263,7 @@ export default function SolutionSection() {
 
         {/* Flow Steps */}
         <div className="relative max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-0 relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-0 relative z-10">
             {flowSteps.map((step, i) => (
               <StepNode key={step.label} step={step} index={i} total={flowSteps.length} />
             ))}

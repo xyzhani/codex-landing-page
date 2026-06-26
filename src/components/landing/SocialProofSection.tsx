@@ -43,7 +43,7 @@ const platforms = [
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[190px] sm:w-[220px] md:w-[240px] lg:w-[260px] h-[380px] sm:h-[430px] md:h-[490px] lg:h-[530px] rounded-[34px] sm:rounded-[38px] md:rounded-[41px] lg:rounded-[45px] p-[2.5px] sm:p-[3px] md:p-[4px] origin-center shrink-0"
+      className="relative w-[170px] sm:w-[210px] md:w-[240px] lg:w-[260px] h-[340px] sm:h-[400px] md:h-[490px] lg:h-[530px] rounded-[30px] sm:rounded-[35px] md:rounded-[39px] lg:rounded-[43px] p-[2.5px] sm:p-[3px] md:p-[4px] origin-center shrink-0"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
@@ -53,7 +53,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
     >
       {/* Shine / reflection */}
       <div
-        className="absolute inset-0 rounded-[34px] sm:rounded-[38px] md:rounded-[41px] lg:rounded-[45px] pointer-events-none z-30"
+        className="absolute inset-0 rounded-[30px] sm:rounded-[35px] md:rounded-[39px] lg:rounded-[43px] pointer-events-none z-30"
         style={{
           background:
             'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.04) 100%)',
@@ -61,7 +61,7 @@ function IPhone15Pro({ children }: { children: React.ReactNode }) {
       />
       {/* Inner bezel */}
       <div
-        className="relative w-full h-full rounded-[31px] sm:rounded-[34px] md:rounded-[37px] lg:rounded-[41px] overflow-hidden z-10 flex flex-col"
+        className="relative w-full h-full rounded-[27px] sm:rounded-[31px] md:rounded-[35px] lg:rounded-[39px] overflow-hidden z-10 flex flex-col"
         style={{ background: '#000' }}
       >
         {children}
@@ -111,7 +111,7 @@ function StatusBar({ bg }: { bg?: string }) {
     >
       <span>9:41</span>
       {/* Dynamic Island */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[7px] w-[100px] h-[30px] rounded-full bg-black" />
+      <div className="absolute left-1/2 -translate-x-1/2 top-[7px] w-[85px] h-[26px] sm:w-[100px] sm:h-[30px] rounded-full bg-black" />
       <div className="flex items-center gap-1">
         <svg width="13" height="10" viewBox="0 0 15 12" fill="none">
           <path
@@ -482,7 +482,7 @@ function LinkedInScreen() {
 /* ------------------------------------------------------------------ */
 export default function SocialProofSection() {
   return (
-    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060d12] to-[#030712]" />
       {/* Ambient glow */}
       <div
@@ -496,7 +496,7 @@ export default function SocialProofSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-10 sm:mb-16 lg:mb-20">
+          <div className="text-center mb-8 sm:mb-14 lg:mb-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[12px] font-semibold tracking-[0.15em] uppercase mb-5">
               Social Proof Automation
             </span>
@@ -515,7 +515,7 @@ export default function SocialProofSection() {
         </ScrollReveal>
 
         {/* Three Phone Mockups */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-6 xl:gap-10">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-6 sm:gap-8 lg:gap-6 xl:gap-10">
           {platforms.map((p, i) => (
             <ScrollReveal key={p.name} delay={i * 0.15}>
               <div className="flex flex-col items-center gap-5">
@@ -523,7 +523,7 @@ export default function SocialProofSection() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                  className="h-[380px] sm:h-[430px] md:h-[490px] lg:h-[530px] flex items-start max-w-full"
+                  className="h-[340px] sm:h-[400px] md:h-[490px] lg:h-[530px] flex items-start max-w-full"
                 >
                   {i === 0 && <InstagramScreen />}
                   {i === 1 && <FacebookScreen />}
@@ -531,7 +531,7 @@ export default function SocialProofSection() {
                 </motion.div>
 
                 {/* Platform label + description below phone */}
-                <div className="text-center w-full max-w-[260px]">
+                <div className="text-center w-full max-w-[220px] sm:max-w-[260px]">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <div
                       className="w-2 h-2 rounded-full"

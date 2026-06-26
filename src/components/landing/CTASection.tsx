@@ -18,7 +18,7 @@ const checklist = [
 
 export default function CTASection() {
   return (
-    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       <Suspense fallback={null}>
         <ParticleField />
       </Suspense>
@@ -28,13 +28,13 @@ export default function CTASection() {
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 sm:px-8 text-center">
         <ScrollReveal>
-          <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white mb-8 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white mb-6 sm:mb-8 leading-tight">
             Ready to build your
             <br />
             <span className="bg-gradient-to-r from-[#14f0c8] to-[#14b8a6] bg-clip-text text-transparent">reputation engine?</span>
           </h2>
 
-          <div className="max-w-md mx-auto mb-10 space-y-3 text-left">
+          <div className="max-w-md mx-auto mb-8 sm:mb-10 space-y-3 text-left">
             {checklist.map((item, i) => (
               <motion.div
                 key={item}
@@ -60,7 +60,7 @@ export default function CTASection() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-[#14b8a6] text-gray-950 font-semibold text-base transition-all duration-500 hover:bg-[#2dd4bf] hover:shadow-[0_0_50px_rgba(20,184,166,0.25)]"
+              className="group inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 rounded-2xl bg-[#14b8a6] text-gray-950 font-semibold text-base transition-all duration-500 hover:bg-[#2dd4bf] hover:shadow-[0_0_50px_rgba(20,184,166,0.25)]"
             >
               Book a Free 15-Minute Demo
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

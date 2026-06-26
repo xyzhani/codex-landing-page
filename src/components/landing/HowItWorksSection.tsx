@@ -94,7 +94,7 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
           <>
             <div className="inline-flex items-center gap-3 mb-3">
               <motion.div
-                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0"
                 style={{
                   backgroundColor: `${step.color}12`,
                   boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
@@ -111,7 +111,7 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
             <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
               {step.title}
             </h3>
-            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-sm">
+            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-[280px] sm:max-w-sm">
               {step.description}
             </p>
           </>
@@ -133,7 +133,7 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
           <>
             <div className="inline-flex items-center gap-3 mb-3">
               <motion.div
-                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0"
                 style={{
                   backgroundColor: `${step.color}12`,
                   boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
@@ -150,7 +150,7 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
             <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
               {step.title}
             </h3>
-            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-sm">
+            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-[280px] sm:max-w-sm">
               {step.description}
             </p>
           </>
@@ -240,7 +240,7 @@ export default function HowItWorksSection() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#050a10] to-[#030712]" />
 
@@ -260,7 +260,7 @@ export default function HowItWorksSection() {
 
       <div className="relative z-20 max-w-5xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <motion.div style={{ opacity: headerOpacity }} className="text-center mb-10 sm:mb-16 lg:mb-20">
+        <motion.div style={{ opacity: headerOpacity }} className="text-center mb-8 sm:mb-14 lg:mb-20">
           <div className="inline-flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-gradient-to-r from-transparent to-teal-500/50" />
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-teal-400">
@@ -280,7 +280,7 @@ export default function HowItWorksSection() {
         <div className="relative">
           <NeonPath />
 
-          <div className="relative z-20 space-y-14 sm:space-y-16 lg:space-y-[100px]">
+          <div className="relative z-20 space-y-10 sm:space-y-14 lg:space-y-[100px]">
             {steps.map((step, i) => (
               <StepCard key={step.num} step={step} index={i} />
             ))}

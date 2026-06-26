@@ -95,7 +95,7 @@ function GlowCard({
 
 function AnimatedDivider() {
   return (
-    <div className="relative flex items-center gap-4 my-12 sm:my-16 md:my-20 lg:my-24">
+    <div className="relative flex items-center gap-4 my-8 sm:my-12 md:my-16 lg:my-20">
       <div className="flex-1 h-px bg-white/[0.04] overflow-hidden">
         <motion.div
           className="h-full w-32 bg-gradient-to-r from-transparent via-teal-400/40 to-transparent"
@@ -145,7 +145,7 @@ function SectionHeader({
   const opacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <motion.div ref={ref} style={{ opacity }} className={`mb-12 ${align === 'center' ? 'text-center' : ''}`}>
+    <motion.div ref={ref} style={{ opacity }} className={`mb-8 sm:mb-12 ${align === 'center' ? 'text-center' : ''}`}>
       <span className={`inline-block px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-[11px] font-semibold tracking-[0.15em] uppercase ${badgeColor} mb-5`}>
         {badge}
       </span>
@@ -171,7 +171,7 @@ function SectionHeader({
 
 export default function StarPathSection() {
   return (
-    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-grid" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712]" />

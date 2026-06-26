@@ -93,7 +93,7 @@ export default function HeroSection() {
 
             {/* Stat — compact */}
             <motion.div variants={fadeUp} custom={3} className="mb-7">
-              <div className="inline-flex items-center gap-4 px-5 py-3.5 rounded-xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm">
+              <div className="inline-flex items-center gap-4 px-5 py-3.5 rounded-xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm max-w-[90vw]">
                 <span className="text-[28px] sm:text-[32px] font-extrabold tracking-tight leading-none bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent">
                   60–80%
                 </span>
@@ -110,14 +110,14 @@ export default function HeroSection() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-gray-950 font-semibold text-[13px] transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:scale-[1.02]"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white text-gray-950 font-semibold text-[13px] transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:scale-[1.02] w-full sm:w-auto"
               >
                 Book a Free 15-Min Demo
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>
               <a
                 href="#how-it-works"
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/[0.08] bg-transparent text-slate-300 font-medium text-[13px] transition-all duration-300 hover:border-white/[0.15] hover:text-white"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/[0.08] bg-transparent text-slate-300 font-medium text-[13px] transition-all duration-300 hover:border-white/[0.15] hover:text-white w-full sm:w-auto"
               >
                 See How It Works
                 <Star className="w-3 h-3 text-teal-400/60" />

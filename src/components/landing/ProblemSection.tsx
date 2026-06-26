@@ -134,7 +134,7 @@ function AnimatedBorderCard({
         />
 
         {/* Card inner */}
-        <div className="relative bg-[#0a0f1a] rounded-2xl p-6 sm:p-7 overflow-hidden backdrop-blur-sm">
+        <div className="relative bg-[#0a0f1a] rounded-2xl p-5 sm:p-6 md:p-7 overflow-hidden backdrop-blur-sm">
           {/* Inner glow on hover */}
           <div
             className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-[50px] transition-opacity duration-700"
@@ -219,7 +219,7 @@ export default function ProblemSection() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060a10] to-[#030712]" />
 
@@ -239,8 +239,8 @@ export default function ProblemSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header — parallax */}
-        <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mb-10 sm:mb-16 lg:mb-20">
-          <div className="flex items-center gap-3 mb-5">
+        <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mb-8 sm:mb-14 lg:mb-20">
+          <div className="flex items-center gap-3 mb-3 sm:mb-5">
             <motion.div
               className="h-px w-10"
               style={{ background: 'linear-gradient(to right, #f87171, transparent)' }}
@@ -253,9 +253,9 @@ export default function ProblemSection() {
               The Problem
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-5 leading-[1.1] tracking-tight">
             Businesses are losing customers
-            <br />
+            <br className="hidden sm:inline" />
             <span className="text-white">
               every single day
             </span>

@@ -122,7 +122,7 @@ export default function AIRepliesSection() {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-grid" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712]" />
@@ -133,7 +133,7 @@ export default function AIRepliesSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <motion.div ref={headerRef} style={{ opacity: headerOpacity }} className="mb-10 sm:mb-16">
+        <motion.div ref={headerRef} style={{ opacity: headerOpacity }} className="mb-8 sm:mb-14">
           <div className="flex items-center gap-2 mb-5">
             <Sparkles className="w-4 h-4 text-teal-400/60" />
             <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-teal-400/70">
@@ -148,7 +148,7 @@ export default function AIRepliesSection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
           {/* Flow Column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -163,7 +163,7 @@ export default function AIRepliesSection() {
               }}
             >
               <div
-                className="relative rounded-[15px] p-6"
+                className="relative rounded-[15px] p-5 sm:p-6"
                 style={{ background: 'rgba(3,7,18,0.7)', backdropFilter: 'blur(20px)' }}
               >
                 <h3 className="text-[12px] font-semibold tracking-wider uppercase text-teal-400/60 mb-8">How It Works</h3>

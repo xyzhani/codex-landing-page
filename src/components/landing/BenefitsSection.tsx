@@ -199,7 +199,7 @@ export default function BenefitsSection() {
   const roiOpacity = useTransform(rsp, [0, 0.15], [0, 1]);
 
   return (
-    <section className="relative py-16 sm:py-24 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060d12] to-[#030712]" />
       <div className="absolute inset-0 bg-grid opacity-50" />
@@ -210,7 +210,7 @@ export default function BenefitsSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* ─── Benefits Header ─── */}
-        <motion.div ref={benefitsHeaderRef} style={{ opacity: benefitsOpacity }} className="mb-14">
+        <motion.div ref={benefitsHeaderRef} style={{ opacity: benefitsOpacity }} className="mb-10 sm:mb-14">
           <span className="inline-block px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-teal-400/60 text-[11px] font-semibold tracking-[0.15em] uppercase mb-5">
             Business Benefits
           </span>
@@ -223,14 +223,14 @@ export default function BenefitsSection() {
         </motion.div>
 
         {/* ─── Benefits Grid ─── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-28">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16 sm:mb-20 lg:mb-28">
           {benefits.map((b, i) => (
             <BenefitCard key={b.title} benefit={b} index={i} />
           ))}
         </div>
 
         {/* ─── Animated Divider ─── */}
-        <div className="relative flex items-center gap-4 mb-24">
+        <div className="relative flex items-center gap-4 mb-16 sm:mb-20 lg:mb-24">
           <div className="flex-1 h-px bg-white/[0.04] overflow-hidden">
             <motion.div
               className="h-full w-32 bg-gradient-to-r from-transparent via-teal-400/40 to-transparent"
@@ -259,7 +259,7 @@ export default function BenefitsSection() {
         </div>
 
         {/* ─── ROI Header ─── */}
-        <motion.div ref={roiHeaderRef} style={{ opacity: roiOpacity }} className="mb-14">
+        <motion.div ref={roiHeaderRef} style={{ opacity: roiOpacity }} className="mb-10 sm:mb-14">
           <span className="inline-block px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-emerald-400/60 text-[11px] font-semibold tracking-[0.15em] uppercase mb-5">
             Return on Investment
           </span>
@@ -272,13 +272,13 @@ export default function BenefitsSection() {
         </motion.div>
 
         {/* ─── Value Chain Flow ─── */}
-        <div className="hidden sm:flex flex-wrap items-center justify-center gap-y-3 mb-16">
+        <div className="hidden sm:flex flex-wrap items-center justify-center gap-y-3 mb-12 sm:mb-16">
           {chainSteps.map((step, i) => (
             <ChainStep key={step} text={step} index={i} isLast={i === chainSteps.length - 1} />
           ))}
         </div>
         {/* Mobile: 2-column grid instead of horizontal flow */}
-        <div className="grid grid-cols-2 gap-2.5 sm:hidden mb-16">
+        <div className="grid grid-cols-2 gap-2.5 sm:hidden mb-12 sm:mb-16">
           {chainSteps.map((step, i) => (
             <motion.div
               key={step}
