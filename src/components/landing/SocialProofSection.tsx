@@ -43,7 +43,7 @@ const platforms = [
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[140px] sm:w-[190px] md:w-[210px] lg:w-[230px] h-[290px] sm:h-[370px] md:h-[410px] lg:h-[450px] rounded-[30px] sm:rounded-[35px] md:rounded-[39px] lg:rounded-[43px] p-[2px] sm:p-[3px] md:p-[4px] origin-center shrink-0"
+      className="relative w-[155px] sm:w-[190px] md:w-[210px] lg:w-[230px] h-[325px] sm:h-[370px] md:h-[410px] lg:h-[450px] rounded-[30px] sm:rounded-[35px] md:rounded-[39px] lg:rounded-[43px] p-[2px] sm:p-[3px] md:p-[4px] origin-center shrink-0"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
@@ -111,7 +111,7 @@ function StatusBar({ bg }: { bg?: string }) {
     >
       <span>9:41</span>
       {/* Dynamic Island */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[6px] w-[50px] h-[14px] sm:w-[70px] sm:h-[18px] lg:w-[80px] lg:h-[22px] rounded-full bg-black" />
+      <div className="absolute left-1/2 -translate-x-1/2 top-[6px] w-[36px] h-[10px] sm:w-[55px] sm:h-[14px] lg:w-[68px] lg:h-[18px] rounded-full bg-black" />
       <div className="flex items-center gap-1">
         <svg width="13" height="10" viewBox="0 0 15 12" fill="none">
           <path
@@ -154,26 +154,26 @@ function InstagramScreen() {
 
       {/* IG Story header bar */}
       <div
-        className="flex items-center justify-between px-3 py-1.5 shrink-0"
+        className="flex items-center justify-between px-2 sm:px-3 py-1 sm:py-1.5 shrink-0"
         style={{
           background: 'linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)',
         }}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 min-w-0">
           <img
             src="/codex-logo.jpg"
             alt="Codex Solutions"
-            className="w-7 h-7 rounded-full object-cover border-2 border-white"
+            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border border-white shrink-0"
           />
-          <div>
-            <p className="text-[11px] font-semibold text-white leading-tight">Codex Solutions</p>
-            <p className="text-[8px] text-white/60">Sponsored</p>
+          <div className="min-w-0">
+            <p className="text-[9px] sm:text-[10px] font-semibold text-white leading-tight truncate">Codex Solutions</p>
+            <p className="text-[7px] sm:text-[8px] text-white/60">Sponsored</p>
           </div>
         </div>
         {/* Story progress bars */}
-        <div className="flex gap-[3px] items-center">
+        <div className="flex gap-[2px] sm:gap-[3px] items-center flex-1 justify-end">
           {[0, 1, 2].map((i) => (
-            <div key={i} className="w-8 h-[2px] rounded-full bg-white/20 overflow-hidden">
+            <div key={i} className="w-4 sm:w-7 h-[2px] rounded-full bg-white/20 overflow-hidden">
               <div
                 className="h-full rounded-full bg-white"
                 style={{
@@ -184,7 +184,7 @@ function InstagramScreen() {
             </div>
           ))}
         </div>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white" className="shrink-0">
           <circle cx="12" cy="5" r="1.5" />
           <circle cx="12" cy="12" r="1.5" />
           <circle cx="12" cy="19" r="1.5" />
@@ -274,22 +274,22 @@ function FacebookScreen() {
       <StatusBar bg="#1877F2" />
 
       {/* FB header */}
-      <div className="flex items-center justify-between px-3 py-2 shrink-0 bg-[#1877F2]">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 shrink-0 bg-[#1877F2]">
+        <div className="flex items-center gap-1 sm:gap-2 min-w-0">
           <img
             src="/codex-logo.jpg"
-            alt="Codex Solutions International"
-            className="w-8 h-8 rounded-full object-cover"
+            alt="Codex Solutions"
+            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover shrink-0"
           />
-          <div>
-            <p className="text-[11px] font-semibold text-white leading-tight">Codex Solutions International</p>
-            <p className="text-[8px] text-white/60 flex items-center gap-1">
-              <span className="inline-block w-[4px] h-[4px] rounded-full bg-blue-300" />
+          <div className="min-w-0">
+            <p className="text-[9px] sm:text-[10px] font-semibold text-white leading-tight truncate">Codex Solutions</p>
+            <p className="text-[7px] sm:text-[8px] text-white/60 flex items-center gap-1">
+              <span className="inline-block w-[3px] h-[3px] sm:w-[4px] sm:h-[4px] rounded-full bg-blue-300" />
               Just now
             </p>
           </div>
         </div>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="white" className="text-white/60">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white" className="text-white/60 shrink-0">
           <circle cx="12" cy="5" r="1.5" />
           <circle cx="12" cy="12" r="1.5" />
           <circle cx="12" cy="19" r="1.5" />
@@ -379,19 +379,19 @@ function LinkedInScreen() {
       <StatusBar bg="#0A66C2" />
 
       {/* LinkedIn header */}
-      <div className="flex items-center justify-between px-3 py-2 shrink-0 bg-[#0A66C2]">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 shrink-0 bg-[#0A66C2]">
+        <div className="flex items-center gap-1 sm:gap-2 min-w-0">
           <img
             src="/codex-logo.jpg"
-            alt="Codex Solutions International"
-            className="w-8 h-8 rounded-full object-cover"
+            alt="Codex Solutions"
+            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover shrink-0"
           />
-          <div>
-            <p className="text-[11px] font-semibold text-white leading-tight">Codex Solutions International</p>
-            <p className="text-[8px] text-white/60">1st degree connection</p>
+          <div className="min-w-0">
+            <p className="text-[9px] sm:text-[10px] font-semibold text-white leading-tight truncate">Codex Solutions</p>
+            <p className="text-[7px] sm:text-[8px] text-white/60">1st degree connection</p>
           </div>
         </div>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="white" className="text-white/60">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white" className="text-white/60 shrink-0">
           <circle cx="12" cy="5" r="1.5" />
           <circle cx="12" cy="12" r="1.5" />
           <circle cx="12" cy="19" r="1.5" />
@@ -523,7 +523,7 @@ export default function SocialProofSection() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                  className="h-[290px] sm:h-[370px] md:h-[410px] lg:h-[450px] flex items-start max-w-full"
+                  className="h-[325px] sm:h-[370px] md:h-[410px] lg:h-[450px] flex items-start max-w-full"
                 >
                   {i === 0 && <InstagramScreen />}
                   {i === 1 && <FacebookScreen />}
