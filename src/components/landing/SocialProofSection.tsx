@@ -43,7 +43,7 @@ const platforms = [
 function IPhone15Pro({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative w-[170px] sm:w-[210px] md:w-[240px] lg:w-[260px] h-[340px] sm:h-[400px] md:h-[490px] lg:h-[530px] rounded-[30px] sm:rounded-[35px] md:rounded-[39px] lg:rounded-[43px] p-[2.5px] sm:p-[3px] md:p-[4px] origin-center shrink-0"
+      className="relative w-[140px] sm:w-[190px] md:w-[210px] lg:w-[230px] h-[290px] sm:h-[370px] md:h-[410px] lg:h-[450px] rounded-[30px] sm:rounded-[35px] md:rounded-[39px] lg:rounded-[43px] p-[2px] sm:p-[3px] md:p-[4px] origin-center shrink-0"
       style={{
         background:
           'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
@@ -111,7 +111,7 @@ function StatusBar({ bg }: { bg?: string }) {
     >
       <span>9:41</span>
       {/* Dynamic Island */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[7px] w-[85px] h-[26px] sm:w-[100px] sm:h-[30px] rounded-full bg-black" />
+      <div className="absolute left-1/2 -translate-x-1/2 top-[6px] w-[50px] h-[14px] sm:w-[70px] sm:h-[18px] lg:w-[80px] lg:h-[22px] rounded-full bg-black" />
       <div className="flex items-center gap-1">
         <svg width="13" height="10" viewBox="0 0 15 12" fill="none">
           <path
@@ -299,7 +299,7 @@ function FacebookScreen() {
       {/* Content area */}
       <div className="flex-1 bg-[#18191A] overflow-hidden">
         {/* Video */}
-        <div ref={sectionRef} className="relative w-full aspect-[9/10] bg-black">
+        <div ref={sectionRef} className="relative w-full aspect-[4/5] sm:aspect-[9/10] bg-black">
           <video
             ref={videoRef}
             src={VIDEO_URL}
@@ -313,7 +313,7 @@ function FacebookScreen() {
         </div>
 
         {/* Post info below video */}
-        <div className="px-3 py-2">
+        <div className="px-2 sm:px-3 py-1.5 sm:py-2">
           {/* Stars */}
           <div className="flex gap-0.5 mb-1.5">
             {[1, 2, 3, 4, 5].map((s) => (
@@ -401,7 +401,7 @@ function LinkedInScreen() {
       {/* Content area */}
       <div className="flex-1 bg-[#000000] overflow-hidden">
         {/* Video */}
-        <div ref={sectionRef} className="relative w-full aspect-[9/10] bg-black">
+        <div ref={sectionRef} className="relative w-full aspect-[4/5] sm:aspect-[9/10] bg-black">
           <video
             ref={videoRef}
             src={VIDEO_URL}
@@ -415,7 +415,7 @@ function LinkedInScreen() {
         </div>
 
         {/* Post info */}
-        <div className="px-3 py-2">
+        <div className="px-2 sm:px-3 py-1.5 sm:py-2">
           {/* Stars */}
           <div className="flex gap-0.5 mb-1.5">
             {[1, 2, 3, 4, 5].map((s) => (
@@ -482,7 +482,7 @@ function LinkedInScreen() {
 /* ------------------------------------------------------------------ */
 export default function SocialProofSection() {
   return (
-    <section className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-8 sm:py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#060d12] to-[#030712]" />
       {/* Ambient glow */}
       <div
@@ -496,18 +496,18 @@ export default function SocialProofSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-8 sm:mb-14 lg:mb-20">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[12px] font-semibold tracking-[0.15em] uppercase mb-5">
+          <div className="text-center mb-6 sm:mb-12 lg:mb-16">
+            <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] sm:text-[12px] font-semibold tracking-[0.15em] uppercase mb-3 sm:mb-5">
               Social Proof Automation
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white mb-5 leading-tight">
+            <h2 className="text-[18px] sm:text-3xl md:text-[2.75rem] font-bold text-white mb-3 sm:mb-5 leading-tight">
               One review.{' '}
               <span className="bg-gradient-to-r from-[#14f0c8] to-[#14b8a6] bg-clip-text text-transparent">
                 Three platforms.
               </span>{' '}
               Zero effort.
             </h2>
-            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-white/60 text-[12px] sm:text-base max-w-2xl mx-auto leading-relaxed">
               A single customer review auto-publishes to Instagram, Facebook &amp; LinkedIn
               — each formatted for maximum engagement on that platform.
             </p>
@@ -523,7 +523,7 @@ export default function SocialProofSection() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                  className="h-[340px] sm:h-[400px] md:h-[490px] lg:h-[530px] flex items-start max-w-full"
+                  className="h-[290px] sm:h-[370px] md:h-[410px] lg:h-[450px] flex items-start max-w-full"
                 >
                   {i === 0 && <InstagramScreen />}
                   {i === 1 && <FacebookScreen />}
@@ -531,19 +531,19 @@ export default function SocialProofSection() {
                 </motion.div>
 
                 {/* Platform label + description below phone */}
-                <div className="text-center w-full max-w-[220px] sm:max-w-[260px]">
-                  <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="text-center w-full max-w-[160px] sm:max-w-[220px]">
+                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
                     <div
-                      className="w-2 h-2 rounded-full"
+                      className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full"
                       style={{ background: p.accentColor }}
                     />
-                    <span className="text-sm font-semibold text-white">{p.name}</span>
-                    <span className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">
+                    <span className="text-[11px] sm:text-sm font-semibold text-white">{p.name}</span>
+                    <span className="text-[8px] sm:text-[10px] text-slate-500 font-medium uppercase tracking-wider">
                       {p.format}
                     </span>
-                    <span className="text-[10px] text-slate-600 ml-auto">{p.duration}</span>
+                    <span className="text-[8px] sm:text-[10px] text-slate-600 ml-auto">{p.duration}</span>
                   </div>
-                  <p className="text-slate-400 text-[12px] leading-relaxed">{p.desc}</p>
+                  <p className="text-slate-400 text-[10px] sm:text-[12px] leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             </ScrollReveal>
