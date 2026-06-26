@@ -368,7 +368,7 @@ export default function CustomerExperienceSection() {
                           className={`flex ${isBot ? 'justify-start' : 'justify-end'}`}
                         >
                           <div
-                            className={`relative max-w-[85%] px-[7px] pt-[5px] pb-[6px] text-[12.5px] leading-[17px] whitespace-pre-line ${
+                            className={`relative max-w-[85%] px-[6px] pt-[4px] pb-[5px] text-[11px] leading-[15px] whitespace-pre-line ${
                               isBot
                                 ? 'bg-[#ECE5DD] text-[#111b21] rounded-tr-[8px] rounded-br-[8px] rounded-bl-[4px]'
                                 : 'bg-[#005C4B] text-white rounded-tl-[8px] rounded-bl-[8px] rounded-br-[4px]'
@@ -527,7 +527,7 @@ export default function CustomerExperienceSection() {
                         </p>
                         <div className="flex items-center gap-1.5">
                           <div
-                            className="flex-1 flex items-center rounded-full bg-white border-2 transition-all duration-200 ${
+                            className={`flex-1 flex items-center rounded-full bg-white border-2 transition-all duration-200 ${
                               inputFocused
                                 ? 'border-[#00A884] shadow-[0_0_0_2px_rgba(0,168,132,0.15)]'
                                 : 'border-[#E9EDEF]'
@@ -613,7 +613,7 @@ export default function CustomerExperienceSection() {
                         className="flex items-center gap-3 px-3 py-3"
                       >
                         <div className="flex-1 flex items-center bg-white rounded-full px-3 py-2">
-                          <span className="text-[#8696a0] text-[12px]">
+                          <span className="text-[#8696a0] text-[11px]">
                             {step === 'completed'
                               ? 'Chat completed'
                               : step.startsWith('transition')
@@ -621,10 +621,10 @@ export default function CustomerExperienceSection() {
                                 : 'Type a message'}
                           </span>
                         </div>
-                        <div className="w-8 h-8 rounded-full bg-[#E9EDEF] flex items-center justify-center text-[#8696a0]">
+                        <div className="w-8 h-8 rounded-full bg-[#00A884] flex items-center justify-center text-white shrink-0">
                           <svg
-                            width="16"
-                            height="16"
+                            width="15"
+                            height="15"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -632,10 +632,8 @@ export default function CustomerExperienceSection() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           >
-                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                            <line x1="12" y1="19" x2="12" y2="23" />
-                            <line x1="8" y1="23" x2="16" y2="23" />
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
                           </svg>
                         </div>
                       </motion.div>
