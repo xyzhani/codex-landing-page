@@ -74,87 +74,52 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
   const inView = useInView(ref, { once: true, margin: '-50px' });
   const isRight = index % 2 === 0;
 
+  const cardContent = (
+    <>
+      <div className="inline-flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-3">
+        <motion.div
+          className="w-7 h-7 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0"
+          style={{
+            backgroundColor: `${step.color}12`,
+            boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
+          }}
+          whileHover={{ scale: 1.1, rotate: isRight ? 5 : -5 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+        >
+          <step.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5" style={{ color: step.color }} />
+        </motion.div>
+        <span className="text-[9px] sm:text-xs font-bold tracking-wider" style={{ color: step.color }}>
+          STEP {step.num}
+        </span>
+      </div>
+      <h3 className="text-[13px] sm:text-lg lg:text-xl font-bold text-white mb-1.5 sm:mb-2 leading-tight">
+        {step.title}
+      </h3>
+      <p className="text-white/90 text-[11px] sm:text-[13px] lg:text-[14px] leading-relaxed max-w-[130px] sm:max-w-[280px] lg:max-w-sm">
+        {step.description}
+      </p>
+    </>
+  );
+
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, x: isRight ? -40 : 40 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="grid grid-cols-1 lg:grid-cols-[1fr_140px_1fr] items-center"
+      className="grid grid-cols-[1fr_24px_1fr] sm:grid-cols-[1fr_60px_1fr] lg:grid-cols-[1fr_140px_1fr] items-center"
     >
-      {/* LEFT column */}
-      <div
-        className={`${
-          isRight
-            ? 'flex flex-col items-center text-center'
-            : 'hidden lg:flex lg:flex-col lg:items-center lg:text-center'
-        }`}
-      >
-        {isRight && (
-          <>
-            <div className="inline-flex items-center gap-3 mb-3">
-              <motion.div
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0"
-                style={{
-                  backgroundColor: `${step.color}12`,
-                  boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
-                }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              >
-                <step.icon className="w-5 h-5" style={{ color: step.color }} />
-              </motion.div>
-              <span className="text-xs font-bold tracking-wider" style={{ color: step.color }}>
-                STEP {step.num}
-              </span>
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
-              {step.title}
-            </h3>
-            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-[280px] sm:max-w-sm">
-              {step.description}
-            </p>
-          </>
-        )}
+      {/* LEFT column — odd steps (0, 2, 4) */}
+      <div className={isRight ? 'flex flex-col items-center text-center' : ''}>
+        {isRight && cardContent}
       </div>
 
-      {/* CENTER — empty reserved space for the neon line */}
-      <div className="hidden lg:block" />
+      {/* CENTER — always visible for neon line */}
+      <div className="block" />
 
-      {/* RIGHT column */}
-      <div
-        className={`${
-          !isRight
-            ? 'flex flex-col items-center text-center'
-            : 'hidden lg:flex lg:flex-col lg:items-center lg:text-center'
-        }`}
-      >
-        {!isRight && (
-          <>
-            <div className="inline-flex items-center gap-3 mb-3">
-              <motion.div
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0"
-                style={{
-                  backgroundColor: `${step.color}12`,
-                  boxShadow: `0 0 20px ${step.color}10, 0 0 0 1px ${step.color}20`,
-                }}
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              >
-                <step.icon className="w-5 h-5" style={{ color: step.color }} />
-              </motion.div>
-              <span className="text-xs font-bold tracking-wider" style={{ color: step.color }}>
-                STEP {step.num}
-              </span>
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
-              {step.title}
-            </h3>
-            <p className="text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-[280px] sm:max-w-sm">
-              {step.description}
-            </p>
-          </>
-        )}
+      {/* RIGHT column — even steps (1, 3, 5) */}
+      <div className={!isRight ? 'flex flex-col items-center text-center' : ''}>
+        {!isRight && cardContent}
       </div>
     </motion.div>
   );
@@ -167,7 +132,7 @@ function NeonPath() {
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
-    <div ref={sectionRef} className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[120px] hidden lg:block z-10 pointer-events-none">
+    <div ref={sectionRef} className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[30px] sm:w-[80px] lg:w-[120px] z-10 pointer-events-none">
       <svg
         viewBox="0 0 200 1200"
         fill="none"
@@ -258,7 +223,7 @@ export default function HowItWorksSection() {
       <div className="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full bg-teal-500/[0.02] blur-[120px]" />
       <div className="absolute bottom-1/3 left-0 w-[400px] h-[400px] rounded-full bg-violet-500/[0.02] blur-[120px]" />
 
-      <div className="relative z-20 max-w-5xl mx-auto px-6 sm:px-8">
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div style={{ opacity: headerOpacity }} className="text-center mb-8 sm:mb-14 lg:mb-20">
           <div className="inline-flex items-center gap-3 mb-5">
