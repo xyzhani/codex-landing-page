@@ -62,14 +62,14 @@ function GlowCard({
       className={`animate-card-float animate-float-delay-${(index % 3) + 1}`}
     >
       <div
-        className="relative h-full rounded-2xl p-[1px]"
+        className="relative h-full rounded-xl sm:rounded-2xl p-[1px]"
         style={{
           background: conic,
           animation: 'rotateBorder 4s linear infinite',
         }}
       >
         <div
-          className="relative h-full rounded-[15px] p-5 overflow-hidden"
+          className="relative h-full rounded-[8px] sm:rounded-[15px] p-2.5 sm:p-5 overflow-hidden"
           style={{
             background: 'rgba(3,7,18,0.85)',
             backdropFilter: 'blur(20px)',
@@ -95,7 +95,7 @@ function GlowCard({
 
 function AnimatedDivider() {
   return (
-    <div className="relative flex items-center gap-4 my-8 sm:my-12 md:my-16 lg:my-20">
+    <div className="relative flex items-center gap-3 sm:gap-4 my-5 sm:my-10 lg:my-16">
       <div className="flex-1 h-px bg-white/[0.04] overflow-hidden">
         <motion.div
           className="h-full w-32 bg-gradient-to-r from-transparent via-teal-400/40 to-transparent"
@@ -145,11 +145,11 @@ function SectionHeader({
   const opacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <motion.div ref={ref} style={{ opacity }} className={`mb-8 sm:mb-12 ${align === 'center' ? 'text-center' : ''}`}>
-      <span className={`inline-block px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-[11px] font-semibold tracking-[0.15em] uppercase ${badgeColor} mb-5`}>
+    <motion.div ref={ref} style={{ opacity }} className={`mb-4 sm:mb-8 lg:mb-12 ${align === 'center' ? 'text-center' : ''}`}>
+      <span className={`inline-block px-2.5 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-[9px] sm:text-[11px] font-semibold tracking-[0.15em] uppercase ${badgeColor} mb-3 sm:mb-5`}>
         {badge}
       </span>
-      <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white mb-4 leading-tight">
+      <h2 className="text-[18px] sm:text-3xl md:text-[2.75rem] font-bold text-white mb-3 sm:mb-4 leading-tight">
         {titleAccent ? (
           <>
             {title} <span className="bg-gradient-to-r from-[#14f0c8] to-[#14b8a6] bg-clip-text text-transparent">{titleAccent}</span>
@@ -158,7 +158,7 @@ function SectionHeader({
           title
         )}
       </h2>
-      <p className="text-white/60 text-sm sm:text-base max-w-lg leading-relaxed" style={align === 'center' ? { margin: '0 auto' } : {}}>
+      <p className="text-white/60 text-[11px] sm:text-sm max-w-lg leading-relaxed" style={align === 'center' ? { margin: '0 auto' } : {}}>
         {desc}
       </p>
     </motion.div>
@@ -171,7 +171,7 @@ function SectionHeader({
 
 export default function StarPathSection() {
   return (
-    <section className="relative py-12 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-8 sm:py-16 md:py-24 lg:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-grid" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712]" />
@@ -189,20 +189,20 @@ export default function StarPathSection() {
           desc="Every 5\u2605 becomes public proof \u2014 end to end. One rating turns into a public reply and 3 pieces of branded content."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
           {fiveStarSteps.map((step, i) => (
             <GlowCard key={step.title} accent="teal" index={i}>
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-3">
                 <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center"
+                  className="w-6 h-6 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center"
                   style={{ background: 'rgba(20,240,200,0.08)', boxShadow: '0 0 20px rgba(20,240,200,0.1)' }}
                 >
-                  <step.icon className="w-4 h-4" style={{ color: '#14f0c8' }} />
+                  <step.icon className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: '#14f0c8' }} />
                 </div>
-                <span className="text-[10px] font-bold text-white/20 tracking-wider">0{i + 1}</span>
+                <span className="text-[8px] sm:text-[10px] font-bold text-white/20 tracking-wider">0{i + 1}</span>
               </div>
-              <h3 className="text-[14px] font-semibold text-white mb-1.5">{step.title}</h3>
-              <p className="text-white/50 text-[12px] leading-relaxed">{step.desc}</p>
+              <h3 className="text-[11px] sm:text-[14px] font-semibold text-white mb-1 sm:mb-1.5">{step.title}</h3>
+              <p className="text-white/50 text-[9px] sm:text-[12px] leading-relaxed">{step.desc}</p>
             </GlowCard>
           ))}
         </div>
@@ -218,20 +218,20 @@ export default function StarPathSection() {
           desc="Low ratings become recovered customers. Anything under 5\u2605 stays private and routes to AI."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
           {recoverySteps.map((step, i) => (
             <GlowCard key={step.title} accent="amber" index={i}>
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-3">
                 <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center"
+                  className="w-6 h-6 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center"
                   style={{ background: 'rgba(251,191,36,0.08)', boxShadow: '0 0 20px rgba(251,191,36,0.1)' }}
                 >
-                  <step.icon className="w-4 h-4" style={{ color: '#fbbf24' }} />
+                  <step.icon className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: '#fbbf24' }} />
                 </div>
-                <span className="text-[10px] font-bold text-white/20 tracking-wider">0{i + 1}</span>
+                <span className="text-[8px] sm:text-[10px] font-bold text-white/20 tracking-wider">0{i + 1}</span>
               </div>
-              <h3 className="text-[14px] font-semibold text-white mb-1.5">{step.title}</h3>
-              <p className="text-white/50 text-[12px] leading-relaxed">{step.desc}</p>
+              <h3 className="text-[11px] sm:text-[14px] font-semibold text-white mb-1 sm:mb-1.5">{step.title}</h3>
+              <p className="text-white/50 text-[9px] sm:text-[12px] leading-relaxed">{step.desc}</p>
             </GlowCard>
           ))}
         </div>
