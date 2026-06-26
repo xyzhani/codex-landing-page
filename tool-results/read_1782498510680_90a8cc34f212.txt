@@ -1,0 +1,756 @@
+     1→'use client';
+     2→
+     3→import { useState, useEffect, useRef, useCallback } from 'react';
+     4→import { motion, AnimatePresence } from 'framer-motion';
+     5→import ScrollReveal from './ScrollReveal';
+     6→
+     7→/* ------------------------------------------------------------------ */
+     8→/*  Types                                                              */
+     9→/* ------------------------------------------------------------------ */
+    10→
+    11→type ChatStep =
+    12→  | 'init'
+    13→  | 'waiting_rating'
+    14→  | 'showing_stars'
+    15→  | 'showing_review_input'
+    16→  | 'showing_google_btn'
+    17→  | 'completed';
+    18→
+    19→interface Message {
+    20→  id: number;
+    21→  sender: 'bot' | 'user';
+    22→  text: string;
+    23→  time: string;
+    24→}
+    25→
+    26→/* ------------------------------------------------------------------ */
+    27→/*  Helpers                                                            */
+    28→/* ------------------------------------------------------------------ */
+    29→
+    30→function nowTime(): string {
+    31→  const d = new Date();
+    32→  const h = d.getHours().toString().padStart(2, '0');
+    33→  const m = d.getMinutes().toString().padStart(2, '0');
+    34→  return `${h}:${m}`;
+    35→}
+    36→
+    37→function generateCoupon(): string {
+    38→  return 'Codex' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    39→}
+    40→
+    41→const GOOGLE_REVIEW_URL =
+    42→  'https://www.google.com/search?sca_esv=46f97408aca9b3a8&sxsrf=APpeQnsB6XXALTGZQQ8bapNK7fWx4UFaDQ:1782417029641&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_8BvlyQDkMXjv7ULtRNbkdb0_iaNGSHZv2tB5cqPx31hfaAmoQuBK-NNfWb6da79Zx-mddRtYIV18nfydL6KLVwHZb6TtXJZrwzeJSUE2ehDdv9y4Q%3D%3D&q=Codex+Solutions+International+Reviews&sa=X&ved=2ahUKEwjGupLvlKOVAxVnBfsDHavEC9oQ0bkNegQIPBAH&biw=1369&bih=619&dpr=1.4';
+    43→
+    44→/* ------------------------------------------------------------------ */
+    45→/*  Typing Indicator                                                    */
+    46→/* ------------------------------------------------------------------ */
+    47→
+    48→function TypingIndicator() {
+    49→  return (
+    50→    <div className="flex justify-start">
+    51→      <div
+    52→        className="relative max-w-[85%] px-4 py-3 rounded-2xl rounded-tl-[4px] text-sm leading-relaxed bg-[#ECE5DD]"
+    53→        style={{ boxShadow: '0 1px 1px rgba(0,0,0,0.06)' }}
+    54→      >
+    55→        <div className="flex items-center gap-[3px] py-[2px]">
+    56→          <span
+    57→            className="block w-[7px] h-[7px] rounded-full bg-[#8696a0] animate-[typingBounce_1.4s_infinite_0ms]"
+    58→          />
+    59→          <span
+    60→            className="block w-[7px] h-[7px] rounded-full bg-[#8696a0] animate-[typingBounce_1.4s_infinite_200ms]"
+    61→          />
+    62→          <span
+    63→            className="block w-[7px] h-[7px] rounded-full bg-[#8696a0] animate-[typingBounce_1.4s_infinite_400ms]"
+    64→          />
+    65→        </div>
+    66→      </div>
+    67→    </div>
+    68→  );
+    69→}
+    70→
+    71→/* ------------------------------------------------------------------ */
+    72→/*  Main Component                                                     */
+    73→/* ------------------------------------------------------------------ */
+    74→
+    75→export default function CustomerExperienceSection() {
+    76→  /* ---- state ---- */
+    77→  const [step, setStep] = useState<ChatStep>('init');
+    78→  const [messages, setMessages] = useState<Message[]>([]);
+    79→  const [showTyping, setShowTyping] = useState(false);
+    80→  const [reviewInput, setReviewInput] = useState('');
+    81→  const [inputFocused, setInputFocused] = useState(false);
+    82→  const [sectionVisible, setSectionVisible] = useState(false);
+    83→
+    84→  const chatEndRef = useRef<HTMLDivElement>(null);
+    85→  const sectionRef = useRef<HTMLDivElement>(null);
+    86→  const msgIdRef = useRef(0);
+    87→  const inputRef = useRef<HTMLInputElement>(null);
+    88→
+    89→  /* ---- scroll to bottom (within chat container only) ---- */
+    90→  const scrollToBottom = useCallback(() => {
+    91→    requestAnimationFrame(() => {
+    92→      chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    93→    });
+    94→  }, []);
+    95→
+    96→  /* ---- add message helper ---- */
+    97→  const addMessage = useCallback(
+    98→    (sender: 'bot' | 'user', text: string) => {
+    99→      const id = ++msgIdRef.current;
+   100→      setMessages((prev) => [...prev, { id, sender, text, time: nowTime() }]);
+   101→      return id;
+   102→    },
+   103→    [],
+   104→  );
+   105→
+   106→  /* ---- auto-start on scroll into view ---- */
+   107→  useEffect(() => {
+   108→    const observer = new IntersectionObserver(
+   109→      ([entry]) => {
+   110→        if (entry.isIntersecting && !sectionVisible) {
+   111→          setSectionVisible(true);
+   112→        }
+   113→      },
+   114→      { threshold: 0.25 },
+   115→    );
+   116→    if (sectionRef.current) observer.observe(sectionRef.current);
+   117→    return () => observer.disconnect();
+   118→  }, [sectionVisible]);
+   119→
+   120→  /* ---- Step 1: initial bot message ---- */
+   121→  useEffect(() => {
+   122→    if (!sectionVisible) return;
+   123→    const t1 = setTimeout(() => setShowTyping(true), 300);
+   124→    const t2 = setTimeout(() => {
+   125→      setShowTyping(false);
+   126→      addMessage(
+   127→        'bot',
+   128→        'Hi Sarah 👋\nThank you for choosing us!\nWe\'d love to hear how your experience was.\nWould you be willing to leave a quick rating?',
+   129→      );
+   130→      setStep('waiting_rating');
+   131→    }, 1300);
+   132→    return () => {
+   133→      clearTimeout(t1);
+   134→      clearTimeout(t2);
+   135→    };
+   136→  }, [sectionVisible, addMessage]);
+   137→
+   138→  /* ---- scroll on new messages (only when section is visible) ---- */
+   139→  useEffect(() => {
+   140→    if (sectionVisible) scrollToBottom();
+   141→  }, [messages, showTyping, scrollToBottom, sectionVisible]);
+   142→
+   143→  /* ---- focus input when it appears ---- */
+   144→  useEffect(() => {
+   145→    if (step === 'showing_review_input') {
+   146→      setTimeout(() => inputRef.current?.focus(), 400);
+   147→    }
+   148→  }, [step]);
+   149→
+   150→  /* ---- handlers ---- */
+   151→  const handleYesDefinitely = () => {
+   152→    if (step !== 'waiting_rating') return;
+   153→    addMessage('user', 'Yes, definitely! ✅');
+   154→    setStep('transition_1');
+   155→    setTimeout(() => setShowTyping(true), 500);
+   156→    setTimeout(() => {
+   157→      setShowTyping(false);
+   158→      addMessage('bot', 'Amazing! ⭐\nHow would you rate your experience?');
+   159→      setStep('showing_stars');
+   160→    }, 2000);
+   161→  };
+   162→
+   163→  const handleNotNow = () => {
+   164→    if (step !== 'waiting_rating') return;
+   165→    addMessage('user', 'Not now');
+   166→    setStep('transition_1');
+   167→    setTimeout(() => setShowTyping(true), 500);
+   168→    setTimeout(() => {
+   169→      setShowTyping(false);
+   170→      addMessage(
+   171→        'bot',
+   172→        'No problem at all! 😊\nWhenever you\'re ready, we\'re here.\nHave a wonderful day!',
+   173→      );
+   174→      setStep('completed');
+   175→    }, 2000);
+   176→  };
+   177→
+   178→  const handleStarSelect = (stars: number) => {
+   179→    if (step !== 'showing_stars') return;
+   180→    const starStr = '⭐'.repeat(stars);
+   181→    addMessage('user', starStr);
+   182→    setStep('transition_stars');
+   183→
+   184→    if (stars === 5) {
+   185→      setTimeout(() => setShowTyping(true), 500);
+   186→      setTimeout(() => {
+   187→        setShowTyping(false);
+   188→        addMessage(
+   189→          'bot',
+   190→          'Thank you so much for the 5★ rating! 🎉\nWould you mind sharing your experience on Google?\nIt only takes 30 seconds and helps us a lot.',
+   191→        );
+   192→        setStep('showing_google_btn');
+   193→      }, 2000);
+   194→    } else {
+   195→      setStep('showing_review_input');
+   196→    }
+   197→  };
+   198→
+   199→  const handleGoogleReview = () => {
+   200→    window.open(GOOGLE_REVIEW_URL, '_blank', 'noopener,noreferrer');
+   201→    setStep('completed');
+   202→  };
+   203→
+   204→  const handleReviewSubmit = () => {
+   205→    if (step !== 'showing_review_input' || !reviewInput.trim()) return;
+   206→    addMessage('user', reviewInput.trim());
+   207→    setReviewInput('');
+   208→    setInputFocused(false);
+   209→    setStep('transition_review');
+   210→
+   211→    // Determine rating from the last user star message
+   212→    const lastStarMsg = [...messages]
+   213→      .reverse()
+   214→      .find((m) => m.sender === 'user' && /^⭐+$/.test(m.text));
+   215→    const rating = lastStarMsg ? lastStarMsg.text.length : 3;
+   216→    const discountMap: Record<number, number> = { 1: 30, 2: 20, 3: 15, 4: 10 };
+   217→    const discount = discountMap[rating] || 10;
+   218→    const coupon = generateCoupon();
+   219→
+   220→    const empathyMessages: Record<number, string> = {
+   221→      4: `Thank you for your ${rating}★ rating and for taking the time to share your thoughts, Sarah! 💙\n\nWe really appreciate your honest feedback. We're always looking to improve and your input helps us get there.\n\nAs a token of our gratitude, here's ${discount}% off your next order with code ${coupon}\n\nWe'd love the chance to earn that 5th star next time! 🚀`,
+   222→      3: `Thank you for your ${rating}★ feedback, Sarah! We hear you. 💛\n\nWe're sorry we didn't fully meet your expectations this time. Your honest feedback is exactly what helps us improve.\n\nWe'd love to make it right — please accept ${discount}% off your next order with code ${coupon}\n\nGive us another chance to exceed your expectations! 🌟`,
+   223→      2: `Thank you for your honest feedback, Sarah. We truly appreciate you taking the time. 🙏\n\nWe're sorry your experience didn't meet expectations — that's not the standard we hold ourselves to. We take your feedback seriously and are already working on improvements.\n\nAs a gesture of goodwill, please enjoy ${discount}% off your next order with code ${coupon}\n\nWe'd love the opportunity to turn things around! 💪`,
+   224→      1: `Sarah, thank you for being candid with us. We don't take this lightly. ❤️\n\nWe sincerely apologize that your experience fell short. Your feedback is invaluable and we're committed to making real changes based on what you've shared.\n\nPlease accept ${discount}% off your next order with code ${coupon}\n\nWe genuinely want another chance to show you the experience you deserve. 🙏`,
+   225→    };
+   226→
+   227→    const reply = empathyMessages[rating] || empathyMessages[3];
+   228→
+   229→    setTimeout(() => setShowTyping(true), 600);
+   230→    setTimeout(() => {
+   231→      setShowTyping(false);
+   232→      addMessage('bot', reply);
+   233→      setStep('completed');
+   234→    }, 2800);
+   235→  };
+   236→
+   237→  /* ================================================================ */
+   238→  /*  RENDER                                                           */
+   239→  /* ================================================================ */
+   240→
+   241→  return (
+   242→    <section ref={sectionRef} className="relative py-10 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+   243→      {/* bg */}
+   244→      <div className="absolute inset-0 bg-[#030712]" />
+   245→      <div
+   246→        className="absolute inset-0 opacity-30"
+   247→        style={{
+   248→          background:
+   249→            'radial-gradient(ellipse 600px 400px at 50% 60%, rgba(0,184,148,0.12), transparent)',
+   250→        }}
+   251→      />
+   252→
+   253→      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+   254→        {/* Heading */}
+   255→        <ScrollReveal>
+   256→          <div className="text-center mb-8 sm:mb-12 lg:mb-20">
+   257→            <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold mb-5 tracking-[0.15em] uppercase">
+   258→              CUSTOMER EXPERIENCE
+   259→            </span>
+   260→            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
+   261→              Real Conversations,{' '}
+   262→              <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
+   263→                Real Results
+   264→              </span>
+   265→            </h2>
+   266→            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+   267→              See exactly how customers interact with the review collection flow
+   268→              — live, interactive, and beautifully simple.
+   269→            </p>
+   270→          </div>
+   271→        </ScrollReveal>
+   272→
+   273→        {/* Phone */}
+   274→        <ScrollReveal delay={0.25}>
+   275→          <div className="flex justify-center">
+   276→            <div className="phone-scale-wrapper">
+   277→              <IPhone15Pro>
+   278→                {/* ---------- Status Bar ---------- */}
+   279→                <div className="relative flex items-center justify-between px-6 pt-3 pb-1 text-[10px] font-semibold text-white shrink-0"
+   280→                  style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
+   281→                >
+   282→                  <span>9:41</span>
+   283→                  <div className="absolute left-1/2 -translate-x-1/2 top-[8px] w-[95px] h-[28px] sm:w-[100px] sm:h-[30px] rounded-full bg-black" />
+   284→                  <div className="flex items-center gap-1.5">
+   285→                    <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><path d="M7.5 3.6c1.6 0 3 .6 4.1 1.7l.9-.9A8.3 8.3 0 007.5 2.1a8.3 8.3 0 00-5 1.7l.9.9A5.5 5.5 0 017.5 3.6z" fill="white"/><path d="M7.5 6.2c.9 0 1.8.4 2.5 1l.9-.9A4.2 4.2 0 007.5 4.6a4.2 4.2 0 00-3.4 1.7l.9.9c.7-.6 1.6-1 2.5-1z" fill="white"/><circle cx="7.5" cy="8.8" r="1.3" fill="white"/></svg>
+   286→                    <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2" stroke="white" strokeWidth="1"/><rect x="1.5" y="2.5" width="15" height="7" rx="1" fill="white"/><path d="M22.5 4.5v3a2 2 0 000-3z" fill="white"/></svg>
+   287→                  </div>
+   288→                </div>
+   289→
+   290→                {/* ---------- WA Header ---------- */}
+   291→                <div
+   292→                  className="flex items-center gap-2.5 px-3 py-2 shrink-0 border-b border-white/10"
+   293→                  style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
+   294→                >
+   295→                  {/* back arrow */}
+   296→                  <svg
+   297→                    className="shrink-0 text-white/80"
+   298→                    width="20"
+   299→                    height="20"
+   300→                    viewBox="0 0 24 24"
+   301→                    fill="none"
+   302→                    stroke="currentColor"
+   303→                    strokeWidth="2"
+   304→                    strokeLinecap="round"
+   305→                    strokeLinejoin="round"
+   306→                  >
+   307→                    <polyline points="15 18 9 12 15 6" />
+   308→                  </svg>
+   309→
+   310→                  {/* avatar */}
+   311→                  <img
+   312→                    src="/codex-logo.jpg"
+   313→                    alt="Codex Solutions International"
+   314→                    className="w-9 h-9 rounded-full object-cover shrink-0 shadow-lg"
+   315→                  />
+   316→
+   317→                  {/* name + status */}
+   318→                  <div className="min-w-0 flex-1">
+   319→                    <p className="text-[13px] font-medium text-white truncate leading-tight">
+   320→                      Codex Solutions International
+   321→                    </p>
+   322→                    <p className="text-[11px] text-emerald-200 flex items-center gap-1">
+   323→                      <span className="inline-block w-[7px] h-[7px] rounded-full bg-green-300 shadow-[0_0_4px_rgba(134,239,172,0.6)]" />
+   324→                      online
+   325→                    </p>
+   326→                  </div>
+   327→
+   328→                  {/* header icons */}
+   329→                  <div className="flex items-center gap-3 text-white/80 shrink-0">
+   330→                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+   331→                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+   332→                  </div>
+   333→                </div>
+   334→
+   335→                {/* ---------- Chat Area ---------- */}
+   336→                <div
+   337→                  className="flex-1 overflow-y-auto px-3 py-3 space-y-[3px] chat-scroll"
+   338→                  style={{
+   339→                    backgroundImage:
+   340→                      'url("data:image/svg+xml,%3Csvg width=\'200\' height=\'200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h200v200H0z\' fill=\'%23ECE5DD\'/%3E%3Cpath d=\'M0 0l200 200M200 0L0 200\' stroke=\'%23DBD3CA\' stroke-width=\'.5\'/%3E%3C/svg%3E")',
+   341→                    backgroundSize: '200px 200px',
+   342→                  }}
+   343→                >
+   344→                  {/* encrypted notice */}
+   345→                  {messages.length === 0 && !showTyping && (
+   346→                    <div className="flex justify-center py-3">
+   347→                      <span
+   348→                        className="text-[11px] text-[#8696a0] bg-[#fff3c4] px-2 py-[3px] rounded-sm text-center leading-tight"
+   349→                      >
+   350→                        🔒 Messages are end-to-end encrypted. No one outside of this chat can read them.
+   351→                      </span>
+   352→                    </div>
+   353→                  )}
+   354→
+   355→                  <AnimatePresence initial={false}>
+   356→                    {messages.map((msg) => {
+   357→                      const isBot = msg.sender === 'bot';
+   358→                      return (
+   359→                        <motion.div
+   360→                          key={msg.id}
+   361→                          initial={{ opacity: 0, y: 24, scale: 0.92 }}
+   362→                          animate={{ opacity: 1, y: 0, scale: 1 }}
+   363→                          transition={{
+   364→                            type: 'spring',
+   365→                            stiffness: 400,
+   366→                            damping: 30,
+   367→                          }}
+   368→                          className={`flex ${isBot ? 'justify-start' : 'justify-end'}`}
+   369→                        >
+   370→                          <div
+   371→                            className={`relative max-w-[85%] px-[6px] pt-[4px] pb-[5px] text-[11px] leading-[15px] whitespace-pre-line ${
+   372→                              isBot
+   373→                                ? 'bg-[#ECE5DD] text-[#111b21] rounded-tr-[8px] rounded-br-[8px] rounded-bl-[4px]'
+   374→                                : 'bg-[#005C4B] text-white rounded-tl-[8px] rounded-bl-[8px] rounded-br-[4px]'
+   375→                            }`}
+   376→                            style={{
+   377→                              boxShadow: '0 1px 0.5px rgba(11,20,26,0.13)',
+   378→                            }}
+   379→                          >
+   380→                            {/* tail */}
+   381→                            {isBot && (
+   382→                              <div
+   383→                                className="absolute top-0 left-[-8px] w-0 h-0"
+   384→                                style={{
+   385→                                  borderRight: '8px solid #ECE5DD',
+   386→                                  borderTop: '8px solid #ECE5DD',
+   387→                                  borderLeft: '8px solid transparent',
+   388→                                  borderBottom: '8px solid transparent',
+   389→                                  borderTopLeftRadius: '6px',
+   390→                                }}
+   391→                              />
+   392→                            )}
+   393→                            {!isBot && (
+   394→                              <div
+   395→                                className="absolute top-0 right-[-8px] w-0 h-0"
+   396→                                style={{
+   397→                                  borderLeft: '8px solid #005C4B',
+   398→                                  borderTop: '8px solid #005C4B',
+   399→                                  borderRight: '8px solid transparent',
+   400→                                  borderBottom: '8px solid transparent',
+   401→                                  borderTopRightRadius: '6px',
+   402→                                }}
+   403→                              />
+   404→                            )}
+   405→
+   406→                            <p className="pr-12">{msg.text}</p>
+   407→
+   408→                            {/* timestamp */}
+   409→                            <div
+   410→                              className={`absolute bottom-[4px] right-[6px] flex items-center gap-[2px] text-[9.5px] ${
+   411→                                isBot
+   412→                                  ? 'text-[#667781]'
+   413→                                  : 'text-emerald-100/70'
+   414→                              }`}
+   415→                            >
+   416→                              <span>{msg.time}</span>
+   417→                              {!isBot && (
+   418→                                <svg
+   419→                                  width="16"
+   420→                                  height="11"
+   421→                                  viewBox="0 0 16 11"
+   422→                                  fill="none"
+   423→                                >
+   424→                                  <path
+   425→                                    d="M11.07 0.53L4.53 7.07l-2.6-2.6L0 6.4l4.53 4.53 8-8-1.46-1.4z"
+   426→                                    fill="currentColor"
+   427→                                  />
+   428→                                </svg>
+   429→                              )}
+   430→                            </div>
+   431→                          </div>
+   432→                        </motion.div>
+   433→                      );
+   434→                    })}
+   435→
+   436→                    {showTyping && (
+   437→                      <motion.div
+   438→                        key="typing"
+   439→                        initial={{ opacity: 0, y: 16, scale: 0.9 }}
+   440→                        animate={{ opacity: 1, y: 0, scale: 1 }}
+   441→                        exit={{ opacity: 0, y: -8, scale: 0.9 }}
+   442→                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+   443→                      >
+   444→                        <TypingIndicator />
+   445→                      </motion.div>
+   446→                    )}
+   447→                  </AnimatePresence>
+   448→
+   449→                  <div ref={chatEndRef} />
+   450→                </div>
+   451→
+   452→                {/* ---------- Action Area (buttons / input) ---------- */}
+   453→                <div className="shrink-0 bg-[#F0F2F5] border-t border-[#E9EDEF]">
+   454→                  <AnimatePresence mode="wait">
+   455→                    {/* Step: waiting for rating */}
+   456→                    {step === 'waiting_rating' && (
+   457→                      <motion.div
+   458→                        key="rating-btns"
+   459→                        initial={{ opacity: 0, y: 10 }}
+   460→                        animate={{ opacity: 1, y: 0 }}
+   461→                        exit={{ opacity: 0, y: 10 }}
+   462→                        transition={{ duration: 0.3 }}
+   463→                        className="flex gap-2 p-3"
+   464→                      >
+   465→                        <button
+   466→                          onClick={handleYesDefinitely}
+   467→                          className="flex-1 py-2 rounded-full bg-[#00A884] hover:bg-[#00956F] active:scale-[0.97] text-white text-[11.5px] font-semibold transition-all duration-150 cursor-pointer shadow-sm"
+   468→                        >
+   469→                          Yes, definitely!
+   470→                        </button>
+   471→                        <button
+   472→                          onClick={handleNotNow}
+   473→                          className="flex-1 py-2 rounded-full bg-white hover:bg-gray-50 active:scale-[0.97] text-[#00A884] text-[11.5px] font-semibold border border-[#00A884]/30 transition-all duration-150 cursor-pointer"
+   474→                        >
+   475→                          Not now
+   476→                        </button>
+   477→                      </motion.div>
+   478→                    )}
+   479→
+   480→                    {/* Step: star selection */}
+   481→                    {step === 'showing_stars' && (
+   482→                      <motion.div
+   483→                        key="star-btns"
+   484→                        initial={{ opacity: 0, y: 10 }}
+   485→                        animate={{ opacity: 1, y: 0 }}
+   486→                        exit={{ opacity: 0, y: 10 }}
+   487→                        transition={{ duration: 0.3 }}
+   488→                        className="p-2.5 space-y-1.5"
+   489→                      >
+   490→                        {[5, 4, 3, 2, 1].map((n) => (
+   491→                          <motion.button
+   492→                            key={n}
+   493→                            whileHover={{ scale: 1.02, x: 4 }}
+   494→                            whileTap={{ scale: 0.98 }}
+   495→                            onClick={() => handleStarSelect(n)}
+   496→                            className={`w-full py-2 px-3.5 rounded-xl text-left text-[12px] font-medium transition-all duration-150 cursor-pointer border flex items-center gap-1.5 ${
+   497→                              n === 5
+   498→                                ? 'bg-amber-50 border-amber-300 text-amber-800 hover:bg-amber-100'
+   499→                                : n === 4
+   500→                                  ? 'bg-emerald-50 border-emerald-300 text-emerald-800 hover:bg-emerald-100'
+   501→                                  : n === 3
+   502→                                    ? 'bg-yellow-50 border-yellow-300 text-yellow-800 hover:bg-yellow-100'
+   503→                                    : n === 2
+   504→                                      ? 'bg-orange-50 border-orange-300 text-orange-800 hover:bg-orange-100'
+   505→                                      : 'bg-red-50 border-red-300 text-red-800 hover:bg-red-100'
+   506→                            }`}
+   507→                          >
+   508→                            <span className="text-base">{('⭐').repeat(n)}</span>
+   509→                            <span>{n} star{n > 1 ? 's' : ''}</span>
+   510→                          </motion.button>
+   511→                        ))}
+   512→                      </motion.div>
+   513→                    )}
+   514→
+   515→                    {/* Step: review text input */}
+   516→                    {step === 'showing_review_input' && (
+   517→                      <motion.div
+   518→                        key="review-input"
+   519→                        initial={{ opacity: 0, y: 10 }}
+   520→                        animate={{ opacity: 1, y: 0 }}
+   521→                        exit={{ opacity: 0, y: 10 }}
+   522→                        transition={{ duration: 0.3 }}
+   523→                        className="p-3"
+   524→                      >
+   525→                        <p className="text-[10px] text-[#667781] mb-1.5 px-1">
+   526→                          Tell us how we can improve (optional):
+   527→                        </p>
+   528→                        <div className="flex items-center gap-1.5">
+   529→                          <div
+   530→                            className={`flex-1 flex items-center rounded-full bg-white border-2 transition-all duration-200 ${
+   531→                              inputFocused
+   532→                                ? 'border-[#00A884] shadow-[0_0_0_2px_rgba(0,168,132,0.15)]'
+   533→                                : 'border-[#E9EDEF]'
+   534→                            }`}
+   535→                          >
+   536→                            <input
+   537→                              ref={inputRef}
+   538→                              type="text"
+   539→                              value={reviewInput}
+   540→                              onChange={(e) => setReviewInput(e.target.value)}
+   541→                              onFocus={() => setInputFocused(true)}
+   542→                              onBlur={() => setInputFocused(false)}
+   543→                              onKeyDown={(e) => {
+   544→                                if (e.key === 'Enter') handleReviewSubmit();
+   545→                              }}
+   546→                              placeholder="Share your feedback…"
+   547→                              className="flex-1 bg-transparent px-3 py-2 text-[12px] text-[#111b21] placeholder-[#8696a0] outline-none"
+   548→                            />
+   549→                            <button
+   550→                              onClick={handleReviewSubmit}
+   551→                              disabled={!reviewInput.trim()}
+   552→                              className={`mr-1 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 ${
+   553→                                reviewInput.trim()
+   554→                                  ? 'bg-[#00A884] hover:bg-[#00956F] text-white shadow-sm active:scale-95'
+   555→                                  : 'bg-[#00A884]/30 text-[#00A884] cursor-not-allowed'
+   556→                              }`}
+   557→                            >
+   558→                              <svg
+   559→                                width="16"
+   560→                                height="16"
+   561→                                viewBox="0 0 24 24"
+   562→                                fill="none"
+   563→                                stroke="currentColor"
+   564→                                strokeWidth="2"
+   565→                                strokeLinecap="round"
+   566→                                strokeLinejoin="round"
+   567→                              >
+   568→                                <line x1="22" y1="2" x2="11" y2="13" />
+   569→                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+   570→                              </svg>
+   571→                            </button>
+   572→                          </div>
+   573→                        </div>
+   574→                      </motion.div>
+   575→                    )}
+   576→
+   577→                    {/* Step: Google review button */}
+   578→                    {step === 'showing_google_btn' && (
+   579→                      <motion.div
+   580→                        key="google-btn"
+   581→                        initial={{ opacity: 0, y: 10 }}
+   582→                        animate={{ opacity: 1, y: 0 }}
+   583→                        exit={{ opacity: 0, y: 10 }}
+   584→                        transition={{ duration: 0.3 }}
+   585→                        className="p-3"
+   586→                      >
+   587→                        <motion.button
+   588→                          whileHover={{ scale: 1.02 }}
+   589→                          whileTap={{ scale: 0.97 }}
+   590→                          onClick={handleGoogleReview}
+   591→                          className="w-full py-2.5 rounded-full bg-[#00A884] hover:bg-[#00956F] active:scale-[0.97] text-white text-[12px] font-semibold transition-all duration-150 cursor-pointer shadow-md flex items-center justify-center gap-1.5"
+   592→                        >
+   593→                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+   594→                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+   595→                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+   596→                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+   597→                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+   598→                          </svg>
+   599→                          Leave Google Review
+   600→                        </motion.button>
+   601→                      </motion.div>
+   602→                    )}
+   603→
+   604→                    {/* Completed / idle */}
+   605→                    {(step === 'completed' ||
+   606→                      step === 'init' ||
+   607→                      step.startsWith('transition')) && (
+   608→                      <motion.div
+   609→                        key="idle-bar"
+   610→                        initial={{ opacity: 0 }}
+   611→                        animate={{ opacity: 1 }}
+   612→                        exit={{ opacity: 0 }}
+   613→                        className="flex items-center gap-3 px-3 py-3"
+   614→                      >
+   615→                        <div className="flex-1 flex items-center bg-white rounded-full px-3 py-2">
+   616→                          <span className="text-[#8696a0] text-[11px]">
+   617→                            {step === 'completed'
+   618→                              ? 'Chat completed'
+   619→                              : step.startsWith('transition')
+   620→                                ? 'Typing…'
+   621→                                : 'Type a message'}
+   622→                          </span>
+   623→                        </div>
+   624→                        <div className="w-8 h-8 rounded-full bg-[#00A884] flex items-center justify-center text-white shrink-0">
+   625→                          <svg
+   626→                            width="15"
+   627→                            height="15"
+   628→                            viewBox="0 0 24 24"
+   629→                            fill="none"
+   630→                            stroke="currentColor"
+   631→                            strokeWidth="2"
+   632→                            strokeLinecap="round"
+   633→                            strokeLinejoin="round"
+   634→                          >
+   635→                            <line x1="22" y1="2" x2="11" y2="13" />
+   636→                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+   637→                          </svg>
+   638→                        </div>
+   639→                      </motion.div>
+   640→                    )}
+   641→                  </AnimatePresence>
+   642→                </div>
+   643→              </IPhone15Pro>
+   644→            </div>
+   645→          </div>
+   646→        </ScrollReveal>
+   647→      </div>
+   648→
+   649→      {/* Global keyframes for typing dots */}
+   650→      <style jsx global>{`
+   651→        @keyframes typingBounce {
+   652→          0%,
+   653→          60%,
+   654→          100% {
+   655→            transform: translateY(0);
+   656→            opacity: 0.4;
+   657→          }
+   658→          30% {
+   659→            transform: translateY(-4px);
+   660→            opacity: 1;
+   661→          }
+   662→        }
+   663→        .phone-scale-wrapper {
+   664→          display: flex;
+   665→          justify-content: center;
+   666→          width: 100%;
+   667→        }
+   668→        .chat-scroll::-webkit-scrollbar {
+   669→          width: 3px;
+   670→        }
+   671→        .chat-scroll::-webkit-scrollbar-track {
+   672→          background: transparent;
+   673→        }
+   674→        .chat-scroll::-webkit-scrollbar-thumb {
+   675→          background: rgba(0, 0, 0, 0.15);
+   676→          border-radius: 10px;
+   677→        }
+   678→      `}</style>
+   679→    </section>
+   680→  );
+   681→}
+   682→
+   683→/* ------------------------------------------------------------------ */
+   684→/*  iPhone 15 Pro Frame                                                */
+   685→/* ------------------------------------------------------------------ */
+   686→
+   687→function IPhone15Pro({ children }: { children: React.ReactNode }) {
+   688→  return (
+   689→    <div
+   690→      className="relative w-[230px] sm:w-[240px] md:w-[240px] lg:w-[240px] h-[480px] sm:h-[500px] md:h-[500px] lg:h-[500px] rounded-[42px] sm:rounded-[43px] p-[5px] origin-center"
+   691→      style={{
+   692→        background:
+   693→          'linear-gradient(145deg, #8A8A8E 0%, #6E6E73 15%, #48484A 50%, #6E6E73 85%, #8A8A8E 100%)',
+   694→        boxShadow:
+   695→          '0 50px 100px -20px rgba(0,0,0,0.7), 0 30px 60px -30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.3)',
+   696→      }}
+   697→    >
+   698→      {/* Shine / reflection effect */}
+   699→      <div
+   700→        className="absolute inset-0 rounded-[42px] pointer-events-none z-30"
+   701→        style={{
+   702→          background:
+   703→            'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.04) 100%)',
+   704→        }}
+   705→      />
+   706→
+   707→      {/* Inner bezel */}
+   708→      <div
+   709→        className="relative w-full h-full rounded-[38px] sm:rounded-[39px] overflow-hidden z-10 flex flex-col"
+   710→        style={{ background: '#000' }}
+   711→      >
+   712→        {children}
+   713→      </div>
+   714→
+   715→      {/* ---- Side Buttons (CSS-only) ---- */}
+   716→
+   717→      {/* Left side — Volume Up */}
+   718→      <div
+   719→        className="absolute left-[-2.5px] top-[100px] w-[3px] h-[24px] rounded-l-sm z-20"
+   720→        style={{
+   721→          background:
+   722→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   723→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   724→        }}
+   725→      />
+   726→      {/* Left side — Volume Down */}
+   727→      <div
+   728→        className="absolute left-[-2.5px] top-[135px] w-[3px] h-[24px] rounded-l-sm z-20"
+   729→        style={{
+   730→          background:
+   731→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   732→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   733→        }}
+   734→      />
+   735→      {/* Left side — Action button */}
+   736→      <div
+   737→        className="absolute left-[-2.5px] top-[82px] w-[3px] h-[14px] rounded-l-sm z-20"
+   738→        style={{
+   739→          background:
+   740→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   741→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   742→        }}
+   743→      />
+   744→
+   745→      {/* Right side — Power button */}
+   746→      <div
+   747→        className="absolute right-[-2.5px] top-[115px] w-[3px] h-[38px] rounded-r-sm z-20"
+   748→        style={{
+   749→          background:
+   750→            'linear-gradient(180deg, #8A8A8E 0%, #6E6E73 50%, #48484A 100%)',
+   751→          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.3)',
+   752→        }}
+   753→      />
+   754→    </div>
+   755→  );
+   756→}

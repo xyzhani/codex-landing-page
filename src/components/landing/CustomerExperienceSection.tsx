@@ -280,7 +280,7 @@ export default function CustomerExperienceSection() {
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
                   <span>9:41</span>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[8px] w-[95px] h-[28px] sm:w-[100px] sm:h-[30px] rounded-full bg-black" />
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[10px] w-[72px] h-[20px] sm:w-[76px] sm:h-[22px] rounded-full bg-black" />
                   <div className="flex items-center gap-1.5">
                     <svg width="15" height="12" viewBox="0 0 15 12" fill="none"><path d="M7.5 3.6c1.6 0 3 .6 4.1 1.7l.9-.9A8.3 8.3 0 007.5 2.1a8.3 8.3 0 00-5 1.7l.9.9A5.5 5.5 0 017.5 3.6z" fill="white"/><path d="M7.5 6.2c.9 0 1.8.4 2.5 1l.9-.9A4.2 4.2 0 007.5 4.6a4.2 4.2 0 00-3.4 1.7l.9.9c.7-.6 1.6-1 2.5-1z" fill="white"/><circle cx="7.5" cy="8.8" r="1.3" fill="white"/></svg>
                     <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0" y="1" width="21" height="10" rx="2" stroke="white" strokeWidth="1"/><rect x="1.5" y="2.5" width="15" height="7" rx="1" fill="white"/><path d="M22.5 4.5v3a2 2 0 000-3z" fill="white"/></svg>
@@ -289,7 +289,7 @@ export default function CustomerExperienceSection() {
 
                 {/* ---------- WA Header ---------- */}
                 <div
-                  className="flex items-center gap-2.5 px-3 py-2 shrink-0 border-b border-white/10"
+                  className="flex items-center gap-3 px-3.5 py-2.5 shrink-0 border-b border-white/10"
                   style={{ background: 'linear-gradient(135deg, #075E54 0%, #128C7E 100%)' }}
                 >
                   {/* back arrow */}
@@ -311,12 +311,12 @@ export default function CustomerExperienceSection() {
                   <img
                     src="/codex-logo.jpg"
                     alt="Codex Solutions International"
-                    className="w-9 h-9 rounded-full object-cover shrink-0 shadow-lg"
+                    className="w-10 h-10 rounded-full object-cover shrink-0 shadow-lg"
                   />
 
                   {/* name + status */}
                   <div className="min-w-0 flex-1">
-                    <p className="text-[13px] font-medium text-white truncate leading-tight">
+                    <p className="text-[14px] font-medium text-white truncate leading-tight">
                       Codex Solutions International
                     </p>
                     <p className="text-[11px] text-emerald-200 flex items-center gap-1">
@@ -334,7 +334,7 @@ export default function CustomerExperienceSection() {
 
                 {/* ---------- Chat Area ---------- */}
                 <div
-                  className="flex-1 overflow-y-auto px-3 py-3 space-y-[3px] chat-scroll"
+                  className="flex-1 overflow-y-auto pl-4 pr-3 py-3 space-y-[3px] chat-scroll"
                   style={{
                     backgroundImage:
                       'url("data:image/svg+xml,%3Csvg width=\'200\' height=\'200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h200v200H0z\' fill=\'%23ECE5DD\'/%3E%3Cpath d=\'M0 0l200 200M200 0L0 200\' stroke=\'%23DBD3CA\' stroke-width=\'.5\'/%3E%3C/svg%3E")',
@@ -368,7 +368,7 @@ export default function CustomerExperienceSection() {
                           className={`flex ${isBot ? 'justify-start' : 'justify-end'}`}
                         >
                           <div
-                            className={`relative max-w-[85%] px-[6px] pt-[4px] pb-[5px] text-[11px] leading-[15px] whitespace-pre-line ${
+                            className={`relative max-w-[85%] pl-[10px] pr-[6px] pt-[4px] pb-[5px] text-[11px] leading-[15px] whitespace-pre-line ${
                               isBot
                                 ? 'bg-[#ECE5DD] text-[#111b21] rounded-tr-[8px] rounded-br-[8px] rounded-bl-[4px]'
                                 : 'bg-[#005C4B] text-white rounded-tl-[8px] rounded-bl-[8px] rounded-br-[4px]'
