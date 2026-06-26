@@ -38,7 +38,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
     >
       {/* Connector to next (desktop) */}
       {index < total - 1 && (
-        <div className="hidden sm:block absolute top-[17px] sm:top-[28px] lg:top-[28px] left-[calc(50%+20px)] sm:left-[calc(50%+34px)] lg:left-[calc(50%+34px)] right-[calc(-50%+20px)] sm:right-[calc(-50%+34px)] lg:right-[calc(-50%+34px)] h-px z-0">
+        <div className="absolute top-[17px] sm:top-[28px] left-[calc(50%+20px)] sm:left-[calc(50%+34px)] right-[calc(-50%+20px)] sm:right-[calc(-50%+34px)] h-px z-0">
           {/* Base line */}
           <motion.div
             className="absolute inset-0 bg-white/[0.06]"
@@ -70,7 +70,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
       <div className="relative mb-2 sm:mb-5">
         {/* Pulse ring on hover */}
         <motion.div
-          className="absolute inset-[-4px] rounded-2xl"
+          className="absolute inset-[-3px] sm:inset-[-4px] rounded-lg sm:rounded-2xl"
           style={{ border: `1px solid ${step.color}25` }}
           animate={
             hovered
@@ -142,7 +142,7 @@ function RecoveryBanner() {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mt-12 sm:mt-16 lg:mt-20 max-w-3xl mx-auto"
+      className="relative mt-8 sm:mt-16 lg:mt-20 max-w-3xl mx-auto"
     >
       <div className="relative rounded-2xl p-[1px] overflow-hidden">
         {/* Rotating border */}
@@ -155,20 +155,20 @@ function RecoveryBanner() {
           }}
         />
 
-        <div className="relative bg-[#0a0f1a] rounded-2xl p-6 sm:p-7 overflow-hidden">
+        <div className="relative bg-[#0a0f1a] rounded-2xl p-3.5 sm:p-6 lg:p-7 overflow-hidden">
           {/* Glow */}
           <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-amber-500/[0.04] blur-[80px]" />
 
-          <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="relative flex flex-row items-center gap-3 sm:gap-5">
             {/* Shield icon */}
             <div className="relative shrink-0">
               <motion.div
-                className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center"
+                className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-amber-500/10 flex items-center justify-center"
                 style={{ boxShadow: '0 0 0 1px rgba(251,191,36,0.2)' }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               >
-                <ShieldCheck className="w-6 h-6 text-amber-400" />
+                <ShieldCheck className="w-4.5 h-4.5 sm:w-6 sm:h-6 text-amber-400" />
               </motion.div>
               <motion.div
                 className="absolute inset-0 rounded-xl border border-amber-400/20"
@@ -178,28 +178,24 @@ function RecoveryBanner() {
             </div>
 
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1.5">
-                <h4 className="text-[15px] sm:text-[16px] font-bold text-white">Below 5 stars? No problem.</h4>
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                <h4 className="text-[12px] sm:text-[15px] lg:text-[16px] font-bold text-white">Below 5 stars? No problem.</h4>
+                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
               </div>
-              <p className="text-white text-[13px] leading-relaxed">
-                <span className="hidden sm:inline">Feedback captured privately</span>
-                <span className="sm:hidden">Feedback captured privately</span>
-                <span className="inline-flex items-center mx-1 sm:mx-2 text-white/70">
-                  <ArrowRight className="w-3 h-3" />
+              <p className="text-white text-[11px] sm:text-[13px] leading-relaxed">
+                Feedback captured privately
+                <span className="inline-flex items-center mx-0.5 sm:mx-2 text-white/70">
+                  <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </span>
-                <span className="hidden sm:inline">Support ticket created</span>
-                <span className="sm:hidden">Support ticket created</span>
-                <span className="inline-flex items-center mx-1 sm:mx-2 text-white/70">
-                  <ArrowRight className="w-3 h-3" />
+                Support ticket created
+                <span className="inline-flex items-center mx-0.5 sm:mx-2 text-white/70">
+                  <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </span>
-                <span className="hidden sm:inline">Owner notified</span>
-                <span className="sm:hidden">Owner notified</span>
-                <span className="inline-flex items-center mx-1 sm:mx-2 text-white/70">
-                  <ArrowRight className="w-3 h-3" />
+                Owner notified
+                <span className="inline-flex items-center mx-0.5 sm:mx-2 text-white/70">
+                  <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </span>
-                <br className="sm:hidden" />
-                <span className="text-amber-300 font-semibold">Customer recovered before going public</span>
+                <span className="text-amber-300 font-semibold">Customer recovered</span>
               </p>
             </div>
           </div>
