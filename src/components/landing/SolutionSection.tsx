@@ -38,7 +38,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
     >
       {/* Connector to next (desktop) */}
       {index < total - 1 && (
-        <div className="hidden lg:block absolute top-[28px] left-[calc(50%+34px)] right-[calc(-50%+34px)] h-px z-0">
+        <div className="hidden sm:block absolute top-[17px] sm:top-[28px] lg:top-[28px] left-[calc(50%+20px)] sm:left-[calc(50%+34px)] lg:left-[calc(50%+34px)] right-[calc(-50%+20px)] sm:right-[calc(-50%+34px)] lg:right-[calc(-50%+34px)] h-px z-0">
           {/* Base line */}
           <motion.div
             className="absolute inset-0 bg-white/[0.06]"
@@ -67,7 +67,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
       )}
 
       {/* Node with rotating border */}
-      <div className="relative mb-5">
+      <div className="relative mb-2 sm:mb-5">
         {/* Pulse ring on hover */}
         <motion.div
           className="absolute inset-[-4px] rounded-2xl"
@@ -81,7 +81,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
         />
 
         {/* Rotating border wrapper */}
-        <div className="relative w-[56px] h-[56px] sm:w-[68px] sm:h-[68px] rounded-2xl p-[1px] overflow-hidden">
+        <div className="relative w-[34px] h-[34px] sm:w-[56px] sm:h-[56px] lg:w-[68px] lg:h-[68px] rounded-xl sm:rounded-2xl p-[1px] overflow-hidden">
           {/* Rotating light */}
           <div
             className="border-glow-rotate absolute inset-[-200%] rounded-full"
@@ -93,7 +93,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
           />
           {/* Icon bg */}
           <motion.div
-            className="relative w-full h-full rounded-2xl flex items-center justify-center overflow-hidden"
+            className="relative w-full h-full rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden"
             style={{
               backgroundColor: `${step.color}08`,
               transition: 'box-shadow 0.5s',
@@ -112,7 +112,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
               transition={{ duration: 0.3 }}
             />
             <step.icon
-              className="w-6 h-6 relative z-10 transition-all duration-500"
+              className="w-3.5 h-3.5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 relative z-10 transition-all duration-500"
               style={{ color: hovered ? step.color : '#cbd5e1' }}
             />
           </motion.div>
@@ -121,7 +121,7 @@ function StepNode({ step, index, total }: { step: typeof flowSteps[0]; index: nu
 
       {/* Label */}
       <motion.p
-        className="text-[12px] font-semibold leading-tight max-w-[100px] transition-colors duration-500"
+        className="text-[8px] sm:text-[12px] font-semibold leading-tight max-w-[55px] sm:max-w-[100px] transition-colors duration-500"
         animate={{ color: hovered ? '#ffffff' : '#cbd5e1' }}
       >
         {step.label}
@@ -263,7 +263,7 @@ export default function SolutionSection() {
 
         {/* Flow Steps */}
         <div className="relative max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-0 relative z-10">
+          <div className="grid grid-cols-6 gap-0 relative z-10">
             {flowSteps.map((step, i) => (
               <StepNode key={step.label} step={step} index={i} total={flowSteps.length} />
             ))}
