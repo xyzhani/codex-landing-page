@@ -259,16 +259,6 @@ function FacebookScreen() {
 /*  LinkedIn Phone Screen                                              */
 /* ------------------------------------------------------------------ */
 function LinkedInScreen() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-
-  useEffect(() => {
-    if (isInView && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, [isInView]);
-
   return (
     <IPhone15Pro>
       <StatusBar bg="#0A66C2" />
@@ -293,15 +283,11 @@ function LinkedInScreen() {
         </svg>
       </div>
 
-      {/* Video area — full remaining space */}
-      <div ref={sectionRef} className="flex-1 relative bg-black overflow-hidden">
-        <video
-          ref={videoRef}
-          src={VIDEO_URL}
-          loop
-          muted
-          playsInline
-          webkit-playsinline="true"
+      {/* Review image — full remaining space */}
+      <div className="flex-1 relative bg-black overflow-hidden">
+        <img
+          src="/review-image.jpeg"
+          alt="Client review"
           className="w-full h-full object-cover"
           style={{ display: 'block' }}
         />
