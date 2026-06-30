@@ -14,13 +14,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "AI Business Reputation Management System",
-  description: "Turn Every Order Into a Google Review and Every Review Into Social Proof. Fully automated reputation engine for SMBs and eCommerce.",
+  description: "Turn Every Customer Into a Google Review and Every Review Into Social Proof. Fully automated reputation engine for SMBs and eCommerce.",
   icons: {
     icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
   },
   openGraph: {
     title: "AI Business Reputation Management System",
-    description: "Turn Every Order Into a Google Review and Every Review Into Social Proof.",
+    description: "Turn Every Customer Into a Google Review and Every Review Into Social Proof.",
     type: "website",
   },
 };

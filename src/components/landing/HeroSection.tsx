@@ -71,7 +71,7 @@ export default function HeroSection() {
               custom={1}
               className="text-[clamp(1.5rem,3vw,2.4rem)] font-bold leading-[1.15] tracking-[-0.02em] mb-5"
             >
-              <span className="text-white/90">Turn Every Order Into </span>
+              <span className="text-white/90">Turn Every Customer Into </span>
               <span className="bg-gradient-to-r from-[#14f0c8] via-[#14b8a6] to-[#0d9488] bg-clip-text text-transparent">
                 a Google Review
               </span>
