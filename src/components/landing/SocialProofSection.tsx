@@ -201,16 +201,6 @@ function InstagramScreen() {
 /*  Facebook Phone Screen                                              */
 /* ------------------------------------------------------------------ */
 function FacebookScreen() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-
-  useEffect(() => {
-    if (isInView && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, [isInView]);
-
   return (
     <IPhone15Pro>
       <StatusBar bg="#1877F2" />
@@ -238,15 +228,11 @@ function FacebookScreen() {
         </svg>
       </div>
 
-      {/* Video area — full remaining space */}
-      <div ref={sectionRef} className="flex-1 relative bg-[#18191A] overflow-hidden">
-        <video
-          ref={videoRef}
-          src={VIDEO_URL}
-          loop
-          muted
-          playsInline
-          webkit-playsinline="true"
+      {/* Review image — full remaining space */}
+      <div className="flex-1 relative bg-[#18191A] overflow-hidden">
+        <img
+          src="/review-image-fb.png"
+          alt="Client review"
           className="w-full h-full object-cover"
           style={{ display: 'block' }}
         />
