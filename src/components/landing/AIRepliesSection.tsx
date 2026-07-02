@@ -10,19 +10,19 @@ import { Bot, Globe, BarChart3, UserCheck, MessageCircle, Sparkles } from 'lucid
 /* ------------------------------------------------------------------ */
 
 const features = [
-  { icon: MessageCircle, title: 'Custom Brand Voice', desc: "Set tone: professional, friendly, casual, luxury \u2014 AI writes in your client's style every time." },
+  { icon: MessageCircle, title: 'Custom Brand Voice', desc: "Set tone: professional, friendly, casual, luxury — AI writes in your client's style every time." },
   { icon: Globe, title: 'Language & Market', desc: "Configure replies in any language to match your client's customer base." },
-  { icon: BarChart3, title: 'Smart Reply Rules', desc: 'Different response templates for 5\u2605, 4\u2605, and 3\u2605 or below \u2014 each handled appropriately.' },
-  { icon: UserCheck, title: 'Owner Approval Mode', desc: 'Every reply sent for review before posting \u2014 full control, no surprises.' },
-  { icon: Bot, title: 'Business-Specific Info', desc: 'AI references business name, services, team, location \u2014 never sounds generic.' },
+  { icon: BarChart3, title: 'Smart Reply Rules', desc: 'Different response templates for 5★, 4★, and 3★ or below — each handled appropriately.' },
+  { icon: UserCheck, title: 'Owner Approval Mode', desc: 'Every reply sent for review before posting — full control, no surprises.' },
+  { icon: Bot, title: 'Business-Specific Info', desc: 'AI references business name, services, team, location — never sounds generic.' },
 ];
 
 const flowItems = [
-  { icon: '\u2B50', text: 'New Google review posted', sub: '5\u2605 or less' },
-  { icon: '\uD83E\uDD16', text: 'AI reads the review', sub: 'content + star rating' },
-  { icon: '\uD83E\uDDE0', text: 'Generates personalized reply', sub: 'on-brand, contextual' },
-  { icon: '\u2705', text: 'Posted automatically', sub: 'or sent for approval' },
-  { icon: '\u23F1', text: 'Within minutes', sub: 'not days' },
+  { icon: '⭐', text: 'New Google review posted', sub: '5★ or less' },
+  { icon: '🤖', text: 'AI reads the review', sub: 'content + star rating' },
+  { icon: '🧠', text: 'Generates personalized reply', sub: 'on-brand, contextual' },
+  { icon: '✅', text: 'Posted automatically', sub: 'or sent for approval' },
+  { icon: '⏱', text: 'Within minutes', sub: 'not days' },
 ];
 
 /* ------------------------------------------------------------------ */

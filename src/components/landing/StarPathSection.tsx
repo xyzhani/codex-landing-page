@@ -17,8 +17,8 @@ const fiveStarSteps = [
 ];
 
 const recoverySteps = [
-  { icon: MessageSquare, title: 'Routed to AI', desc: '1-4\u2605 is kept off public platforms and handed to AI for handling.' },
-  { icon: ShieldCheck, title: 'Tailored Reply', desc: 'AI captures what went wrong and replies with empathy \u2014 tied to service and team.' },
+  { icon: MessageSquare, title: 'Routed to AI', desc: '1-4★ is kept off public platforms and handed to AI for handling.' },
+  { icon: ShieldCheck, title: 'Tailored Reply', desc: 'AI captures what went wrong and replies with empathy — tied to service and team.' },
   { icon: Tag, title: 'Coupon Generated', desc: 'A win-back code or discount is issued for their next service or order.' },
   { icon: Bell, title: 'Team Notified', desc: 'Team alerted instantly with full context to follow up and fix the root cause.' },
 ];
@@ -183,10 +183,10 @@ export default function StarPathSection() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
         {/* 5 Star Path */}
         <SectionHeader
-          badge="The 5\u2605 Path"
+          badge="The 5★ Path"
           badgeColor="text-teal-400/70"
           title="Public Proof Engine"
-          desc="Every 5\u2605 becomes public proof \u2014 end to end. One rating turns into a public reply and 3 pieces of branded content."
+          desc="Every 5★ becomes public proof — end to end. One rating turns into a public reply and 3 pieces of branded content."
         />
 
         <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
@@ -212,10 +212,10 @@ export default function StarPathSection() {
 
         {/* Recovery Path */}
         <SectionHeader
-          badge="The 1-4\u2605 Path"
+          badge="The 1-4★ Path"
           badgeColor="text-amber-400/70"
           title="Private Recovery"
-          desc="Low ratings become recovered customers. Anything under 5\u2605 stays private and routes to AI."
+          desc="Low ratings become recovered customers. Anything under 5★ stays private and routes to AI."
         />
 
         <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4">

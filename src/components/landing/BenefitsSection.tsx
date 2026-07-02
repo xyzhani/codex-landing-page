@@ -13,7 +13,7 @@ const benefits = [
   { icon: Star, title: 'More Google Reviews', desc: 'Consistent review growth without manual effort or chasing customers.' },
   { icon: TrendingUp, title: 'Better Google Maps Ranking', desc: 'Fresh reviews strengthen local SEO signals and map pack visibility.' },
   { icon: Shield, title: 'Reputation Protection', desc: 'Unhappy customers caught privately before negative reviews go public.' },
-  { icon: Zap, title: 'Auto Social Proof Content', desc: 'Every 5\u2605 review becomes a branded Instagram Story automatically.' },
+  { icon: Zap, title: 'Auto Social Proof Content', desc: 'Every 5★ review becomes a branded Instagram Story automatically.' },
   { icon: Clock, title: 'Saves Hours Every Week', desc: 'No manual follow-ups, no content creation, no chasing customers.' },
   { icon: Users, title: 'Higher Conversion Rate', desc: 'Customers trust businesses with many recent, positive reviews.' },
 ];
@@ -22,13 +22,13 @@ const stats = [
   { value: 3, suffix: 'x', label: 'Average review growth\nin first 90 days', color: '#14f0c8' },
   { value: 80, suffix: '%', label: 'Open rate on WhatsApp\nvs 22% email', color: '#25D366' },
   { value: 4.5, suffix: 'x', label: 'More trust from customers\nwith 50+ reviews', color: '#14b8a6' },
-  { value: 100, suffix: '%', label: 'Automated \u2014 zero\nmanual work', color: '#2dd4bf' },
+  { value: 100, suffix: '%', label: 'Automated — zero\nmanual work', color: '#2dd4bf' },
 ];
 
 const chainSteps = [
   'Order Completed',
   'WhatsApp Request',
-  '5\u2605 Review on Google',
+  '5★ Review on Google',
   'Higher SEO Rank',
   'Story Posted',
   'New Customers Convert',
