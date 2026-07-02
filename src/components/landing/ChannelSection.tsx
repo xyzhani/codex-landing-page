@@ -23,7 +23,7 @@ const channels = [
     icon: Smartphone,
     name: 'SMS',
     tag: 'Fallback',
-    description: 'For customers without WhatsApp \u2014 universal reach ensures no one is missed.',
+    description: 'For customers without WhatsApp — universal reach ensures no one is missed.',
     stat: '100%',
     statLabel: 'Reach',
     color: '#3B82F6',
@@ -155,7 +155,7 @@ export default function ChannelSection() {
             </span>
           </h2>
           <p className="text-white/60 text-[12px] sm:text-base max-w-xl mx-auto leading-relaxed">
-            Start on WhatsApp \u2014 reach customers everywhere. Same logic, same routing.
+            Start on WhatsApp — reach customers everywhere. Same logic, same routing.
           </p>
         </motion.div>
 
@@ -199,7 +199,7 @@ export default function ChannelSection() {
                   <h4 className="text-[10px] sm:text-[14px] font-semibold text-white leading-tight">No response? Automatic follow-up after 2 days.</h4>
                 </div>
                 <p className="text-white/50 text-[9px] sm:text-[13px] leading-relaxed">
-                  One gentle reminder on the same channel. Still no reply \u2014 closed out automatically. No customer is ever pestered.
+                  One gentle reminder on the same channel. Still no reply — closed out automatically. No customer is ever pestered.
                 </p>
               </div>
             </div>

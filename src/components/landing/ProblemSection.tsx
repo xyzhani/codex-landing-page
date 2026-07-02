@@ -44,7 +44,7 @@ const problems = [
     title: 'No Social Media Content',
     description: 'Small businesses struggle to post consistently without a content team.',
     accent: '#c084fc',
-    stat: '0–2',
+    stat: '2–3',
     statLabel: 'posts/week for SMBs',
   },
   {
