@@ -16,7 +16,12 @@ export const metadata: Metadata = {
   title: "AI Business Reputation Management System",
   description: "Turn Every Customer Into a Google Review and Every Review Into Social Proof. Fully automated reputation engine for SMBs and eCommerce.",
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
     title: "AI Business Reputation Management System",
