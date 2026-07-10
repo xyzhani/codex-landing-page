@@ -73,7 +73,7 @@ export default function HeroSection() {
             >
               <span className="text-white/90">Turn Every Customer Into </span>
               <span className="bg-gradient-to-r from-[#14f0c8] via-[#14b8a6] to-[#0d9488] bg-clip-text text-transparent">
-                a Google Review
+                a 5★ Review
               </span>
               <span className="text-white/90"> — and Every Review Into </span>
               <span className="bg-gradient-to-r from-[#fbbf24] via-[#f59e0b] to-[#f97316] bg-clip-text text-transparent">
