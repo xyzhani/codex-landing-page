@@ -39,7 +39,7 @@ function generateCoupon(): string {
 }
 
 const GOOGLE_REVIEW_URL =
-  'https://www.google.com/search?sca_esv=46f97408aca9b3a8&sxsrf=APpeQnsB6XXALTGZQQ8bapNK7fWx4UFaDQ:1782417029641&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_8BvlyQDkMXjv7ULtRNbkdb0_iaNGSHZv2tB5cqPx31hfaAmoQuBK-NNfWb6da79Zx-mddRtYIV18nfydL6KLVwHZb6TtXJZrwzeJSUE2ehDdv9y4Q%3D%3D&q=Codex+Solutions+International+Reviews&sa=X&ved=2ahUKEwjGupLvlKOVAxVnBfsDHavEC9oQ0bkNegQIPBAH&biw=1369&bih=619&dpr=1.4';
+  'https://share.google/GwppDhVAtD2vBG2vz';
 
 /* ------------------------------------------------------------------ */
 /*  Typing Indicator                                                    */
