@@ -24,9 +24,25 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: "AI Business Reputation Management System",
+    title: "AI Social Reputation — Automated Review Management",
     description: "Turn Every Customer Into a 5★ Review and Every Review Into Social Proof.",
     type: "website",
+    url: "https://aisocialreputation.com",
+    siteName: "AI Social Reputation",
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: "AI Social Reputation — Automated Review Management for SMBs & eCommerce",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Social Reputation — Automated Review Management",
+    description: "Turn Every Customer Into a 5★ Review and Every Review Into Social Proof.",
+    images: ['/og-image.png'],
   },
 };
 
