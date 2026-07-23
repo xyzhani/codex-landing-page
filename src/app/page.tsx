@@ -13,6 +13,7 @@ import AIRepliesSection from '@/components/landing/AIRepliesSection';
 import SocialProofSection from '@/components/landing/SocialProofSection';
 import BenefitsSection from '@/components/landing/BenefitsSection';
 import WhoIsItForSection from '@/components/landing/WhoIsItForSection';
+import FAQSection from '@/components/landing/FAQSection';
 import CTASection from '@/components/landing/CTASection';
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
       <SocialProofSection />
       <BenefitsSection />
       <WhoIsItForSection />
+      <FAQSection />
       <CTASection />
     </main>
   );
