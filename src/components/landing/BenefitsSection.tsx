@@ -27,7 +27,7 @@ const stats = [
 
 const chainSteps = [
   'Order Completed',
-  'WhatsApp Request',
+  'WhatsApp / SMS / Email',
   '5★ Review on Google',
   'Higher SEO Rank',
   'Story Posted',

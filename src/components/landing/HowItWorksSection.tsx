@@ -17,7 +17,7 @@ const steps = [
   {
     num: '02',
     icon: MessageCircle,
-    title: 'WhatsApp Review Request',
+    title: 'Review Request',
     description: 'Customer receives a personalized message with Yes / Not Now buttons — no app download needed.',
     color: '#22d3ee',
   },

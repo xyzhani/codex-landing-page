@@ -8,7 +8,7 @@ import { ShoppingCart, MessageCircle, Star, Globe, Bot, Share2, ShieldCheck, Arr
 
 const flowSteps = [
   { icon: ShoppingCart, label: 'Order Completes', color: '#14b8a6' },
-  { icon: MessageCircle, label: 'WhatsApp Request', color: '#22d3ee' },
+  { icon: MessageCircle, label: 'WhatsApp / SMS / Email', color: '#22d3ee' },
   { icon: Star, label: 'Customer Rates', color: '#fbbf24' },
   { icon: Globe, label: 'Google Review', color: '#34d399' },
   { icon: Bot, label: 'AI Reply', color: '#a78bfa' },
