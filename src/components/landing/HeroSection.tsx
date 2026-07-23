@@ -87,7 +87,7 @@ export default function HeroSection() {
               custom={2}
               className="text-[13px] sm:text-sm text-slate-400/70 max-w-md mx-auto sm:mx-0 mb-6 leading-relaxed"
             >
-              Automated review collection via WhatsApp. AI-powered replies. 
+              Automated review collection. WhatsApp, SMS, or Email — your choice. AI-powered replies. 
               Instant social proof generation. For SMBs and eCommerce.
             </motion.p>
 
