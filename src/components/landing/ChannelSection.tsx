@@ -155,7 +155,7 @@ export default function ChannelSection() {
             </span>
           </h2>
           <p className="text-white/60 text-[12px] sm:text-base max-w-xl mx-auto leading-relaxed">
-            Start on WhatsApp — reach customers everywhere. Same logic, same routing.
+            Reach customers everywhere. Same logic, same routing.
           </p>
         </motion.div>
 
