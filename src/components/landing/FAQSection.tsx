@@ -8,11 +8,11 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    q: 'Which channels can I connect with?',
+    q: 'On which social channels can I post?',
     a: 'All major social platforms — Instagram, Facebook, LinkedIn, Pinterest, TikTok, X (Twitter), and more. Every channel covered.',
   },
   {
-    q: 'Which platforms can I integrate with?',
+    q: 'Which channels can I connect with?',
     a: 'WhatsApp, SMS, and Email for review collection. Your customers get reached on whatever channel they actually use — no setup headaches, no missed opportunities.',
   },
   {
