@@ -410,6 +410,337 @@ function ChannelSelector({ onSelect }: { onSelect: (ch: 'whatsapp' | 'email' | '
 }
 
 /* ------------------------------------------------------------------ */
+/*  Email Flow View (email-template style)                               */
+/* ------------------------------------------------------------------ */
+
+const EMAIL_RATING_OPTIONS = [
+  { stars: 5, emoji: '😍', label: 'Excellent', color: '#16A34A', bg: '#F0FDF4', border: '#BBF7D0' },
+  { stars: 4, emoji: '😊', label: 'Great', color: '#2563EB', bg: '#EFF6FF', border: '#BFDBFE' },
+  { stars: 3, emoji: '🙂', label: 'Good', color: '#CA8A04', bg: '#FEFCE8', border: '#FDE68A' },
+  { stars: 2, emoji: '😐', label: 'Fair', color: '#EA580C', bg: '#FFF7ED', border: '#FED7AA' },
+  { stars: 1, emoji: '😢', label: 'Poor', color: '#DC2626', bg: '#FEF2F2', border: '#FECACA' },
+] as const;
+
+function EmailFlowView({
+  step,
+  onStarSelect,
+  onGoogleReview,
+  reviewInput,
+  setReviewInput,
+  onReviewSubmit,
+  inputFocused,
+  setInputFocused,
+  selectedRating,
+}: {
+  step: ChatStep;
+  onStarSelect: (stars: number) => void;
+  onGoogleReview: () => void;
+  reviewInput: string;
+  setReviewInput: (v: string) => void;
+  onReviewSubmit: () => void;
+  inputFocused: boolean;
+  setInputFocused: (v: boolean) => void;
+  selectedRating: number | null;
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (step === 'showing_review_input' || step === 'showing_google_btn' || step === 'completed') {
+      setTimeout(() => {
+        scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    }
+  }, [step]);
+
+  return (
+    <div className="flex flex-col h-full" style={{ backgroundColor: '#F4F6F8' }}>
+      {/* Scrollable email content */}
+      <div ref={scrollRef} className="flex-1 overflow-y-auto email-scroll">
+        <AnimatePresence mode="wait">
+          {/* === RATING STEP === */}
+          {(step === 'showing_stars' || step === 'init' || step === 'waiting_rating') && (
+            <motion.div
+              key="email-rating"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Gradient Hero Banner */}
+              <div
+                className="w-full py-6 px-4 text-center"
+                style={{
+                  background: 'linear-gradient(135deg, #1E3A5F 0%, #0E7490 50%, #06B6D4 100%)',
+                }}
+              >
+                <h2 className="text-[14px] sm:text-[15px] font-bold text-white leading-tight mb-1.5">
+                  We&apos;d Love to Hear<br />Your Thoughts
+                </h2>
+                <p className="text-[9.5px] text-white/80 leading-relaxed">
+                  You recently used <span className="font-semibold text-white">AI Social Reputation</span> — share your experience in just 10 seconds!
+                </p>
+              </div>
+
+              {/* Intro Strip */}
+              <div className="bg-white px-4 py-2.5 flex items-start gap-2 border-b border-[#F0F0F0]">
+                <span className="inline-block w-[7px] h-[7px] rounded-full bg-[#EA580C] mt-[4px] shrink-0" />
+                <p className="text-[10px] text-[#374151] leading-relaxed">
+                  <span className="font-semibold text-[#111827]">Quick 10-second feedback</span>
+                  <span className="text-[#6B7280]"> — your voice shapes what we build next.</span>
+                </p>
+              </div>
+
+              {/* Rating Section */}
+              <div className="bg-white mx-0 px-4 pt-4 pb-5">
+                {/* YOUR RATING label */}
+                <div className="flex items-center justify-center gap-1 mb-3">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  <span className="text-[9px] font-bold tracking-[0.18em] text-[#0E7490] uppercase">
+                    Your Rating
+                  </span>
+                </div>
+
+                <h3 className="text-[13px] font-bold text-[#111827] text-center mb-1">
+                  How was your experience?
+                </h3>
+                <p className="text-[9px] text-[#9CA3AF] text-center mb-3">
+                  Click a button below — your feedback goes directly to our team.
+                </p>
+
+                <p className="text-[8px] font-semibold tracking-[0.12em] text-[#3B82F6] text-center uppercase mb-2.5">
+                  + Select Your Rating Below +
+                </p>
+
+                {/* Rating Cards */}
+                <div className="flex gap-[5px] justify-center">
+                  {EMAIL_RATING_OPTIONS.map((opt) => (
+                    <motion.button
+                      key={opt.stars}
+                      whileHover={{ scale: 1.06, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => onStarSelect(opt.stars)}
+                      className="flex flex-col items-center gap-[3px] py-2 px-[6px] rounded-xl border-2 cursor-pointer transition-all duration-200"
+                      style={{
+                        backgroundColor: opt.bg,
+                        borderColor: opt.border,
+                        minWidth: '38px',
+                      }}
+                    >
+                      <span className="text-[16px] leading-none">{opt.emoji}</span>
+                      <span
+                        className="text-[7.5px] font-semibold leading-none"
+                        style={{ color: opt.color }}
+                      >
+                        {opt.label}
+                      </span>
+                      <span className="text-[7px] text-[#6B7280] font-medium leading-none">
+                        {opt.stars}/5
+                      </span>
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* === GOOGLE REVIEW STEP (5 stars) === */}
+          {step === 'showing_google_btn' && (
+            <motion.div
+              key="email-google"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Gradient Hero Banner */}
+              <div
+                className="w-full py-6 px-4 text-center"
+                style={{
+                  background: 'linear-gradient(135deg, #1E3A5F 0%, #0E7490 50%, #06B6D4 100%)',
+                }}
+              >
+                <div className="text-[28px] mb-1">🎉</div>
+                <h2 className="text-[14px] font-bold text-white leading-tight">
+                  Thank You!
+                </h2>
+                <p className="text-[9.5px] text-white/80 leading-relaxed mt-1">
+                  You rated us <span className="font-bold text-yellow-300">5 out of 5</span> — that means the world to us!
+                </p>
+              </div>
+
+              <div className="bg-white mx-0 px-4 py-5">
+                <div className="text-center mb-4">
+                  <p className="text-[12px] font-semibold text-[#111827] mb-1">
+                    Would you mind sharing on Google?
+                  </p>
+                  <p className="text-[9px] text-[#9CA3AF]">
+                    It only takes 30 seconds and helps us enormously.
+                  </p>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={onGoogleReview}
+                  className="w-full py-2.5 rounded-xl text-white text-[12px] font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                  style={{
+                    background: 'linear-gradient(135deg, #1E3A5F 0%, #0E7490 100%)',
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  </svg>
+                  Leave a Google Review
+                </motion.button>
+
+                {/* Selected rating indicator */}
+                <div className="flex items-center justify-center gap-1 mt-3">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                  <span className="text-[9px] text-[#6B7280] ml-1">Excellent</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* === REVIEW INPUT STEP (1-4 stars) === */}
+          {step === 'showing_review_input' && (
+            <motion.div
+              key="email-review"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Gradient Hero Banner - shorter */}
+              <div
+                className="w-full py-4 px-4 text-center"
+                style={{
+                  background: 'linear-gradient(135deg, #1E3A5F 0%, #0E7490 50%, #06B6D4 100%)',
+                }}
+              >
+                <div className="text-[24px] mb-0.5">💬</div>
+                <h2 className="text-[13px] font-bold text-white leading-tight">
+                  Tell Us More
+                </h2>
+                <p className="text-[9px] text-white/75 leading-relaxed mt-0.5">
+                  Your feedback helps us improve
+                </p>
+              </div>
+
+              <div className="bg-white mx-0 px-4 py-5">
+                {/* Selected rating indicator */}
+                <div className="flex items-center justify-center gap-1 mb-3">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <svg
+                      key={i}
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill={i <= (selectedRating || 3) ? '#F59E0B' : '#E5E7EB'}
+                    >
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                  <span className="text-[9px] text-[#6B7280] ml-1">
+                    {selectedRating ? `${selectedRating}/5` : ''}
+                  </span>
+                </div>
+
+                <p className="text-[11px] font-semibold text-[#111827] text-center mb-3">
+                  How could we do better?
+                </p>
+
+                <div className="relative mb-3">
+                  <textarea
+                    value={reviewInput}
+                    onChange={(e) => setReviewInput(e.target.value)}
+                    onFocus={() => setInputFocused(true)}
+                    onBlur={() => setInputFocused(false)}
+                    placeholder="Share what could be improved..."
+                    rows={3}
+                    className="w-full text-[10.5px] text-[#111827] placeholder-[#9CA3AF] bg-[#F9FAFB] border-2 rounded-xl px-3 py-2.5 resize-none outline-none transition-all duration-200 leading-relaxed"
+                    style={{
+                      borderColor: inputFocused ? '#0E7490' : '#E5E7EB',
+                      boxShadow: inputFocused ? '0 0 0 2px rgba(14,116,144,0.12)' : 'none',
+                    }}
+                  />
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={onReviewSubmit}
+                  disabled={!reviewInput.trim()}
+                  className="w-full py-2.5 rounded-xl text-white text-[11.5px] font-semibold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
+                  style={{
+                    background: reviewInput.trim()
+                      ? 'linear-gradient(135deg, #1E3A5F 0%, #0E7490 100%)'
+                      : '#9CA3AF',
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                  Submit Feedback
+                </motion.button>
+
+                <p className="text-[8px] text-[#9CA3AF] text-center mt-2">
+                  Your feedback is private and will only be seen by our team.
+                </p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* === COMPLETED STEP === */}
+          {step === 'completed' && (
+            <motion.div
+              key="email-completed"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex flex-col items-center justify-center min-h-full px-6 py-10"
+              style={{ backgroundColor: '#F4F6F8' }}
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.1 }}
+                className="w-14 h-14 rounded-full flex items-center justify-center mb-4"
+                style={{
+                  background: 'linear-gradient(135deg, #1E3A5F 0%, #0E7490 50%, #06B6D4 100%)',
+                }}
+              >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </motion.div>
+              <h3 className="text-[14px] font-bold text-[#111827] mb-1 text-center">
+                Feedback Received!
+              </h3>
+              <p className="text-[10px] text-[#6B7280] text-center leading-relaxed">
+                Thank you for sharing your experience.<br />Your input helps us improve every day.
+              </p>
+            </motion.div>
+          )}
+
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Main Component                                                     */
 /* ------------------------------------------------------------------ */
 
@@ -421,6 +752,7 @@ export default function CustomerExperienceSection() {
   const [showTyping, setShowTyping] = useState(false);
   const [reviewInput, setReviewInput] = useState('');
   const [inputFocused, setInputFocused] = useState(false);
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [sectionVisible, setSectionVisible] = useState(false);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -461,9 +793,14 @@ export default function CustomerExperienceSection() {
     return () => observer.disconnect();
   }, [sectionVisible]);
 
-  /* ---- Step 1: initial bot message ---- */
+  /* ---- Step 1: initial bot message (chat channels only) / email goes straight to stars ---- */
   useEffect(() => {
     if (!sectionVisible || channel === 'select') return;
+    if (channel === 'email') {
+      // Email: skip chat messages, show rating cards directly
+      const t = setTimeout(() => setStep('showing_stars'), 400);
+      return () => clearTimeout(t);
+    }
     const t1 = setTimeout(() => setShowTyping(true), 300);
     const t2 = setTimeout(() => {
       setShowTyping(false);
@@ -500,6 +837,7 @@ export default function CustomerExperienceSection() {
       setShowTyping(false);
       setReviewInput('');
       setInputFocused(false);
+      setSelectedRating(null);
       msgIdRef.current = 0;
     },
     [],
@@ -513,6 +851,7 @@ export default function CustomerExperienceSection() {
     setShowTyping(false);
     setReviewInput('');
     setInputFocused(false);
+    setSelectedRating(null);
     msgIdRef.current = 0;
   }, []);
 
@@ -546,6 +885,18 @@ export default function CustomerExperienceSection() {
 
   const handleStarSelect = (stars: number) => {
     if (step !== 'showing_stars') return;
+    setSelectedRating(stars);
+
+    // Email: skip chat message logic, go straight to next step
+    if (channel === 'email') {
+      if (stars === 5) {
+        setStep('showing_google_btn');
+      } else {
+        setStep('showing_review_input');
+      }
+      return;
+    }
+
     const starStr = '⭐'.repeat(stars);
     addMessage('user', starStr);
     setStep('transition_stars');
@@ -567,15 +918,26 @@ export default function CustomerExperienceSection() {
 
   const handleGoogleReview = () => {
     window.open(GOOGLE_REVIEW_URL, '_blank', 'noopener,noreferrer');
+    if (channel === 'email') {
+      setStep('completed');
+      return;
+    }
     addMessage('user', 'Yes, I\'ll leave a review! 🌟');
     setStep('completed');
   };
 
   const handleReviewSubmit = () => {
     if (step !== 'showing_review_input' || !reviewInput.trim()) return;
-    addMessage('user', reviewInput.trim());
     setReviewInput('');
     setInputFocused(false);
+
+    // Email: just go to completed
+    if (channel === 'email') {
+      setStep('completed');
+      return;
+    }
+
+    addMessage('user', reviewInput.trim());
     setStep('transition_review');
 
     const lastStarMsg = [...messages]
@@ -668,7 +1030,36 @@ export default function CustomerExperienceSection() {
                       </div>
                       <ChannelSelector onSelect={handleChannelSelect} />
                     </motion.div>
+                  ) : channel === 'email' ? (
+                    /* ---- EMAIL: Template-style flow ---- */
+                    <motion.div
+                      key={`email-${channel}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex flex-col h-full"
+                    >
+                      <StatusBar theme={theme} channel={channel} />
+                      <ChannelHeader
+                        theme={theme}
+                        channel={channel}
+                        onBack={handleBackToSelector}
+                      />
+                      <EmailFlowView
+                        step={step}
+                        onStarSelect={handleStarSelect}
+                        onGoogleReview={handleGoogleReview}
+                        reviewInput={reviewInput}
+                        setReviewInput={setReviewInput}
+                        onReviewSubmit={handleReviewSubmit}
+                        inputFocused={inputFocused}
+                        setInputFocused={setInputFocused}
+                        selectedRating={selectedRating}
+                      />
+                    </motion.div>
                   ) : (
+                    /* ---- CHAT: WhatsApp / SMS flow ---- */
                     <motion.div
                       key={`chat-${channel}`}
                       initial={{ opacity: 0 }}
@@ -1069,6 +1460,16 @@ export default function CustomerExperienceSection() {
           background: rgba(0, 0, 0, 0.15);
           border-radius: 10px;
         }
+        .email-scroll::-webkit-scrollbar {
+          width: 2px;
+        }
+        .email-scroll::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .email-scroll::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+        }
       `}</style>
     </section>
   );
@@ -1136,14 +1537,14 @@ function ChannelHeader({
         {/* avatar */}
         <img
           src="/codex-logo.jpg"
-          alt="Codex Solutions International"
+          alt="AI Social Reputation"
           className="w-8 h-8 rounded-full object-cover shrink-0 shadow-lg"
         />
 
         {/* name + status */}
         <div className="min-w-0 flex-1">
           <p className="text-[12px] font-medium text-white truncate leading-tight">
-            Codex Solutions International
+            AI Social Reputation
           </p>
           <p className="text-[11px] text-emerald-200 flex items-center gap-1">
             <span className="inline-block w-[7px] h-[7px] rounded-full bg-green-300 shadow-[0_0_4px_rgba(134,239,172,0.6)]" />
