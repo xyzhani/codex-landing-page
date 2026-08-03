@@ -863,7 +863,11 @@ export default function CustomerExperienceSection() {
     setTimeout(() => setShowTyping(true), 500);
     setTimeout(() => {
       setShowTyping(false);
-      addMessage('bot', 'Amazing! ⭐\nHow would you rate your experience?');
+      if (channel === 'sms') {
+        addMessage('bot', 'Amazing! ⭐\nPlease reply with a number from 1 to 5\n(1 = Poor, 5 = Excellent)');
+      } else {
+        addMessage('bot', 'Amazing! ⭐\nHow would you rate your experience?');
+      }
       setStep('showing_stars');
     }, 2000);
   };
@@ -913,6 +917,38 @@ export default function CustomerExperienceSection() {
       }, 2000);
     } else {
       setStep('showing_review_input');
+    }
+  };
+
+  /* ---- SMS: user types a number 1-5 as their rating ---- */
+  const handleSmsRatingSend = () => {
+    if (step !== 'showing_stars' || !reviewInput.trim()) return;
+    const raw = reviewInput.trim();
+    const num = parseInt(raw, 10);
+    if (num >= 1 && num <= 5) {
+      const starStr = '⭐'.repeat(num);
+      addMessage('user', raw);
+      setReviewInput('');
+      setInputFocused(false);
+      setStep('transition_stars');
+      setSelectedRating(num);
+      setTimeout(() => setShowTyping(true), 500);
+      setTimeout(() => {
+        setShowTyping(false);
+        if (num === 5) {
+          addMessage(
+            'bot',
+            'Thank you so much for the 5★ rating! 🎉\nWould you mind sharing your experience on Google?\nIt only takes 30 seconds and helps us a lot.',
+          );
+          setStep('showing_google_btn');
+        } else {
+          addMessage(
+            'bot',
+            `Thank you for your ${num}★ feedback, Sarah. 💙\nCould you tell us a bit about what could be improved? Your feedback stays private.`,
+          );
+          setStep('showing_review_input');
+        }
+      }, 2000);
     }
   };
 
@@ -1234,8 +1270,77 @@ export default function CustomerExperienceSection() {
                             </motion.div>
                           )}
 
-                          {/* Step: star selection */}
-                          {step === 'showing_stars' && (
+                          {/* Step: star selection (WhatsApp: buttons, SMS: text input) */}
+                          {step === 'showing_stars' && channel === 'sms' && (
+                            <motion.div
+                              key="sms-rating-input"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              transition={{ duration: 0.3 }}
+                              className="p-3"
+                            >
+                              <p className={`text-[10px] ${theme.reviewHintColor} mb-1.5 px-1`}>
+                                Reply with a number 1–5:
+                              </p>
+                              <div className="flex items-center gap-1.5">
+                                <div
+                                  className={`flex-1 flex items-center rounded-[18px] bg-white border-2 transition-all duration-200 ${
+                                    inputFocused
+                                      ? 'border-[var(--input-focus)]'
+                                      : 'border-[#E5E5EA]'
+                                  }`}
+                                  style={{
+                                    '--input-focus': theme.inputBorderFocus,
+                                    boxShadow: inputFocused
+                                      ? `0 0 0 2px ${theme.inputBorderFocusShadow}`
+                                      : 'none',
+                                  } as React.CSSProperties}
+                                >
+                                  <input
+                                    type="text"
+                                    inputMode="numeric"
+                                    value={reviewInput}
+                                    onChange={(e) => {
+                                      const v = e.target.value.replace(/[^1-5]/g, '');
+                                      setReviewInput(v);
+                                    }}
+                                    onFocus={() => setInputFocused(true)}
+                                    onBlur={() => setInputFocused(false)}
+                                    onKeyDown={(e) => {
+                                      if (e.key === 'Enter') handleSmsRatingSend();
+                                    }}
+                                    placeholder="1, 2, 3, 4, or 5"
+                                    maxLength={1}
+                                    className={`flex-1 bg-transparent px-3 py-2 text-[12px] ${theme.inputTextColor} outline-none`}
+                                    />
+                                  <button
+                                    onClick={handleSmsRatingSend}
+                                    disabled={!reviewInput.trim()}
+                                    className={`mr-1.5 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 ${
+                                      reviewInput.trim()
+                                        ? 'text-white shadow-sm active:scale-95'
+                                        : 'cursor-not-allowed'
+                                    }`}
+                                    style={{
+                                      backgroundColor: reviewInput.trim()
+                                        ? theme.sendBtnColor
+                                        : `${theme.sendBtnColor}30`,
+                                      color: reviewInput.trim() ? 'white' : theme.sendBtnColor,
+                                    }}
+                                  >
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                      <line x1="22" y1="2" x2="11" y2="13" />
+                                      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {/* Step: star selection (WhatsApp only — button list) */}
+                          {step === 'showing_stars' && channel !== 'sms' && (
                             <motion.div
                               key="star-btns"
                               initial={{ opacity: 0, y: 10 }}
