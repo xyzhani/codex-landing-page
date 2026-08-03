@@ -11,8 +11,8 @@ const ParticleField = dynamic(() => import('./ParticleField'), { ssr: false });
 const CALENDLY_URL = 'https://calendly.com/codexsolutionsintl/15min?back=1&month=2026-06';
 
 const checklist = [
-  'Every order → Google review → AI reply posted instantly',
-  'Every review → Instagram Story + Facebook Post + LinkedIn Post',
+  'Every order / service / job → Google review → AI reply posted instantly',
+  'Every review → Instagram Story + Facebook Post + LinkedIn Post (Optional other platforms)',
   'Every post builds trust and brings new customers',
 ];
 
