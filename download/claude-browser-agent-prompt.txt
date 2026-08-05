@@ -1,106 +1,113 @@
-You are a browser automation agent. Your task is to send LinkedIn connection requests with personalized notes to exactly 5 prospects. All data is provided below — no sheet needed.
+You are a browser automation agent. Your task is to send LinkedIn connection requests with personalized notes to prospects. All data is provided below.
 
-Follow these steps exactly in order. Do NOT skip any step. Do NOT improvise. Do NOT send any message that is not listed below. Work through all 5 prospects sequentially.
+Follow these steps exactly in order. Do NOT skip. Do NOT improvise. Do NOT modify the notes. Work through the prospects sequentially.
 
-If LinkedIn shows a popup, modal, CAPTCHA, or limit warning — STOP immediately, take a screenshot, and report what happened.
+If LinkedIn shows a CAPTCHA, popup, or limit warning — STOP, screenshot, report.
 
 Take a screenshot after each major step.
 
-Use the Claude browser extension tools: navigate, click, type, screenshot, read page content.
+Use the Claude browser extension tools: navigate, click, type, screenshot, read page.
 
 ======================================================================
-PROSPECT DATA (use this — do NOT open any sheet)
+PROSPECT DATA
 ======================================================================
 
 --- PROSPECT 1 ---
 Name: Simon Rand
 LinkedIn: https://uk.linkedin.com/in/simon-rand
-Connection Note (send exactly this, under 300 chars):
-Hi Simon, I came across KuulSeats and love what you're building for independent restaurants. I'm Hanan, founder of AI Social Reputation. We automate Google review collection via WhatsApp/SMS/Email and turn every 5-star review into social media posts instantly. Your restaurant partners could get 3-5x more reviews with zero manual effort. Open to a 10-min chat this week? Best, Hanan
+Connection Note (send EXACTLY this — it is 194 chars, under the 200 limit):
+Hi Simon, love KuulSeats! I'm Hanan — I automate Google reviews via WhatsApp/SMS/Email and turn each 5-star into social posts. Restaurants see 3-5x more reviews, zero effort. 10-min chat? —Hanan
 
 --- PROSPECT 2 ---
 Name: Hina Mistry
 LinkedIn: https://uk.linkedin.com/in/hina-mistry-57532548
-Connection Note (send exactly this, under 300 chars):
-Hi Hina, your background in dental practice management is impressive! I'm Hanan, founder of AI Social Reputation. We automate Google review collection for dental practices — after every appointment, patients get a review request via WhatsApp/SMS/Email. Practices see 3-5x more reviews in the first month. Would you be open to a quick 10-min walkthrough? Best, Hanan
+Connection Note (send EXACTLY this — it is 197 chars, under the 200 limit):
+Hi Hina, impressive work! I'm Hanan — I automate Google reviews for dental practices via WhatsApp/SMS/Email. Patients get auto requests after every visit. 3-5x more reviews fast. Quick demo? —Hanan
 
 --- PROSPECT 3 ---
 Name: Andrew Heppinstall
 LinkedIn: https://uk.linkedin.com/in/andrew-heppinstall
-Connection Note (send exactly this, under 300 chars):
-Hi Andrew, Unavoidable Marketing's work with UK and US businesses is impressive. I'm Hanan, founder of AI Social Reputation. We automate Google review collection via WhatsApp/SMS/Email and turn every review into social media content. Strong fit for your agency — you could offer this to clients as a value-add or resell it. Open to a quick call to explore a partnership? Best, Hanan
+Connection Note (send EXACTLY this — it is 197 chars, under the 200 limit):
+Hi Andrew, great agency! I'm Hanan — I built AI Social Reputation: auto Google reviews via WhatsApp/SMS/Email, each becomes social content. Perfect add-on for your clients. Partnership call? —Hanan
 
 --- PROSPECT 4 ---
 Name: Jennifer Donahue
 LinkedIn: https://www.linkedin.com/in/jennifer-donahue-61a18b3a
-Connection Note (send exactly this, under 300 chars):
-Hi Jennifer, your work at Positive Sentiment really resonated — review management for hotels is critical. I'm Hanan, founder of AI Social Reputation. We automate the full review lifecycle: auto-request via WhatsApp/SMS/Email, AI replies within seconds, and every 5-star becomes instant social media content. Could complement your services perfectly. 10-min demo this week? Best, Hanan
+Connection Note (send EXACTLY this — it is 194 chars, under the 200 limit):
+Hi Jennifer, love Positive Sentiment! I'm Hanan — I automate hotel reviews via WhatsApp/SMS/Email: auto requests, AI replies, 5-stars become social posts. Complements your services. Demo? —Hanan
 
 --- PROSPECT 5 ---
 Name: Ryan Cornelius
 LinkedIn: https://www.linkedin.com/in/ryanecornelius
-Connection Note (send exactly this, under 300 chars):
-Hi Ryan, taking Google reviews from 3.4 to 4.3 and BBB from D- to A+ is no small feat. I'm Hanan, founder of AI Social Reputation. We automate exactly what you did manually — after every sale/service, auto review request via WhatsApp/SMS/Email, AI replies, and positive reviews become instant social posts. Imagine doing it at scale. Open to a quick conversation? Best, Hanan
+Connection Note (send EXACTLY this — it is 183 chars, under the 200 limit):
+Hi Ryan, 3.4 to 4.3 is incredible! I'm Hanan — I automate what you did manually: auto review requests via WhatsApp/SMS/Email, AI replies, reviews become social posts. Scale it? —Hanan
 
 ======================================================================
-INSTRUCTIONS — FOR EACH OF THE 5 PROSPECTS ABOVE
+INSTRUCTIONS — FOR EACH PROSPECT
 ======================================================================
 
-Repeat these steps for Prospect 1, then 2, then 3, then 4, then 5.
+STEP A — OPEN PROFILE
+1. Navigate to the LinkedIn URL for the current prospect.
+2. Wait for full load (photo, name, headline, Connect button visible).
+3. Screenshot.
 
-STEP A — OPEN THE LINKEDIN PROFILE
-1. Navigate to the LinkedIn URL provided for the current prospect.
-2. Wait for the profile to fully load (profile photo, name, headline, Connect button visible).
-3. Take a screenshot.
-
-STEP B — VERIFY THE NAME
-1. Read the name on the LinkedIn profile.
+STEP B — VERIFY NAME
+1. Read the name on the profile.
 2. Confirm it matches the expected name above.
-3. If it does NOT match — take a screenshot, log the mismatch, skip to next prospect.
+3. If no match — screenshot, log mismatch, skip to next.
 
 STEP C — CLICK CONNECT
-1. Find the "Connect" button (blue button, top-right area of profile).
-2. If no direct "Connect" button, click "More" dropdown first, then click "Connect".
-3. A dialog will appear.
-4. Take a screenshot.
+1. Find the "Connect" button (blue, top-right of profile).
+2. If no direct button, click "More" dropdown first, then "Connect".
+3. Screenshot the dialog.
 
-STEP D — ADD A NOTE
-1. In the dialog, click "Add a note" to reveal the text field.
-2. Click on the textarea to focus it.
-3. Type the EXACT connection note provided above for this prospect.
-   - Do NOT modify it in any way
-   - Do NOT add or remove anything
-   - It is already under 300 characters
-4. Take a screenshot of the filled note.
+STEP D — ADD NOTE
+1. Click "Add a note" to reveal the text field.
+2. Click the textarea to focus it.
+3. TYPE the EXACT connection note provided above — character for character.
+4. Do NOT add, remove, or change anything.
+5. The note IS under 200 characters. The character counter must show under 200.
+6. If the counter shows over 200, you typed something wrong — delete and retype.
+7. Screenshot the filled note with visible character counter.
 
 STEP E — SEND
-1. Click "Send" (or "Send now").
-2. Wait 3-5 seconds for confirmation.
-3. Take a screenshot.
-4. Log: "SENT — Connection request sent to [Name] with personalized note."
+1. Confirm the Send button is BLUE and clickable (not greyed out).
+2. Click "Send".
+3. Wait 3-5 seconds.
+4. Screenshot.
+5. Log: "SENT — [Name]"
 
 STEP F — WAIT
-1. Wait 10-15 seconds before moving to the next prospect.
+1. Wait 15 seconds before the next prospect.
 
 ======================================================================
-AFTER ALL 5 — SUMMARY REPORT
+IF YOU HIT THE INVITATION LIMIT
 ======================================================================
 
-Provide:
-- Total sent: X / 5
+If at any point LinkedIn says you have 0 personalized invitations remaining:
+1. STOP immediately.
+2. Screenshot the limit message.
+3. Report which prospects were sent and which were not.
+4. Do NOT attempt to send without a note.
+
+======================================================================
+AFTER ALL DONE — SUMMARY
+======================================================================
+
+- Sent: X / 5
 - Successfully sent: list names
-- Skipped: list names + reason
-- Errors/blocked: list names + screenshot + error
+- Skipped + reason: list names
+- Errors: list names + screenshots
 
 ======================================================================
 SAFETY RULES
 ======================================================================
 
 1. NEVER enter credentials — user is already logged in.
-2. If LinkedIn asks for email/phone verification — STOP and tell the user to verify manually.
-3. If you see "weekly invitation limit" — STOP all work and report it.
-4. If a profile is private or doesn't exist — screenshot, log, skip.
-5. Do NOT interact with anything else on the page.
-6. Do NOT visit any other websites.
-7. Wait 3-5 seconds between EVERY action.
-8. Take screenshots at every step.
+2. Verification popup — STOP, tell user to verify manually.
+3. Weekly limit reached — STOP all work, report.
+4. Private/non-existent profile — screenshot, skip.
+5. Do NOT click anything else on the page.
+6. Do NOT visit other websites.
+7. Wait 3-5 seconds between every action.
+8. Screenshot everything.
