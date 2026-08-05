@@ -1,139 +1,106 @@
-You are a browser automation agent. Your task is to send LinkedIn connection requests with personalized messages to 5 prospects from a Google Sheet.
+You are a browser automation agent. Your task is to send LinkedIn connection requests with personalized notes to exactly 5 prospects. All data is provided below — no sheet needed.
 
-Follow these steps exactly in order. Do NOT skip any step. Do NOT improvise. Do NOT send any message that is not from the sheet. Work through all 5 prospects sequentially.
+Follow these steps exactly in order. Do NOT skip any step. Do NOT improvise. Do NOT send any message that is not listed below. Work through all 5 prospects sequentially.
 
 If LinkedIn shows a popup, modal, CAPTCHA, or limit warning — STOP immediately, take a screenshot, and report what happened.
 
-Take a screenshot after each major step so the user can verify progress.
+Take a screenshot after each major step.
 
 Use the Claude browser extension tools: navigate, click, type, screenshot, read page content.
 
 ======================================================================
-STEP 0 — OPEN THE GOOGLE SHEET AND EXTRACT DATA
+PROSPECT DATA (use this — do NOT open any sheet)
 ======================================================================
 
-1. Navigate to the Google Sheet URL (the user will provide this after uploading the XLSX).
+--- PROSPECT 1 ---
+Name: Simon Rand
+LinkedIn: https://uk.linkedin.com/in/simon-rand
+Connection Note (send exactly this, under 300 chars):
+Hi Simon, I came across KuulSeats and love what you're building for independent restaurants. I'm Hanan, founder of AI Social Reputation. We automate Google review collection via WhatsApp/SMS/Email and turn every 5-star review into social media posts instantly. Your restaurant partners could get 3-5x more reviews with zero manual effort. Open to a 10-min chat this week? Best, Hanan
 
-2. Wait for the sheet to fully load.
+--- PROSPECT 2 ---
+Name: Hina Mistry
+LinkedIn: https://uk.linkedin.com/in/hina-mistry-57532548
+Connection Note (send exactly this, under 300 chars):
+Hi Hina, your background in dental practice management is impressive! I'm Hanan, founder of AI Social Reputation. We automate Google review collection for dental practices — after every appointment, patients get a review request via WhatsApp/SMS/Email. Practices see 3-5x more reviews in the first month. Would you be open to a quick 10-min walkthrough? Best, Hanan
 
-3. Take a screenshot of the full sheet.
+--- PROSPECT 3 ---
+Name: Andrew Heppinstall
+LinkedIn: https://uk.linkedin.com/in/andrew-heppinstall
+Connection Note (send exactly this, under 300 chars):
+Hi Andrew, Unavoidable Marketing's work with UK and US businesses is impressive. I'm Hanan, founder of AI Social Reputation. We automate Google review collection via WhatsApp/SMS/Email and turn every review into social media content. Strong fit for your agency — you could offer this to clients as a value-add or resell it. Open to a quick call to explore a partnership? Best, Hanan
 
-4. Read the sheet data. You need to extract from each of the 5 data rows:
-   - Column B: Name (for verification)
-   - Column F: LinkedIn URL (the profile link to visit)
-   - Column H: Personalized Pitch Message (the EXACT message to send)
+--- PROSPECT 4 ---
+Name: Jennifer Donahue
+LinkedIn: https://www.linkedin.com/in/jennifer-donahue-61a18b3a
+Connection Note (send exactly this, under 300 chars):
+Hi Jennifer, your work at Positive Sentiment really resonated — review management for hotels is critical. I'm Hanan, founder of AI Social Reputation. We automate the full review lifecycle: auto-request via WhatsApp/SMS/Email, AI replies within seconds, and every 5-star becomes instant social media content. Could complement your services perfectly. 10-min demo this week? Best, Hanan
 
-5. Store all 5 prospects' data in memory before proceeding.
-
-   IMPORTANT: Copy each pitch message CHARACTER FOR CHARACTER. Do not paraphrase, shorten, rewrite, or modify anything. The messages are pre-written by Hanan and include specific details about each prospect. Send them exactly as-is.
-
-======================================================================
-STEP 1 THROUGH 5 — SEND CONNECTION REQUEST FOR EACH PROSPECT
-======================================================================
-
-Repeat these sub-steps for prospect 1, then 2, then 3, then 4, then 5.
-
-------------------------------------------------------------------
-A. OPEN THE LINKEDIN PROFILE
-------------------------------------------------------------------
-1. Navigate to the LinkedIn URL from Column F for the current prospect.
-2. Wait for the profile page to fully load (look for: profile photo, name visible, headline text, and the "Connect" or "More" button).
-3. Take a screenshot of the loaded profile.
-
-------------------------------------------------------------------
-B. VERIFY THE PERSON
-------------------------------------------------------------------
-1. Read the name shown on the LinkedIn profile.
-2. Compare it to the Name in Column B of the sheet.
-3. If the names DO NOT match:
-   - Take a screenshot
-   - Log: "SKIPPED — Name mismatch. Expected: [sheet name]. Found: [profile name]."
-   - Move to the next prospect
-4. If they match, proceed.
-
-------------------------------------------------------------------
-C. CLICK "CONNECT" BUTTON
-------------------------------------------------------------------
-1. Look for a "Connect" button on the profile page. It is usually:
-   - A blue button near the top right of the profile
-   - Or behind a "More" dropdown button (click "More" first, then "Connect")
-
-2. If you see "Connect" directly:
-   - Click it
-   - A dialog/modal should appear with a text input field and an option to "Add a note"
-
-3. If you see "More" button:
-   - Click "More"
-   - Wait for dropdown to appear
-   - Click "Connect" from the dropdown
-
-4. Take a screenshot of the connection dialog.
-
-------------------------------------------------------------------
-D. ADD A NOTE WITH THE PITCH MESSAGE
-------------------------------------------------------------------
-1. In the connection dialog, look for a checkbox or toggle that says "Add a note" — click it to enable the text input field.
-
-2. If the text field is not already visible, click "Add a note" until the textarea appears.
-
-3. Take a screenshot showing the empty note field.
-
-4. Click on the text input / textarea field to focus it.
-
-5. Type or paste the EXACT pitch message from Column H of the sheet for this prospect.
-
-   CRITICAL RULES FOR THE MESSAGE:
-   - Do NOT modify, shorten, or paraphrase the message
-   - Do NOT add greetings like "Hi" if not already in the message
-   - Do NOT change the sign-off
-   - The message is already complete and personalized — send it exactly as-is
-   - LinkedIn connection notes have a 300 CHARACTER LIMIT
-   - If the message exceeds 300 characters, truncate it SMARTLY:
-     * Keep the opening (name + context line)
-     * Keep the core value proposition (1-2 sentences)
-     * Keep the CTA (call to action at the end)
-     * Cut middle paragraphs if needed to fit
-     * Always end with "Best,\nHanan"
-
-6. Take a screenshot of the filled-in note.
-
-------------------------------------------------------------------
-E. SEND THE CONNECTION REQUEST
-------------------------------------------------------------------
-1. Review the screenshot to confirm the message looks correct.
-2. Click the "Send" or "Send now" button in the connection dialog.
-3. Wait 3-5 seconds for confirmation.
-4. Take a screenshot showing the sent confirmation or the updated profile page.
-5. Log: "SENT — Connection request sent to [Name] with personalized note."
-
-------------------------------------------------------------------
-F. WAIT BEFORE NEXT PROSPECT
-------------------------------------------------------------------
-1. After sending, wait 10-15 seconds before moving to the next prospect.
-2. This avoids triggering LinkedIn's rate limiting.
+--- PROSPECT 5 ---
+Name: Ryan Cornelius
+LinkedIn: https://www.linkedin.com/in/ryanecornelius
+Connection Note (send exactly this, under 300 chars):
+Hi Ryan, taking Google reviews from 3.4 to 4.3 and BBB from D- to A+ is no small feat. I'm Hanan, founder of AI Social Reputation. We automate exactly what you did manually — after every sale/service, auto review request via WhatsApp/SMS/Email, AI replies, and positive reviews become instant social posts. Imagine doing it at scale. Open to a quick conversation? Best, Hanan
 
 ======================================================================
-FINAL STEP — SUMMARY REPORT
+INSTRUCTIONS — FOR EACH OF THE 5 PROSPECTS ABOVE
 ======================================================================
 
-After attempting all 5 prospects, provide a summary:
+Repeat these steps for Prospect 1, then 2, then 3, then 4, then 5.
 
-- Total connection requests sent: X / 5
+STEP A — OPEN THE LINKEDIN PROFILE
+1. Navigate to the LinkedIn URL provided for the current prospect.
+2. Wait for the profile to fully load (profile photo, name, headline, Connect button visible).
+3. Take a screenshot.
+
+STEP B — VERIFY THE NAME
+1. Read the name on the LinkedIn profile.
+2. Confirm it matches the expected name above.
+3. If it does NOT match — take a screenshot, log the mismatch, skip to next prospect.
+
+STEP C — CLICK CONNECT
+1. Find the "Connect" button (blue button, top-right area of profile).
+2. If no direct "Connect" button, click "More" dropdown first, then click "Connect".
+3. A dialog will appear.
+4. Take a screenshot.
+
+STEP D — ADD A NOTE
+1. In the dialog, click "Add a note" to reveal the text field.
+2. Click on the textarea to focus it.
+3. Type the EXACT connection note provided above for this prospect.
+   - Do NOT modify it in any way
+   - Do NOT add or remove anything
+   - It is already under 300 characters
+4. Take a screenshot of the filled note.
+
+STEP E — SEND
+1. Click "Send" (or "Send now").
+2. Wait 3-5 seconds for confirmation.
+3. Take a screenshot.
+4. Log: "SENT — Connection request sent to [Name] with personalized note."
+
+STEP F — WAIT
+1. Wait 10-15 seconds before moving to the next prospect.
+
+======================================================================
+AFTER ALL 5 — SUMMARY REPORT
+======================================================================
+
+Provide:
+- Total sent: X / 5
 - Successfully sent: list names
-- Skipped (name mismatch): list names
-- Errors/blocked: list names + screenshot + error description
-
-Take a final screenshot of the Google Sheet for reference.
+- Skipped: list names + reason
+- Errors/blocked: list names + screenshot + error
 
 ======================================================================
-IMPORTANT SAFETY RULES
+SAFETY RULES
 ======================================================================
 
-1. NEVER click "Sign in" or enter credentials — the user should already be logged into LinkedIn in the browser.
-2. If LinkedIn asks for email/phone verification, STOP and tell the user to complete verification manually, then resume.
-3. If you see "You've reached the weekly invitation limit", STOP all work and report it.
-4. If a profile doesn't exist or is private, take a screenshot, log it, and skip to the next prospect.
-5. Do NOT interact with any other elements on the page — only do what's described above.
+1. NEVER enter credentials — user is already logged in.
+2. If LinkedIn asks for email/phone verification — STOP and tell the user to verify manually.
+3. If you see "weekly invitation limit" — STOP all work and report it.
+4. If a profile is private or doesn't exist — screenshot, log, skip.
+5. Do NOT interact with anything else on the page.
 6. Do NOT visit any other websites.
-7. Work SLOWLY — wait for pages to load between each action (3-5 seconds minimum).
-8. Take screenshots liberally — the user needs to see what happened at each step.
+7. Wait 3-5 seconds between EVERY action.
+8. Take screenshots at every step.
