@@ -1,211 +1,143 @@
 import sys, os
-XLSX_SKILL_DIR = '/home/z/my-project/skills/xlsx'
-for sub in [XLSX_SKILL_DIR, os.path.join(XLSX_SKILL_DIR, 'templates')]:
-    if sub not in sys.path:
-        sys.path.insert(0, sub)
-
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'skills', 'xlsx', 'templates'))
+from base import *
 from openpyxl import Workbook
-from openpyxl.styles import Font, Alignment, PatternFill
+from openpyxl.styles import PatternFill, Font, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-# --- Prospects data ---
+wb = Workbook()
+ws = wb.active
+ws.title = "LinkedIn Outreach"
+
+# --- Data ---
 prospects = [
     {
-        'name': 'Emily Abrams',
-        'title': 'Multi-Location Tanning Salon Owner',
-        'company': 'California Tanning Salons',
-        'industry': 'Beauty & Wellness',
-        'linkedin': 'https://www.linkedin.com/in/emilyrabrams',
-        'why': 'Already recognized as one of the highest-rated salon businesses on Yelp. Runs multiple locations — review automation would scale her reputation across all stores effortlessly.',
-        'pitch': '''Hi Emily,
-
-I noticed you\'ve built an incredible reputation for your salons — congrats on being one of the highest-rated on Yelp! That doesn\'t happen by accident.
-
-I\'m reaching out because I built something that takes the manual work out of review collection. After every visit, customers automatically get a WhatsApp, SMS, or email asking for a rating. 5-star reviews go straight to Google; anything lower stays private so you can fix it before it goes public.
-
-Then the AI writes a personalized reply to every Google review — instantly.
-
-With multiple locations, you\'d set this up once and it runs on autopilot for all your stores. Would you be open to a 15-minute demo to see how it works?
-
-Best,
-[Your Name]
-AI Social Reputation''',
-        'status': 'Not Contacted',
+        "#": 1,
+        "name": "Simon Rand",
+        "headline": "Founder of KuulSeats.com — Partnering with independent restaurants to grow the largest foodie community",
+        "industry": "Restaurant / Food Tech",
+        "location": "London, UK",
+        "linkedin_url": "https://uk.linkedin.com/in/simon-rand",
+        "why_them": "Partners with hundreds of independent restaurants. His entire mission is helping restaurants grow — reviews and social proof are critical for his clients' success. AI Social Reputation automates what his restaurants struggle with most: getting consistent Google reviews and turning them into social content.",
+        "pitch": "Hi Simon,\n\nI came across KuulSeats and love what you're building for independent restaurants.\n\nI'm Hanan, founder of AI Social Reputation (https://aisocialreputation.com/). We automate Google review collection via WhatsApp, SMS, or Email — and instantly turn every 5-star review into Instagram Stories, Facebook Posts, and LinkedIn Posts.\n\nYour restaurant partners likely struggle with two things: getting enough Google reviews consistently, and turning those reviews into social media content. We solve both — automatically.\n\nEvery customer interaction → AI-powered review request → Google review → AI reply posted instantly → social media content generated. Zero manual effort from the restaurant owner.\n\nWould love to show you a quick demo. Would you be open to a 10-min chat this week?\n\nBest,\nHanan"
     },
     {
-        'name': 'Steve Zimmerman',
-        'title': 'Former Restaurant CEO (Zim\'s Restaurants)',
-        'company': 'Restaurant Realty',
-        'industry': 'Restaurants & Hospitality',
-        'linkedin': 'https://www.linkedin.com/in/restaurantrealty',
-        'why': '20+ years in the restaurant industry, led one of the largest restaurant groups. Restaurants live and die by Google reviews — automated review collection is a natural fit.',
-        'pitch': '''Hi Steve,
-
-With 20+ years in the restaurant industry, you know better than anyone that Google reviews can make or break a location.
-
-I built an automated system that asks every customer for a review right after their visit — via WhatsApp, SMS, or email. The smart part: 5-star ratings go to Google, and anything lower stays private so you can handle it personally.
-
-Every Google review also gets an AI-written, personalized reply posted instantly. No more falling behind on review responses.
-
-Restaurants using this are seeing 3-5x more reviews per month. Would love to show you how it works — would a quick 15-min demo work for you?
-
-Best,
-[Your Name]
-AI Social Reputation''',
-        'status': 'Not Contacted',
+        "#": 2,
+        "name": "Hina Mistry",
+        "headline": "Award-winning Dental Practice Manager with expertise in prevention, management, and healthcare",
+        "industry": "Dental / Healthcare",
+        "location": "UK",
+        "linkedin_url": "https://uk.linkedin.com/in/hina-mistry-57532548",
+        "why_them": "As an award-winning dental practice manager, she directly manages patient experience and the practice's online reputation. Dental practices heavily rely on Google reviews for new patient acquisition. She would benefit from automated review requests after every appointment and AI-powered social content from positive patient experiences.",
+        "pitch": "Hi Hina,\n\nI noticed your impressive background in dental practice management — congratulations on the awards!\n\nI'm Hanan, founder of AI Social Reputation (https://aisocialreputation.com/). We help dental practices automate Google review collection. After every appointment, patients automatically receive a review request via WhatsApp, SMS, or Email.\n\nHere's what that looks like:\n1. Patient finishes appointment → automated review request sent\n2. Happy patient leaves a Google review → AI replies instantly with a personalized thank-you\n3. That review becomes an Instagram Story, Facebook Post, or LinkedIn Post — automatically\n\nDental practices we work with see 3-5x more Google reviews within the first month, which directly translates to more new patients.\n\nWould you be open to seeing how it works? Happy to do a quick 10-minute walkthrough.\n\nBest,\nHanan"
     },
     {
-        'name': 'Rebecca Chatham',
-        'title': 'Business Broker (Auto Repair / HVAC)',
-        'company': 'So-Cal Business Brokerage',
-        'industry': 'Business Brokerage',
-        'linkedin': 'https://www.linkedin.com/in/rebecca-chatham-68ab83232',
-        'why': 'Brokers auto repair shops and HVAC companies — she knows dozens of business owners who need better reviews. Potential partner/referral source or power user.',
-        'pitch': '''Hi Rebecca,
-
-I saw you specialize in brokering auto repair and HVAC businesses. Here\'s something I think could add real value to the businesses you work with — and potentially to your own deal flow.
-
-I built a SaaS that automatically collects Google reviews from every customer for service businesses. The business owner doesn\'t have to lift a finger — the system sends the request via WhatsApp/SMS/email after every job, routes 5-star reviews to Google, and keeps negative feedback private.
-
-Why this matters for your sellers: businesses with strong Google reviews sell for higher multiples. It\'s a tangible asset they can build on autopilot.
-
-I\'d love to explore if there\'s a partnership fit — or just show you the demo. Would 15 minutes work?
-
-Best,
-[Your Name]
-AI Social Reputation''',
-        'status': 'Not Contacted',
+        "#": 3,
+        "name": "Andrew Heppinstall",
+        "headline": "Founder of Unavoidable Marketing — Leeds-based digital marketing agency helping UK and US businesses get found, win leads and grow online",
+        "industry": "Digital Marketing Agency",
+        "location": "Leeds, UK",
+        "linkedin_url": "https://uk.linkedin.com/in/andrew-heppinstall",
+        "why_them": "Runs a digital marketing agency serving UK and US businesses. Review management and social media content are core services his clients need. AI Social Reputation could be a powerful tool he offers to his clients as a value-add or resells as a service, creating a new revenue stream for his agency.",
+        "pitch": "Hi Andrew,\n\nGreat to connect — Unavoidable Marketing's work with UK and US businesses is really impressive.\n\nI'm Hanan, founder of AI Social Reputation (https://aisocialreputation.com/). We built a SaaS that automates Google review collection via WhatsApp, SMS, or Email, and turns every review into ready-to-post social media content.\n\nI think there's a strong fit with your agency: you could offer this to your clients as a value-add service or even resell it. Imagine telling your clients that every customer interaction automatically generates a Google review + social media posts — with zero manual effort on their end.\n\nKey benefits for your clients:\n- 3-5x more Google reviews (directly impacts local SEO — which I know matters to your clients)\n- AI-written reply to every review within seconds\n- Every review auto-converted to Instagram Story + Facebook Post + LinkedIn Post\n- Multi-channel: WhatsApp, SMS, or Email — whatever the customer prefers\n\nWould you be open to a quick call to explore a partnership? I'd love to show you the platform.\n\nBest,\nHanan"
     },
     {
-        'name': 'Marissa Galle',
-        'title': 'CEO & Founder, CLICK Real Estate',
-        'company': 'CLICK Real Estate',
-        'industry': 'Real Estate',
-        'linkedin': 'https://www.linkedin.com/in/marissagalle',
-        'why': 'Real estate is built on trust and reviews. As a founder/CEO, she understands the value of social proof for growing a brand.',
-        'pitch': '''Hi Marissa,
-
-In real estate, trust is everything — and nothing builds trust faster than a wall of genuine Google reviews.
-
-I built a system that automates the entire review process: after every client interaction, it sends a personalized request via WhatsApp, SMS, or email. 5-star reviews flow to Google automatically, and the AI writes a unique, personalized reply to each one — instantly.
-
-For a growing firm like CLICK Real Estate, this means every happy client becomes a magnet for new ones, without anyone on your team spending time on it.
-
-Would you be open to a quick 15-minute demo? I think you\'d see the potential immediately.
-
-Best,
-[Your Name]
-AI Social Reputation''',
-        'status': 'Not Contacted',
+        "#": 4,
+        "name": "Jennifer Donahue",
+        "headline": "Owner at Positive Sentiment — Converting hotel shoppers into confirmed guests through online review management",
+        "industry": "Hospitality / Hotels",
+        "location": "South Carolina, US",
+        "linkedin_url": "https://www.linkedin.com/in/jennifer-donahue-61a18b3a",
+        "why_them": "She literally manages online reviews and responses for hotels — that's her entire business. AI Social Reputation automates what she does manually: review collection, AI replies, and social media content generation. This could 10x her capacity or become a tool she recommends to all her hotel clients.",
+        "pitch": "Hi Jennifer,\n\nYour work at Positive Sentiment really resonated with me — helping hotels convert shoppers through review management is such a critical need in hospitality.\n\nI'm Hanan, founder of AI Social Reputation (https://aisocialreputation.com/). We've built something that I think could be a game-changer for the hotels you work with.\n\nOur platform automates the entire review lifecycle:\n1. After every stay, guests automatically receive a review request via WhatsApp, SMS, or Email\n2. Google reviews come in → AI writes a personalized, on-brand reply within seconds\n3. Every 5-star review is instantly turned into an Instagram Story, Facebook Post, or LinkedIn Post\n\nFor the hotels you manage, this means: more reviews (higher ranking on Google/OTA), faster response times (guest satisfaction), and a steady stream of social content — all on autopilot.\n\nI'd love to explore how this could complement your services. Would you have 10 minutes for a demo this week?\n\nBest,\nHanan"
     },
     {
-        'name': 'Krystena King',
-        'title': 'Award-Winning Entrepreneur',
-        'company': 'Independent (Multiple Ventures)',
-        'industry': 'Entrepreneurship / Service',
-        'linkedin': 'https://www.linkedin.com/in/krystena-king-a2494865',
-        'why': 'Has achieved Google Review Awards and recognition for superior satisfaction. Already understands the power of reviews — would appreciate automation.',
-        'pitch': '''Hi Krystena,
-
-I saw that you\'ve received Google Review Awards for your business — that\'s impressive and tells me you already understand how powerful reviews are for growth.
-
-Here\'s what I built: an automated system that asks every customer for a review after each interaction (via WhatsApp, SMS, or email), routes 5-star ratings to Google, keeps anything lower private, and uses AI to write a personalized reply to every single review — instantly.
-
-It essentially takes what you\'ve already proven works and puts it on complete autopilot. No more manually asking, no more forgetting to reply.
-
-I\'d love to show you the demo. 15 minutes — would that work?
-
-Best,
-[Your Name]
-AI Social Reputation''',
-        'status': 'Not Contacted',
+        "#": 5,
+        "name": "Ryan Cornelius",
+        "headline": "Automotive General Manager who elevated digital reputation, improving Google reviews from 3.4 to 4.3 stars and BBB rating from D- to A+",
+        "industry": "Automotive Dealership",
+        "location": "US",
+        "linkedin_url": "https://www.linkedin.com/in/ryanecornelius",
+        "why_them": "He has a proven track record of improving Google reviews from 3.4 to 4.3 stars — he already understands the massive business value of reputation management. He's the perfect prospect because he's already sold on the 'why' and would immediately see how AI automation could take his results to the next level with less effort.",
+        "pitch": "Hi Ryan,\n\nI saw your profile and was genuinely impressed — taking Google reviews from 3.4 to 4.3 and BBB from D- to A+ is no small feat. You clearly understand the business impact of online reputation.\n\nI'm Hanan, founder of AI Social Reputation (https://aisocialreputation.com/). We built a system that automates everything you did manually to achieve those results.\n\nHere's what it does for dealerships:\n- After every sale/service, customers automatically get a review request via WhatsApp, SMS, or Email\n- 5-star reviews go straight to Google with an AI-written personalized reply\n- 1-4 star reviews are caught internally for feedback before they go public\n- Every positive review becomes an instant social media post (Instagram, Facebook, LinkedIn)\n\nYou already proved that reputation drives revenue. Now imagine doing it at scale, across every transaction, without relying on staff to follow up manually.\n\nI'd love to hear about your experience and show you what we've built. Would you be open to a quick conversation?\n\nBest,\nHanan"
     },
 ]
 
-# --- Build workbook ---
-wb = Workbook()
-ws = wb.active
-ws.title = 'LinkedIn Outreach'
-wb.properties.creator = 'Z.ai'
+# --- Sheet setup ---
+headers = ["#", "Name", "Headline", "Industry", "Location", "LinkedIn URL", "Why Them", "Personalized Pitch Message"]
+num_cols = len(headers)
+last_col = num_cols + 1  # starting from B=2
 
-# --- Palette ---
-PRIMARY = '1B2A4A'
-NEUTRAL_900 = '37352F'
-NEUTRAL_600 = '8C8A84'
-NEUTRAL_100 = 'F7F7F5'
-WHITE = 'FFFFFF'
+setup_sheet(ws, title="AI Social Reputation — LinkedIn Outreach Targets", last_col=last_col)
 
-font_title = Font(name='Times New Roman', size=16, color=PRIMARY, bold=True)
-font_header = Font(name='Times New Roman', size=10, color=WHITE, bold=True)
-font_body = Font(name='Times New Roman', size=10, color=NEUTRAL_900)
-font_link = Font(name='Times New Roman', size=10, color='0066CC', underline='single')
-font_caption = Font(name='Times New Roman', size=9, color=NEUTRAL_600, italic=True)
-font_status = Font(name='Times New Roman', size=10, color='856404', bold=True)
+# --- Write headers ---
+for col_idx, header in enumerate(headers, start=2):
+    ws.cell(row=4, column=col_idx, value=header)
+style_header_row(ws, row_num=4, col_start=2, col_end=last_col)
 
-fill_header = PatternFill(start_color=PRIMARY, end_color=PRIMARY, fill_type='solid')
-fill_alt = PatternFill(start_color=NEUTRAL_100, end_color=NEUTRAL_100, fill_type='solid')
-fill_white = PatternFill(start_color=WHITE, end_color=WHITE, fill_type='solid')
-fill_status = PatternFill(start_color='FFF3CD', end_color='FFF3CD', fill_type='solid')
+# --- Write data ---
+for i, p in enumerate(prospects):
+    row_num = 5 + i
+    values = [p["#"], p["name"], p["headline"], p["industry"], p["location"], p["linkedin_url"], p["why_them"], p["pitch"]]
+    for col_idx, value in enumerate(values, start=2):
+        cell = ws.cell(row=row_num, column=col_idx, value=value)
+    style_data_row(ws, row_num=row_num, col_start=2, col_end=last_col, row_index=i)
 
-align_wrap = Alignment(wrap_text=True, vertical='top')
-align_center = Alignment(horizontal='center', vertical='center', wrap_text=True)
+# --- Column widths ---
+col_widths = {
+    2: 5,    # #
+    3: 20,   # Name
+    4: 45,   # Headline
+    5: 22,   # Industry
+    6: 18,   # Location
+    7: 45,   # LinkedIn URL
+    8: 55,   # Why Them
+    9: 80,   # Pitch Message
+}
+for col, width in col_widths.items():
+    ws.column_dimensions[get_column_letter(col)].width = width
 
-# --- Layout ---
-ws.column_dimensions['A'].width = 3
-ws.row_dimensions[1].height = 15
+# --- Row heights for pitch rows (they're long) ---
+for i in range(len(prospects)):
+    ws.row_dimensions[5 + i].height = 180
 
-ws.merge_cells('B2:J2')
-ws['B2'] = 'AI Social Reputation — LinkedIn Outreach Prospects'
-ws['B2'].font = font_title
-ws['B2'].alignment = Alignment(vertical='center')
-ws.row_dimensions[2].height = 32
-ws.row_dimensions[3].height = 8
+# --- Wrap text on long columns ---
+for row_num in range(5, 5 + len(prospects)):
+    for col_idx in [4, 7, 8, 9]:  # headline, linkedin_url, why_them, pitch
+        cell = ws.cell(row=row_num, column=col_idx)
+        cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
 
-headers = ['#', 'Name', 'Title / Role', 'Company', 'Industry', 'LinkedIn Profile', 'Why Them?', 'Pitch Message', 'Status']
-col_widths = [5, 18, 28, 24, 20, 42, 42, 58, 14]
+# Header wrap text
+for col_idx in range(2, last_col + 1):
+    ws.cell(row=4, column=col_idx).alignment = Alignment(wrap_text=True, vertical='center', horizontal='center')
 
-for i, (h, w) in enumerate(zip(headers, col_widths), start=2):
-    col_letter = get_column_letter(i)
-    ws.column_dimensions[col_letter].width = w
-    cell = ws.cell(row=4, column=i, value=h)
-    cell.font = font_header
-    cell.fill = fill_header
-    cell.alignment = align_center
+# --- Hyperlinks on LinkedIn URLs ---
+from openpyxl.styles import Font as XlFont
+for i in range(len(prospects)):
+    cell = ws.cell(row=5 + i, column=7)
+    cell.hyperlink = prospects[i]["linkedin_url"]
+    cell.font = XlFont(name=FONT_NAME, size=11, color="0066CC", underline="single")
 
-ws.row_dimensions[4].height = 28
+# Also hyperlink the website in each pitch
+# (We keep the URL as plain text in the pitch since it's a message template)
 
-for idx, p in enumerate(prospects):
-    row = 5 + idx
-    ws.row_dimensions[row].height = 130
-    fill = fill_alt if idx % 2 == 0 else fill_white
+# --- Freeze panes ---
+ws.freeze_panes = "C5"  # Freeze # and Name columns + header row
 
-    row_data = [idx + 1, p['name'], p['title'], p['company'], p['industry'], p['linkedin'], p['why'], p['pitch'].strip(), p['status']]
+# --- Print setup ---
+ws.page_setup.orientation = 'landscape'
+ws.page_setup.fitToWidth = 1
+ws.page_setup.fitToHeight = 0
 
-    for col_idx, val in enumerate(row_data, start=2):
-        cell = ws.cell(row=row, column=col_idx, value=val)
-        cell.alignment = align_wrap
-        cell.fill = fill
+# --- Disable grid lines ---
+ws.sheet_view.showGridLines = False
 
-        if col_idx == 2:
-            cell.font = font_body
-            cell.alignment = align_center
-        elif col_idx == 7:
-            cell.font = font_link
-            cell.hyperlink = p['linkedin']
-        elif col_idx == 10:
-            cell.font = font_status
-            cell.fill = fill_status
-            cell.alignment = align_center
-        else:
-            cell.font = font_body
+# --- Auto-filter ---
+ws.auto_filter.ref = f"B4:{get_column_letter(last_col)}{4 + len(prospects)}"
 
-notes_row = 5 + len(prospects) + 1
-ws.merge_cells(f'B{notes_row}:J{notes_row}')
-ws[f'B{notes_row}'] = 'Tip: Click any LinkedIn link to open the profile. Copy the pitch and personalize before sending. Replace [Your Name] with your actual name.'
-ws[f'B{notes_row}'].font = font_caption
-
-ws.freeze_panes = 'C5'
-
-output_path = '/home/z/my-project/download/AI_Social_Reputation_LinkedIn_Outreach.xlsx'
+# --- Save ---
+output_path = "/home/z/my-project/download/AI_Social_Reputation_LinkedIn_Outreach.xlsx"
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+wb.properties.creator = "Z.ai"
 wb.save(output_path)
-print(f'Saved to {output_path}')
+print(f"Saved to: {output_path}")
