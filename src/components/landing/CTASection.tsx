@@ -8,7 +8,7 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const ParticleField = dynamic(() => import('./ParticleField'), { ssr: false });
 
-const CALENDLY_URL = 'https://calendly.com/codexsolutionsintl/15min?back=1&month=2026-06';
+const CALENDLY_URL = 'https://calendly.com/aisocialreputation/30min';
 
 const checklist = [
   'Every order / service / job → Google review → AI reply posted instantly',
@@ -62,7 +62,7 @@ export default function CTASection() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 rounded-2xl bg-[#14b8a6] text-gray-950 font-semibold text-base transition-all duration-500 hover:bg-[#2dd4bf] hover:shadow-[0_0_50px_rgba(20,184,166,0.25)]"
             >
-              Book a Free 15-Minute Demo
+              Book a Free 30-Minute Demo
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <p className="mt-4 text-slate-600 text-[12px]">

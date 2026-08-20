@@ -7,7 +7,7 @@ import { ArrowRight, Star } from 'lucide-react';
 
 const ParticleField = dynamic(() => import('./ParticleField'), { ssr: false });
 
-const CALENDLY_URL = 'https://calendly.com/codexsolutionsintl/15min?back=1&month=2026-06';
+const CALENDLY_URL = 'https://calendly.com/aisocialreputation/30min';
 
 const container = {
   hidden: {},
@@ -112,7 +112,7 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-white text-gray-950 font-semibold text-[13px] sm:text-sm transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] hover:scale-[1.02]"
               >
-                Book a Free 15-Min Demo
+                Book a Free 30-Min Demo
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>
               <a
