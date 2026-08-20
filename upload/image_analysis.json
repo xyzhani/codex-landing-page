@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Based on the image, here is a complete description of the text and layout:\n\n## **Page Type**\nThis is a **settings or configuration page** for **email notification preferences**, specifically for a calendar or scheduling application (likely Google Calendar or similar booking software).\n\n## **Visible Text Content**\n\n**Main Heading:**\n- **\"Basic notifications\"** (with an information icon ⓘ)\n\n**Notification Options (List Items):**\n\n1.  **First Item:**\n    *   **Title:** \"Calendar invitation\"\n    *   **Description:** \"Immediately after booking\"\n    *   **Icon:** Envelope (✉️)\n    *   **Action:** Three-dot menu (⋮) on the right\n\n2.  **Second Item:**\n    *   **Title:** \"Email reminders\"\n    *   **Description:** \"24 hours before event\"\n    *   **Icon:** Envelope (✉️)\n    *   **Action:** Three-dot menu (⋮) on the right\n\n## **Layout Description**\n\n*   **Background:** Dark mode interface (dark gray/black background)\n*   **Structure:** Vertical list format with two distinct rows/cards\n*   **Typography:** \n    *   Headings are in white/light gray\n    *   Descriptions are in a lighter/muted gray color\n*   **Components per row:**\n    *   Left side: Email icon (envelope)\n    *   Center: Title (bold) and subtitle/description (regular weight)\n    *   Right side: Overflow menu button (three vertical dots) indicating additional options are available\n\n## **Functionality Context**\nThis page allows users to manage automated emails sent regarding scheduled events:\n- The first option controls when invitation emails are sent to invitees (immediately upon booking).\n- The second option configures reminder emails sent prior to an event occurring (set to 24 hours in this view).",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1787247422,
+  "id": "202608210136576fed704281e842c8",
+  "model": "glm-5v-turbo",
+  "object": "chat.completion",
+  "request_id": "202608210136576fed704281e842c8",
+  "usage": {
+    "completion_tokens": 388,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 174,
+    "prompt_tokens_details": {
+      "cached_tokens": 2
+    },
+    "total_tokens": 562
+  }
+}
