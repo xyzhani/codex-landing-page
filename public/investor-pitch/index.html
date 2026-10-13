@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audio Division Investor Pitch</title>
+<style>
+:root{--bg:#fff;--ink:#0f1a14;--mute:#5d6b63;--line:#e4eae6;--accent:#0a7d4b;--soft:#f3f7f4}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 8vw}
+nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:22px 8vw;background:#ffffffd9;backdrop-filter:blur(8px);z-index:5;font-size:15px}
+nav b{letter-spacing:.04em}
+nav span{color:var(--mute)}
+h1{font-size:clamp(40px,6vw,84px);line-height:1.05;font-weight:700;letter-spacing:-.02em;max-width:14ch}
+h2{font-size:clamp(28px,3.6vw,48px);letter-spacing:-.01em;margin-bottom:40px}
+p.lead{color:var(--mute);font-size:21px;max-width:44ch;margin-top:24px}
+.btn{display:inline-block;margin-top:36px;background:var(--accent);color:#fff;padding:16px 30px;border-radius:999px;text-decoration:none;font-weight:600;width:max-content;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.wave{display:flex;gap:6px;align-items:center;height:60px;margin-bottom:28px}
+.wave i{width:6px;border-radius:3px;background:var(--accent);animation:w 1.2s ease-in-out infinite}
+@keyframes w{0%,100%{height:10px}50%{height:56px}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.stat{border-top:2px solid var(--ink);padding-top:18px}
+.stat em{display:block;font-style:normal;font-size:clamp(36px,5vw,68px);font-weight:700;letter-spacing:-.02em}
+.stat span{color:var(--mute);font-size:15px}
+.tl{position:relative;border-left:2px solid var(--line);margin-left:8px;padding-left:36px;display:grid;gap:34px;max-width:640px}
+.tl div::before{content:"";position:absolute;left:-7px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.tl b{display:block}
+.tl span{color:var(--mute)}
+.note{margin-top:48px;font-size:13px;color:var(--mute)}
+.cta{background:var(--soft)}
+.r{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.r.in{opacity:1;transform:none}
+@media(max-width:700px){.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><b>AUDIO DIVISION</b><span>Investor overview</span></nav>
+
+<section>
+  <div class="wave r" id="wave"></div>
+  <h1 class="r">Sound that scales.</h1>
+  <p class="lead r">A short look at where the audio business stands, where it is growing, and what comes next.</p>
+  <a class="btn r" href="#deck">Request the deck</a>
+</section>
+
+<section>
+  <h2 class="r">The numbers</h2>
+  <div class="stats">
+    <div class="stat r"><em data-to="48" data-pre="$" data-suf="B">0</em><span>Annual revenue (placeholder)</span></div>
+    <div class="stat r"><em data-to="22" data-suf="%">0</em><span>Year-over-year growth (placeholder)</span></div>
+    <div class="stat r"><em data-to="65" data-pre="$" data-suf="B">0</em><span>Cash on hand (placeholder)</span></div>
+  </div>
+  <p class="note r">All figures are placeholders. Replace with audited numbers before sharing.</p>
+</section>
+
+<section>
+  <h2 class="r">Timeline</h2>
+  <div class="tl">
+    <div class="r"><b>2023: Launch</b><span>Core audio products ship to the first markets.</span></div>
+    <div class="r"><b>2024: Scale</b><span>Subscriptions and licensing added alongside ads.</span></div>
+    <div class="r"><b>2025: Expand</b><span>New regions and partner catalogs.</span></div>
+    <div class="r"><b>2026: Next</b><span>Creator tools and enterprise deals.</span></div>
+  </div>
+</section>
+
+<section class="cta" id="deck">
+  <h2 class="r">Want the full deck?</h2>
+  <p class="lead r">Leave your email and we will send it over.</p>
+  <a class="btn r" href="mailto:info@codexsolutionsint.com?subject=Investor%20deck%20request">Request the deck</a>
+</section>
+
+<script>
+const w=document.getElementById('wave');
+for(let i=0;i<28;i++){const b=document.createElement('i');b.style.animationDelay=(i*.07)+'s';w.appendChild(b)}
+const count=e=>{const to=+e.dataset.to,t0=performance.now();(function f(t){const p=Math.min((t-t0)/1800,1);e.textContent=(e.dataset.pre||'')+Math.round(to*(1-Math.pow(1-p,3)))+(e.dataset.suf||'');if(p<1)requestAnimationFrame(f)})(t0)};
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;x.target.classList.add('in');x.target.querySelectorAll?.('[data-to]').forEach(count);if(x.target.dataset.to)count(x.target);io.unobserve(x.target)}),{threshold:.3});
+document.querySelectorAll('.r').forEach((e,i)=>{e.style.transitionDelay=(i%4)*.12+'s';io.observe(e)});
+</script>
+</body>
+</html>
